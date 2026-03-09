@@ -1,0 +1,12 @@
+.global-lockdown-banner {
+    background: #e53e3e;
+    color: white;
+    text-align: center;
+    padding: 0.75rem;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}

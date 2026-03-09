@@ -1,0 +1,152 @@
+<div class="space-y-6 max-w-6xl mx-auto">
+
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <h1 class="text-2xl font-bold text-white mb-2">Gestión de Accesos</h1>
+            <p class="text-sm text-qz-muted">Administra los roles y permisos de acceso al sistema.</p>
+        </div>
+        <button (click)="toggleModal()"
+            class="bg-qz-emerald hover:bg-qz-hover text-qz-darkest px-6 py-2.5 rounded-lg text-sm font-black tracking-wide shadow-[0_0_15px_rgba(25,198,131,0.3)] transition-all flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path>
+            </svg>
+            AGREGAR USUARIO
+        </button>
+    </div>
+
+    <!-- TABLA DE USUARIOS -->
+    <div class="bg-qz-card border border-qz-light rounded-xl overflow-hidden shadow-lg">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-qz-darkest border-b border-qz-light">
+                    <tr>
+                        <th class="px-6 py-4 text-xs font-bold text-qz-muted uppercase tracking-widest">Correo /
+                            Identificador</th>
+                        <th class="px-6 py-4 text-xs font-bold text-qz-muted uppercase tracking-widest">Rol de
+                            Acceso</th>
+                        <th class="px-6 py-4 text-xs font-bold text-qz-muted uppercase tracking-widest">Fecha de Alta
+                        </th>
+                        <th class="px-6 py-4 text-xs font-bold text-qz-muted uppercase tracking-widest text-right">
+                            Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-qz-light/50">
+                    <tr *ngFor="let user of users" class="hover:bg-qz-hover/5 transition-colors group">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-qz-emerald/10 flex items-center justify-center text-qz-emerald font-bold text-xs">
+                                    {{ user.email.substring(0, 1).toUpperCase() }}
+                                </div>
+                                <span class="text-white font-medium">{{ user.email }}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span
+                                [class]="user.role === 'ADMIN' ? 'bg-qz-danger/10 text-qz-danger' : 'bg-qz-emerald/10 text-qz-emerald'"
+                                class="px-2.5 py-1 rounded text-[10px] font-black tracking-widest uppercase border border-current/20">
+                                {{ user.role }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-qz-muted text-sm font-mono">
+                            {{ user.createdAt | date:'yyyy-MM-dd HH:mm' }}
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <button (click)="onDelete(user.id)"
+                                class="text-qz-danger/50 hover:text-qz-danger p-2 transition-colors" title="Eliminar">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                    </path>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr *ngIf="users.length === 0 && !isLoading">
+                        <td colspan="4" class="px-6 py-20 text-center">
+                            <div class="flex flex-col items-center opacity-30">
+                                <svg class="w-12 h-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                                    </path>
+                                </svg>
+                                <p class="text-sm font-bold uppercase tracking-widest">Sin registros de acceso</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- MODAL CREACIÓN -->
+    <div *ngIf="showCreateModal" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-[#0B1315]/80 backdrop-blur-sm" (click)="toggleModal()"></div>
+
+        <div
+            class="relative bg-qz-card border border-qz-light rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div class="p-6 border-b border-qz-light flex items-center justify-between bg-qz-darkest">
+                <h3 class="text-lg font-bold text-white">Nuevo Acceso</h3>
+                <button (click)="toggleModal()" class="text-qz-muted hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="p-8">
+                <form (submit)="onCreate()" class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold text-qz-muted uppercase tracking-wider mb-2">Correo
+                            Electrónico</label>
+                        <input type="email" name="email" [(ngModel)]="newUser.email" required
+                            class="w-full bg-qz-darkest border border-qz-light rounded-lg px-4 py-2.5 text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald focus:ring-1 focus:ring-qz-emerald transition-all"
+                            placeholder="usuario@quetzaltic.local">
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-xs font-bold text-qz-muted uppercase tracking-wider mb-2">Contraseña
+                            Inicial</label>
+                        <input type="password" name="password" [(ngModel)]="newUser.passwordHash" required
+                            class="w-full bg-qz-darkest border border-qz-light rounded-lg px-4 py-2.5 text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald focus:ring-1 focus:ring-qz-emerald transition-all"
+                            placeholder="••••••••">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-qz-muted uppercase tracking-wider mb-2">Rol de
+                            Acceso</label>
+                        <select name="role" [(ngModel)]="newUser.role"
+                            class="w-full bg-qz-darkest border border-qz-light rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-qz-emerald focus:ring-1 focus:ring-qz-emerald transition-all appearance-none cursor-pointer">
+                            <option value="OPERATOR">OPERADOR - Acceso Regular</option>
+                            <option value="ADMIN">ADMIN - Controles de Seguridad</option>
+                        </select>
+                    </div>
+
+                    <div *ngIf="errorMessage"
+                        class="p-3 bg-qz-danger/10 border border-qz-danger/30 rounded-lg text-qz-danger text-xs font-bold flex items-center gap-2">
+                        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="pt-4 flex gap-4">
+                        <button type="button" (click)="toggleModal()"
+                            class="flex-1 px-4 py-3 text-sm font-bold text-qz-muted hover:text-white transition-colors border border-transparent hover:border-qz-light rounded-lg">
+                            CANCELAR
+                        </button>
+                        <button type="submit" [disabled]="isLoading"
+                            class="flex-[2] bg-qz-emerald hover:bg-qz-hover text-qz-darkest px-6 py-3 rounded-lg text-sm font-black tracking-wide shadow-[0_0_15px_rgba(25,198,131,0.3)] transition-all disabled:opacity-50">
+                            {{ isLoading ? 'GUARDANDO...' : 'CONFIRMAR ACCESO' }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

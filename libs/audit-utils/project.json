@@ -1,0 +1,9 @@
+{
+  "name": "audit-utils",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/audit-utils/src",
+  "projectType": "library",
+  "tags": ["audit", "utils"],
+  "// targets": "to see all targets run: nx show project audit-utils --web",
+  "targets": {}
+}

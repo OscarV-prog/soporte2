@@ -1,0 +1,180 @@
+<div *ngIf="isLockdownActive"
+    class="bg-qz-danger text-white px-4 py-2 text-center text-sm font-semibold shadow-md z-50 fixed top-0 w-full left-0 flex items-center justify-center">
+    ⚠️ <strong>BLOQUEO DE EMERGENCIA ACTIVO:</strong> Todas las operaciones de escritura están bloqueadas de forma preventiva.
+</div>
+
+<div class="flex h-screen bg-qz-dark overflow-hidden font-sans text-qz-text" [class.mt-10]="isLockdownActive">
+
+    <!-- Sidebar -->
+    <aside *ngIf="authService.isLoggedIn()"
+        class="w-64 bg-qz-darkest flex-shrink-0 border-r border-qz-light flex flex-col justify-between">
+
+        <!-- Logo Area -->
+        <div class="h-20 flex items-center px-6 border-b border-qz-light">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-qz-emerald flex items-center justify-center">
+                    <svg class="w-5 h-5 text-qz-darkest" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                        </path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-white font-bold text-lg leading-tight tracking-wide">Quetzaltic</h1>
+                    <span class="text-xs text-qz-emerald tracking-widest font-semibold uppercase">Control de Cambios SQL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <a routerLink="/operations" routerLinkActive="bg-qz-card text-qz-emerald border-l-4 border-qz-emerald"
+                [routerLinkActiveOptions]="{exact: true}"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-qz-muted hover:text-white hover:bg-qz-card transition-colors border-l-4 border-transparent">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                    </path>
+                </svg>
+                Operaciones
+            </a>
+
+            <a *ngIf="userRole === 'ADMIN'" routerLink="/governance"
+                routerLinkActive="bg-qz-card text-qz-emerald border-l-4 border-qz-emerald"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-qz-muted hover:text-white hover:bg-qz-card transition-colors border-l-4 border-transparent">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Bitácora de Auditoría
+            </a>
+
+            <!-- User Management -->
+            <a *ngIf="userRole === 'ADMIN'" routerLink="/users"
+                routerLinkActive="bg-qz-card text-qz-emerald border-l-4 border-qz-emerald"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-qz-muted hover:text-white hover:bg-qz-card transition-colors border-l-4 border-transparent mt-8">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+                Gestión de Usuarios
+            </a>
+        </nav>
+
+        <!-- System Status Footer inside sidebar -->
+        <div class="p-6 border-t border-qz-light">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-medium text-qz-muted">Estado del Sistema</span>
+                <span class="w-2 h-2 rounded-full bg-qz-emerald"></span>
+            </div>
+            <div class="w-full h-1.5 bg-qz-light rounded-full overflow-hidden mb-2">
+                <div class="h-full bg-qz-emerald w-full"></div>
+            </div>
+            <span class="text-[10px] text-qz-muted uppercase tracking-wider">Todos los servicios operativos</span>
+        </div>
+    </aside>
+
+    <!-- Main Content Layout -->
+    <div class="flex-1 flex flex-col h-full relative">
+
+        <!-- Topbar -->
+        <header *ngIf="authService.isLoggedIn()"
+            class="h-20 px-8 flex items-center justify-between flex-shrink-0 z-10 w-full">
+            <!-- Search -->
+            <div class="flex items-center max-w-md w-full relative">
+                <svg class="w-4 h-4 text-qz-muted absolute left-3" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" [(ngModel)]="searchQuery" (keydown)="onSearch($event)"
+                    placeholder="Search CorrelationID... (Enter)"
+                    class="w-full bg-qz-darkest border border-qz-light rounded-lg pl-10 pr-4 py-2 text-sm text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald transition-colors">
+            </div>
+
+            <!-- Right Topbar Actions -->
+            <div class="flex items-center gap-6">
+
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-semibold text-qz-emerald uppercase tracking-wider">Last Ticket</span>
+                    <span class="bg-qz-darkest text-qz-text text-sm px-3 py-1.5 rounded border border-qz-light font-mono">{{ lastTicketId }}</span>
+                </div>
+
+                <button (click)="requestLockdownToggle()" [disabled]="lockdownLoading || userRole !== 'ADMIN'"
+                    [class.bg-qz-danger]="isLockdownActive"
+                    [class.text-white]="isLockdownActive"
+                    class="flex items-center gap-2 text-xs font-semibold text-qz-danger border border-qz-danger/30 bg-qz-danger/10 px-4 py-2 rounded hover:bg-qz-danger hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg *ngIf="lockdownLoading" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                    </svg>
+                    <svg *ngIf="!lockdownLoading" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    {{ isLockdownActive ? 'DEACTIVATE LOCKDOWN' : 'EMERGENCY LOCKDOWN' }}
+                </button>
+
+                <!-- Profile Dropdown mock -->
+                <div class="flex items-center gap-3 border-l border-qz-light pl-6 relative group cursor-pointer"
+                    (click)="logout()">
+                    <div class="text-right">
+                        <div class="text-sm font-semibold text-white leading-tight capitalize">{{ userRole
+                            || 'Guest' }} User</div>
+                        <div class="text-[10px] text-qz-emerald tracking-wider uppercase">{{ userRole }}</div>
+                        <div class="text-[8px] text-qz-muted tracking-tight">{{ userEmail }}</div>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-orange-200 border-2 border-qz-emerald overflow-hidden flex items-center justify-center">
+                        <svg class="w-6 h-6 text-orange-600 mt-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <!-- Hover Tooltip -->
+                    <div
+                        class="absolute right-0 top-12 bg-qz-card border border-qz-light rounded shadow-lg px-4 py-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                        <span class="text-xs text-qz-text whitespace-nowrap">Clic para Cerrar Sesión</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic View Outlet -->
+        <main class="flex-1 overflow-y-auto w-full p-8 pt-0">
+            <router-outlet></router-outlet>
+        </main>
+
+    </div>
+</div>
+
+<!-- Lockdown Confirmation Modal -->
+<div *ngIf="showLockdownConfirm"
+    class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
+    <div class="bg-qz-card border border-qz-danger rounded-xl p-8 max-w-md w-full mx-4 shadow-2xl">
+        <div class="flex items-center gap-3 mb-4">
+            <svg class="w-8 h-8 text-qz-danger flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            <h2 class="text-white font-bold text-lg">
+                {{ isLockdownActive ? 'Deactivate' : 'Activate' }} Emergency Lockdown?
+            </h2>
+        </div>
+        <p class="text-qz-muted text-sm mb-6">
+            <span *ngIf="!isLockdownActive">This will <strong class="text-qz-danger">block ALL write operations</strong> system-wide until lockdown is deactivated. Only admins can reverse this action.</span>
+            <span *ngIf="isLockdownActive">This will <strong class="text-qz-emerald">restore normal operations</strong> and allow write operations to resume.</span>
+        </p>
+        <div class="flex gap-3 justify-end">
+            <button (click)="cancelLockdownToggle()"
+                class="px-4 py-2 text-sm text-qz-muted border border-qz-light rounded-lg hover:text-white transition-colors">Cancel</button>
+            <button (click)="confirmLockdownToggle()"
+                [class.bg-qz-danger]="!isLockdownActive"
+                [class.bg-qz-emerald]="isLockdownActive"
+                class="px-6 py-2 text-sm font-bold text-white rounded-lg transition-colors">
+                {{ isLockdownActive ? 'DEACTIVATE' : 'ACTIVATE LOCKDOWN' }}
+            </button>
+        </div>
+    </div>
+</div>

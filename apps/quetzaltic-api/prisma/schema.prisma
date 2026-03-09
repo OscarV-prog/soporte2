@@ -1,0 +1,94 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["prod", "audit"]
+}
+
+
+model MigrationMeta {
+  id        Int      @id @default(autoincrement())
+  appliedAt DateTime @default(now())
+  version   String
+
+  @@schema("audit")
+}
+
+model AuditEvent {
+  id               String   @id @default(uuid())
+  correlationId    String   @map("correlation_id")
+  ticketId         String?  @map("ticket_id")
+  actor            String
+  type             String   @default("OPERATION") // OPERATION | POLICY_CHANGE | SYSTEM_LOCKDOWN
+  tableName        String   @map("table_name")
+  primaryKeyColumn String   @map("primary_key_column")
+  primaryKeyValue  String   @map("primary_key_value")
+  snapshotBefore   Json     @map("snapshot_before")
+  snapshotAfter    Json?    @map("snapshot_after")
+  status           String   // PENDING | SUCCESS | FAILED
+  revertedByEventId String?  @map("reverted_by_event_id")
+  executedAt       DateTime @default(now()) @map("executed_at")
+
+  @@map("audit_events")
+  @@schema("audit")
+}
+
+model GuardianWhitelist {
+  id         String   @id @default(uuid())
+  schemaName String   @map("schema_name")
+  tableName  String   @map("table_name")
+  columnName String?  @map("column_name")
+  isEditable Boolean  @default(true) @map("is_editable")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@unique([schemaName, tableName, columnName])
+  @@map("guardian_whitelist")
+  @@schema("audit")
+}
+
+model SystemConfig {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("system_configs")
+  @@schema("audit")
+}
+
+model IdempotencyKey {
+  id             String   @id @default(uuid())
+  idempotencyKey String   @unique @map("idempotency_key")
+  correlationId  String   @map("correlation_id")
+  requestHash    String   @map("request_hash")
+  status         String   // PENDING | SUCCESS | FAILED
+  responseBody   Json?    @map("response_body")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@map("idempotency_keys")
+  @@schema("audit")
+}
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         String   @default("OPERATOR") // ADMIN | OPERATOR
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("users")
+  @@schema("audit")
+}
+
+model DemoRecord {
+  id         String   @id @default(uuid())
+  name       String
+  value      String
+  isActive   Boolean  @default(true) @map("is_active")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("demo_records")
+  @@schema("prod")
+}

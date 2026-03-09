@@ -1,0 +1,84 @@
+<div class="min-h-screen flex items-center justify-center bg-[#0B1315] py-12 px-4 sm:px-6 lg:px-8 font-sans">
+    <div class="max-w-md w-full space-y-8 bg-[#111A1D] p-10 rounded-2xl shadow-2xl border border-[#354347]">
+
+        <div class="flex flex-col items-center">
+            <div
+                class="w-16 h-16 rounded-2xl bg-[#1FC684] flex items-center justify-center shadow-[0_0_20px_rgba(31,198,132,0.3)] mb-6">
+                <svg class="w-10 h-10 text-[#0B1315]" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                    </path>
+                </svg>
+            </div>
+            <h2 class="text-center text-3xl font-extrabold text-white tracking-tight">
+                Quetzaltic
+            </h2>
+            <p class="mt-2 text-center text-sm font-bold text-[#1FC684] uppercase tracking-widest">
+                Control de Cambios SQL
+            </p>
+        </div>
+
+        <form class="mt-8 space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="space-y-4">
+                <div>
+                    <label for="username"
+                        class="block text-xs font-bold text-[#8B9C9F] uppercase tracking-wider mb-2">Usuario
+                        de Red</label>
+                    <input id="username" type="text" formControlName="username"
+                        class="appearance-none relative block w-full px-4 py-3 bg-[#0B1315] border border-[#354347] placeholder-[#8B9C9F]/50 text-white rounded-lg focus:outline-none focus:border-[#1FC684] focus:ring-1 focus:ring-[#1FC684] sm:text-sm transition-all"
+                        placeholder="ej. admin">
+                </div>
+                <div>
+                    <label for="password"
+                        class="block text-xs font-bold text-[#8B9C9F] uppercase tracking-wider mb-2">Contraseña
+                        / Token</label>
+                    <input id="password" type="password" formControlName="password"
+                        class="appearance-none relative block w-full px-4 py-3 bg-[#0B1315] border border-[#354347] placeholder-[#8B9C9F]/50 text-white rounded-lg focus:outline-none focus:border-[#1FC684] focus:ring-1 focus:ring-[#1FC684] sm:text-sm transition-all"
+                        placeholder="••••••••">
+                </div>
+            </div>
+
+            <div *ngIf="errorMessage"
+                class="flex items-center gap-2 text-xs font-semibold text-[#E54B4B] p-3 bg-[#E54B4B]/10 rounded-lg border border-[#E54B4B]/30 animate-in fade-in zoom-in duration-200">
+                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                {{ errorMessage }}
+            </div>
+
+            <div>
+                <button type="submit" [disabled]="loginForm.invalid || isLoading"
+                    class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-black rounded-lg text-[#0B1315] bg-[#1FC684] hover:bg-[#29E09B] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1FC684] focus:ring-offset-[#111A1D] disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(31,198,132,0.2)] hover:shadow-[0_0_20px_rgba(31,198,132,0.4)] transition-all tracking-wide uppercase">
+                    <span class="absolute left-0 inset-y-0 flex items-center pl-4">
+                        <svg *ngIf="isLoading" class="animate-spin h-5 w-5 text-[#0B1315]"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        <svg *ngIf="!isLoading"
+                            class="h-5 w-5 text-[#0B1315] opacity-70 group-hover:opacity-100 transition-opacity"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                            aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                    {{ isLoading ? 'AUTENTICANDO...' : 'ACCEDER DE FORMA SEGURA' }}
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-6 pt-6 border-t border-[#354347] text-center">
+            <p class="text-[10px] text-[#8B9C9F] uppercase tracking-wider leading-relaxed">
+                Acceso restringido exclusivamente a personal autorizado.<br>Todos los intentos de acceso son
+                registrados y auditados.
+            </p>
+        </div>
+    </div>
+</div>

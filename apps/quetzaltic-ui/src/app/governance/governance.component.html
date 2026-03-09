@@ -1,0 +1,466 @@
+<div class="space-y-6">
+
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-white mb-1">Explorador de Eventos de Auditoría</h1>
+            <p class="text-sm text-qz-muted">Monitoreo en tiempo real de todas las operaciones SQL en el sistema.</p>
+        </div>
+        <button (click)="refreshAll()"
+            class="bg-qz-card hover:bg-qz-light border border-qz-light text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                </path>
+            </svg>
+            Actualizar
+        </button>
+    </div>
+
+    <!-- Tarjetas de métricas -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+        <div class="bg-qz-card border border-qz-light rounded-xl p-5 hover:border-qz-hover transition-colors group">
+            <h3 class="text-xs font-bold text-qz-muted uppercase tracking-wider mb-2">Total Eventos (24H)</h3>
+            <div class="flex items-baseline gap-2">
+                <span *ngIf="statsLoaded" class="text-3xl font-bold text-white">{{ stats.totalEvents | number }}</span>
+                <span *ngIf="!statsLoaded" class="text-3xl font-bold text-qz-muted animate-pulse">—</span>
+            </div>
+        </div>
+
+        <div class="bg-qz-card border border-qz-light rounded-xl p-5 hover:border-qz-hover transition-colors group">
+            <h3 class="text-xs font-bold text-qz-muted uppercase tracking-wider mb-2">Reversiones Ejecutadas</h3>
+            <div class="flex items-baseline gap-2">
+                <span *ngIf="statsLoaded" class="text-3xl font-bold" [class.text-qz-danger]="stats.rollbacksExecuted > 0" [class.text-white]="stats.rollbacksExecuted === 0">{{ stats.rollbacksExecuted }}</span>
+                <span *ngIf="!statsLoaded" class="text-3xl font-bold text-qz-muted animate-pulse">—</span>
+            </div>
+            <p class="text-xs text-qz-muted mt-1">Requieren atención: 0</p>
+        </div>
+
+        <div class="bg-qz-card border border-qz-light rounded-xl p-5 hover:border-qz-hover transition-colors group">
+            <h3 class="text-xs font-bold text-qz-muted uppercase tracking-wider mb-2">Cambios de Política</h3>
+            <div class="flex items-baseline gap-2">
+                <span *ngIf="statsLoaded" class="text-3xl font-bold text-white">{{ stats.schemaChanges }}</span>
+                <span *ngIf="!statsLoaded" class="text-3xl font-bold text-qz-muted animate-pulse">—</span>
+            </div>
+        </div>
+
+        <div class="bg-qz-card border border-qz-light rounded-xl p-5 hover:border-qz-hover transition-colors group">
+            <h3 class="text-xs font-bold text-qz-muted uppercase tracking-wider mb-2">Tiempo Promedio Ejec.</h3>
+            <div class="flex items-baseline gap-2">
+                <span *ngIf="statsLoaded && stats.avgExecutionMs !== null" class="text-3xl font-bold text-white">{{ stats.avgExecutionMs }}ms</span>
+                <span *ngIf="statsLoaded && stats.avgExecutionMs === null" class="text-xl font-bold text-qz-muted/50 italic">N/D</span>
+                <span *ngIf="!statsLoaded" class="text-3xl font-bold text-qz-muted animate-pulse">—</span>
+            </div>
+            <p class="text-xs text-qz-muted mt-1">Rendimiento optimizado</p>
+        </div>
+
+    </div>
+
+    <!-- TABLA PRINCIPAL DE AUDITORÍA -->
+    <div class="bg-qz-card border border-qz-light rounded-xl overflow-hidden flex flex-col">
+
+        <div class="p-5 border-b border-qz-light flex items-center justify-between bg-qz-card">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                Eventos Recientes de Auditoría
+            </h2>
+            <div class="flex items-center gap-3">
+                <button
+                    class="bg-qz-darkest border border-qz-light hover:border-qz-muted text-white px-3 py-1.5 rounded text-sm font-medium transition-colors flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                        </path>
+                    </svg>
+                    Filtrar
+                </button>
+                <button (click)="exportToCsv()" [disabled]="exportLoading"
+                    class="bg-qz-emerald border-qz-hover hover:bg-qz-hover text-qz-darkest px-3 py-1.5 rounded text-sm font-bold shadow transition-colors flex items-center gap-2 disabled:opacity-50">
+                    <svg *ngIf="!exportLoading" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    <svg *ngIf="exportLoading" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                    </svg>
+                    Exportar CSV
+                </button>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="p-4 bg-qz-darkest border-b border-qz-light grid grid-cols-4 gap-4">
+            <input type="text" [(ngModel)]="auditFilters.ticketId" placeholder="Req/Ticket ID"
+                (keyup.enter)="loadAuditLogs()"
+                class="bg-qz-card border border-qz-light rounded px-3 py-1.5 text-sm text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald">
+            <input type="text" [(ngModel)]="auditFilters.actor" placeholder="Actor/Usuario"
+                (keyup.enter)="loadAuditLogs()"
+                class="bg-qz-card border border-qz-light rounded px-3 py-1.5 text-sm text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald">
+            <input type="text" [(ngModel)]="auditFilters.tableName" placeholder="Tabla Destino"
+                (keyup.enter)="loadAuditLogs()"
+                class="bg-qz-card border border-qz-light rounded px-3 py-1.5 text-sm text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald">
+            <div class="flex items-center gap-4">
+                <label class="flex items-center gap-2 text-sm text-qz-muted cursor-pointer">
+                    <input type="checkbox" [(ngModel)]="showSnapshots" (change)="loadAuditLogs()"
+                        class="rounded bg-qz-card border-qz-light text-qz-emerald focus:ring-qz-emerald focus:ring-offset-qz-dark">
+                    Snapshots
+                </label>
+                <button (click)="loadAuditLogs()"
+                    class="text-qz-emerald hover:text-white text-sm font-semibold transition-colors">Aplicar</button>
+            </div>
+        </div>
+
+        <!-- Datos de la tabla -->
+        <div class="overflow-x-auto relative" [class.opacity-50]="loadingLogs">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr
+                        class="bg-qz-card text-qz-emerald text-xs font-bold uppercase tracking-wider border-b border-qz-light">
+                        <th class="p-4 whitespace-nowrap">Fecha/Hora</th>
+                        <th class="p-4 whitespace-nowrap">Actor/Usuario</th>
+                        <th class="p-4 whitespace-nowrap">Tabla Destino</th>
+                        <th class="p-4 whitespace-nowrap">Operación SQL</th>
+                        <th class="p-4 whitespace-nowrap">ID de Correlación</th>
+                        <th class="p-4 whitespace-nowrap text-right">Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-qz-light/50">
+                    <ng-container *ngFor="let log of auditLogs">
+
+                        <tr class="hover:bg-qz-light/20 transition-colors group">
+
+                            <td class="p-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-white">{{ log.executedAt | date:'yyyy-MM-dd' }}
+                                </div>
+                                <div class="text-xs text-qz-muted">{{ log.executedAt | date:'HH:mm:ss.SSS' }}</div>
+                            </td>
+
+                            <td class="p-4 whitespace-nowrap">
+                                <div class="flex items-center gap-2">
+                                    <div
+                                        class="w-6 h-6 rounded bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold uppercase">
+                                        {{ log.actor | slice:0:2 }}
+                                    </div>
+                                    <span class="text-sm text-white">{{ log.actor }}</span>
+                                </div>
+                            </td>
+
+                            <td class="p-4 whitespace-nowrap">
+                                <span
+                                    class="bg-qz-emerald/10 text-qz-emerald border border-qz-emerald/20 px-2.5 py-1 rounded text-xs font-mono">
+                                    {{ log.tableName }}
+                                </span>
+                            </td>
+
+                            <td class="p-4 whitespace-nowrap">
+                                <span class="text-xs font-bold px-2 py-1 rounded border" [ngClass]="{
+                                        'bg-blue-500/10 text-blue-400 border-blue-500/20': log.type === 'OPERATION',
+                                        'bg-orange-500/10 text-orange-400 border-orange-500/20': log.type === 'POLICY_CHANGE',
+                                        'bg-red-500/10 text-red-400 border-red-500/20': log.type === 'SYSTEM_LOCKDOWN'
+                                    }">
+                                    {{ log.type }}
+                                </span>
+                                <span class="ml-2 text-xs font-mono text-qz-muted">PK: {{ log.primaryKeyValue }}</span>
+                            </td>
+
+                            <td class="p-4 whitespace-nowrap font-mono text-xs text-qz-muted">
+                                {{ log.correlationId }}
+                            </td>
+
+                            <td class="p-4 whitespace-nowrap text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <button
+                                        class="text-xs font-semibold text-qz-emerald border border-qz-emerald/30 hover:bg-qz-emerald/10 px-3 py-1 rounded transition-colors"
+                                        [class.text-qz-muted]="log.status === 'REVERTED'"
+                                        [class.border-qz-muted]="log.status === 'REVERTED'"
+                                        [disabled]="log.status === 'REVERTED'">
+                                        Revertir
+                                    </button>
+                                    <button (click)="toggleExpand(log.id)"
+                                        class="text-qz-muted hover:text-white p-1 rounded transition-colors"
+                                        title="Detalles">
+                                        <svg class="w-5 h-5 transform transition-transform"
+                                            [class.rotate-180]="expandedEventId === log.id" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        <!-- Fila de detalle expandida -->
+                        <tr *ngIf="expandedEventId === log.id" class="bg-qz-darkest/50 border-b border-qz-light/50">
+                            <td colspan="6" class="p-6">
+                                <div class="grid grid-cols-2 gap-6 relative">
+
+                                    <!-- Snapshot Antes -->
+                                    <div class="space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <span
+                                                class="text-xs font-bold text-qz-muted uppercase tracking-wider">Estado
+                                                Anterior</span>
+                                        </div>
+                                        <div
+                                            class="bg-qz-dark border border-qz-light rounded-lg p-4 font-mono text-xs overflow-x-auto max-h-60 overflow-y-auto">
+                                            <pre
+                                                class="text-qz-text m-0">{{ formatJson(log.snapshotBefore) || '{}' }}</pre>
+                                        </div>
+                                    </div>
+
+                                    <!-- Snapshot Después -->
+                                    <div class="space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <span
+                                                class="text-xs font-bold text-qz-emerald uppercase tracking-wider">Estado
+                                                Posterior</span>
+                                            <span *ngIf="log.status" class="text-xs px-2 py-0.5 rounded border"
+                                                [ngClass]="{
+                                                    'bg-green-500/10 text-green-400 border-green-500/20': log.status === 'SUCCESS',
+                                                    'bg-red-500/10 text-red-400 border-red-500/20': log.status === 'FAILED',
+                                                    'bg-yellow-500/10 text-yellow-400 border-yellow-500/20': log.status === 'PENDING'
+                                                }">
+                                                {{ log.status }}
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="bg-qz-dark border border-qz-light rounded-lg p-4 font-mono text-xs overflow-x-auto max-h-60 overflow-y-auto relative">
+                                            <pre class="text-white m-0">{{ formatJson(log.snapshotAfter) || 'null' }}</pre>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div
+                                    class="mt-4 pt-4 border-t border-qz-light/50 flex flex-wrap gap-x-8 gap-y-2 text-xs">
+                                    <div *ngIf="log.ticketId" class="flex gap-2">
+                                        <span class="text-qz-muted">Ticket ID:</span>
+                                        <span class="text-white font-mono">{{ log.ticketId }}</span>
+                                    </div>
+                                    <div *ngIf="log.revertedByEventId" class="flex gap-2">
+                                        <span class="text-qz-danger font-bold">REVERTIDO POR:</span>
+                                        <span class="text-white font-mono">{{ log.revertedByEventId }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </ng-container>
+
+                    <tr *ngIf="auditLogs.length === 0 && !loadingLogs">
+                        <td colspan="6" class="p-8 text-center text-qz-muted">
+                            <p>No se encontraron registros con los criterios especificados.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Overlay de carga -->
+            <div *ngIf="loadingLogs"
+                class="absolute inset-0 z-10 bg-qz-card/50 flex items-center justify-center backdrop-blur-sm">
+                <div class="w-8 h-8 border-4 border-qz-emerald border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        </div>
+
+        <!-- Paginación -->
+        <div class="p-4 border-t border-qz-light flex items-center justify-between text-sm">
+            <span class="text-qz-muted">Mostrando {{ auditLogs.length }} de {{ totalLogs | number }} eventos</span>
+
+            <div class="flex items-center gap-1">
+                <button [disabled]="auditPage === 1" (click)="changePage(auditPage - 1)"
+                    class="p-2 border border-qz-light rounded hover:bg-qz-light text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                </button>
+                <button
+                    class="px-3 py-1.5 border border-qz-emerald bg-qz-emerald/10 text-qz-emerald rounded font-bold">{{
+                    auditPage }}</button>
+                <button [disabled]="auditLogs.length < auditLimit" (click)="changePage(auditPage + 1)"
+                    class="p-2 border border-qz-light rounded hover:bg-qz-light text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid de Gobernanza: Whitelist y Bloqueo -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- SECCIÓN 2: GESTIÓN DE WHITELIST -->
+        <div class="bg-qz-card border border-qz-light rounded-xl overflow-hidden flex flex-col">
+            <div class="p-5 border-b border-qz-light flex items-center justify-between">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                    <svg class="w-5 h-5 text-qz-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                        </path>
+                    </svg>
+                    Recursos Autorizados (Whitelist)
+                </h2>
+                <button *ngIf="authService.getRole() === 'ADMIN'" (click)="showAddManual = !showAddManual"
+                    class="bg-qz-darkest border border-qz-emerald text-qz-emerald hover:bg-qz-emerald hover:text-qz-darkest px-3 py-1.5 rounded text-sm font-bold transition-colors">
+                    {{ showAddManual ? 'Cancelar' : '+ Agregar' }}
+                </button>
+            </div>
+
+            <div *ngIf="showAddManual" class="p-4 bg-qz-darkest border-b border-qz-light flex flex-col gap-3">
+                <div class="grid grid-cols-3 gap-3">
+                    <input type="text" [(ngModel)]="newEntry.schemaName" placeholder="Esquema (default: prod)"
+                        class="bg-qz-card border border-qz-light rounded px-3 py-2 text-sm text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald w-full">
+                    <input type="text" [(ngModel)]="newEntry.tableName" placeholder="Nombre de Tabla"
+                        class="bg-qz-card border border-qz-light rounded px-3 py-2 text-sm text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald w-full">
+                    <input type="text" [(ngModel)]="newEntry.columnName" placeholder="Columna (Opcional)"
+                        class="bg-qz-card border border-qz-light rounded px-3 py-2 text-sm text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald w-full">
+                </div>
+                <button (click)="addWhitelistEntry()"
+                    class="bg-qz-emerald hover:bg-qz-hover text-qz-darkest w-full py-2 rounded text-sm font-bold transition-colors">
+                    Autorizar Recurso
+                </button>
+            </div>
+
+            <div class="p-0 overflow-y-auto max-h-96">
+                <table class="w-full text-left">
+                    <thead
+                        class="bg-qz-darkest border-b border-qz-light text-xs uppercase text-qz-muted font-bold tracking-wider sticky top-0">
+                        <tr>
+                            <th class="px-4 py-3">Recurso Destino</th>
+                            <th class="px-4 py-3 text-center">Estado</th>
+                            <th *ngIf="authService.getRole() === 'ADMIN'" class="px-4 py-3 text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-qz-light/50 text-sm">
+                        <tr *ngFor="let entry of whitelist" class="hover:bg-qz-light/10 transition-colors">
+                            <td class="px-4 py-3">
+                                <div class="font-mono text-white">{{ entry.schemaName }}.<span
+                                        class="text-qz-emerald">{{ entry.tableName }}</span></div>
+                                <div class="text-xs text-qz-muted mt-0.5">
+                                    <span *ngIf="entry.columnName">Col: {{ entry.columnName }}</span>
+                                    <span *ngIf="!entry.columnName" class="italic">Tabla completa</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-center">
+                                <button (click)="toggleEditable(entry)"
+                                    class="px-3 py-1 rounded-full text-xs font-bold border transition-colors relative"
+                                    [ngClass]="entry.isEditable ? 'bg-green-500/10 text-green-400 border-green-500/30 hover:bg-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/30 hover:bg-red-500/20'">
+                                    {{ entry.isEditable ? 'ACTIVO' : 'REVOCADO' }}
+                                </button>
+                            </td>
+                            <td *ngIf="authService.getRole() === 'ADMIN'" class="px-4 py-3 text-right">
+                                <button (click)="deleteWhitelistEntry(entry.id)"
+                                    class="text-qz-muted hover:text-qz-danger p-1 transition-colors" title="Eliminar">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="whitelist.length === 0">
+                            <td colspan="3" class="px-4 py-8 text-center text-qz-muted text-sm">Sin recursos
+                                autorizados.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="p-3 bg-qz-darkest border-t border-qz-light text-xs text-qz-muted flex items-center gap-2">
+                <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                Los cambios invalidan inmediatamente la caché del interceptor Guardian.
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: BLOQUEO DE EMERGENCIA -->
+        <div class="bg-qz-card border rounded-xl overflow-hidden flex flex-col transition-colors duration-300"
+            [ngClass]="lockdownActive ? 'border-qz-danger shadow-[0_0_15px_rgba(229,75,75,0.2)]' : 'border-qz-light'">
+
+            <div class="p-5 border-b flex items-center gap-3"
+                [ngClass]="lockdownActive ? 'border-qz-danger/30 bg-qz-danger/10' : 'border-qz-light'">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center"
+                    [ngClass]="lockdownActive ? 'bg-qz-danger text-white animate-pulse' : 'bg-qz-darkest text-qz-danger'">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold" [ngClass]="lockdownActive ? 'text-qz-danger' : 'text-white'">Bloqueo
+                        de Emergencia</h2>
+                    <p class="text-xs text-qz-muted mt-0.5" *ngIf="!lockdownActive">Bloqueo global de operaciones de
+                        escritura.</p>
+                    <p class="text-xs text-qz-danger mt-0.5 font-bold tracking-wide" *ngIf="lockdownActive">SISTEMA
+                        BLOQUEADO ACTUALMENTE.</p>
+                </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-center items-center text-center relative">
+
+                <div *ngIf="lockdownLoading"
+                    class="absolute inset-0 bg-qz-card/80 backdrop-blur-sm flex flex-col items-center justify-center z-10 text-white">
+                    <div
+                        class="w-10 h-10 border-4 border-qz-danger border-t-transparent rounded-full animate-spin mb-3">
+                    </div>
+                    <span
+                        class="text-sm font-bold uppercase tracking-widest text-qz-danger animate-pulse">Procesando
+                        Cambio de Estado...</span>
+                </div>
+
+                <div class="max-w-xs mx-auto mb-8">
+                    <div class="w-32 h-32 mx-auto rounded-full border-4 flex items-center justify-center mb-4 transition-colors duration-500"
+                        [ngClass]="lockdownActive ? 'border-qz-danger bg-qz-danger/10' : 'border-qz-light bg-qz-darkest'">
+                        <svg *ngIf="!lockdownActive" class="w-12 h-12 text-qz-muted" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        <svg *ngIf="lockdownActive" class="w-12 h-12 text-qz-danger" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div *ngIf="authService.getRole() === 'ADMIN'" class="w-full">
+                    <button *ngIf="!showLockdownConfirm" (click)="confirmLockdown()"
+                        class="w-full py-4 rounded-lg font-black text-lg tracking-widest uppercase shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                        [ngClass]="lockdownActive ? 'bg-qz-darkest border-2 border-qz-emerald text-qz-emerald hover:bg-qz-emerald hover:text-qz-darkest' : 'bg-qz-danger text-white hover:bg-red-600'">
+                        {{ lockdownActive ? 'Desactivar Bloqueo' : 'INICIAR BLOQUEO' }}
+                    </button>
+
+                    <div *ngIf="showLockdownConfirm"
+                        class="bg-qz-darkest border border-qz-danger p-5 rounded-lg w-full animate-in fade-in zoom-in duration-200">
+                        <p class="text-white font-bold mb-2">⚠️ Confirmar {{ lockdownActive ? 'Desactivación' :
+                            'Activación' }}</p>
+                        <p class="text-xs text-qz-muted mb-4">Esta acción quedará registrada en auditoría y afecta a
+                            todos los clientes conectados inmediatamente.</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button (click)="cancelLockdown()"
+                                class="px-4 py-2 bg-qz-card border border-qz-light hover:bg-qz-light text-white rounded text-sm font-bold transition-colors">Abortar</button>
+                            <button (click)="executeLockdownToggle()"
+                                class="px-4 py-2 bg-qz-danger hover:bg-red-600 text-white rounded text-sm font-bold transition-colors">CONFIRMAR</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="authService.getRole() !== 'ADMIN'"
+                    class="text-qz-muted text-sm border border-qz-light/50 bg-qz-darkest/50 p-4 rounded-lg">
+                    🔒 Solo los Administradores pueden activar o desactivar el Bloqueo de Emergencia.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

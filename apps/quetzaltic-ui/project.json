@@ -1,0 +1,86 @@
+{
+  "name": "quetzaltic-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/quetzaltic-ui/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/quetzaltic-ui",
+        "browser": "apps/quetzaltic-ui/src/main.ts",
+        "tsConfig": "apps/quetzaltic-ui/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/quetzaltic-ui/public"
+          }
+        ],
+        "styles": [
+          "apps/quetzaltic-ui/src/styles.css"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "10kb",
+              "maximumError": "20kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "options": {
+        "proxyConfig": "apps/quetzaltic-ui/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "quetzaltic-ui:build:production"
+        },
+        "development": {
+          "buildTarget": "quetzaltic-ui:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {}
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "quetzaltic-ui:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/quetzaltic-ui/browser",
+        "spa": true
+      }
+    }
+  }
+}

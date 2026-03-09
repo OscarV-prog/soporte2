@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-qz-dark text-qz-text font-sans antialiased m-0 p-0;
+    }
+}
+
+/* Texto seleccionado: fondo esmeralda con texto oscuro para maxima legibilidad */
+::selection {
+    background-color: #1FC684;
+    color: #0B1315;
+}
