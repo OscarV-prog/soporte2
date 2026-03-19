@@ -15,15 +15,20 @@ export interface ValidatedQuery {
     readonly table: string;
 
     /**
-     * Nombre de la columna de la Primary Key usada en el filtro.
+     * Nombre de la columna o columnas de la Primary Key usada en el filtro.
      */
-    readonly pkColumn: string;
+    readonly pkColumn: string | string[];
 
     /**
-     * Valor del filtro para la PK.
+     * Valor o valores del filtro para la PK.
      * Representado como unknown para forzar casting seguro en el backend.
      */
-    readonly pkValue: unknown;
+    readonly pkValue: unknown | unknown[];
+
+    /**
+     * Objeto de filtro compatible con Prisma para búsquedas bulk.
+     */
+    readonly prismaWhere?: Record<string, any>;
 
     /**
      * Timestamp de la validación.

@@ -14,16 +14,22 @@ export interface OperationResponse {
     status: string;
     correlationId: string;
     data: any;
-    auditEventId?: string;
+    resolutions?: Record<string, string>;
+    auditEventIds?: string[];
+    count?: number;
     snapshotBefore?: any;
 }
 
 export interface PreviewResponse {
     status: string;
     table: string;
-    pkColumn: string;
-    pkValue: string;
-    record: Record<string, unknown>;
+    pkColumn: string | string[];
+    pkValue: any;
+    count: number;
+    records: {
+        data: Record<string, unknown>;
+        resolutions: Record<string, string>;
+    }[];
 }
 
 @Injectable({

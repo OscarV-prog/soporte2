@@ -1,0 +1,97 @@
+[
+  {
+    "COLUMN_NAME": "id_Empresa",
+    "DATA_TYPE": "int",
+    "IS_NULLABLE": "NO"
+  },
+  {
+    "COLUMN_NAME": "id_Sucursal",
+    "DATA_TYPE": "smallint",
+    "IS_NULLABLE": "NO"
+  },
+  {
+    "COLUMN_NAME": "id_Almacen",
+    "DATA_TYPE": "smallint",
+    "IS_NULLABLE": "NO"
+  },
+  {
+    "COLUMN_NAME": "nb_Almacen",
+    "DATA_TYPE": "varchar",
+    "IS_NULLABLE": "NO"
+  },
+  {
+    "COLUMN_NAME": "id_TipoAlmacen",
+    "DATA_TYPE": "smallint",
+    "IS_NULLABLE": "NO"
+  },
+  {
+    "COLUMN_NAME": "nb_AlmacenCorto",
+    "DATA_TYPE": "varchar",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "nu_Telefono",
+    "DATA_TYPE": "varchar",
+    "IS_NULLABLE": "NO"
+  },
+  {
+    "COLUMN_NAME": "de_Direccion",
+    "DATA_TYPE": "varchar",
+    "IS_NULLABLE": "NO"
+  },
+  {
+    "COLUMN_NAME": "sn_InventarioBloqueado",
+    "DATA_TYPE": "bit",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "id_EmpresaEmpleadoResponsable",
+    "DATA_TYPE": "int",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "id_EmpleadoResponsable",
+    "DATA_TYPE": "smallint",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "id_ReferenciaContable",
+    "DATA_TYPE": "varchar",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "sn_AlmacenNuevo",
+    "DATA_TYPE": "bit",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "sn_ActivoSession",
+    "DATA_TYPE": "int",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "id_AlmacenFisico",
+    "DATA_TYPE": "smallint",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "id_TipoAlmacenGrupo",
+    "DATA_TYPE": "smallint",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "sn_CierreOdoo",
+    "DATA_TYPE": "bit",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "sn_Activo",
+    "DATA_TYPE": "bit",
+    "IS_NULLABLE": "YES"
+  },
+  {
+    "COLUMN_NAME": "de_Horario",
+    "DATA_TYPE": "varchar",
+    "IS_NULLABLE": "YES"
+  }
+]

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UsersService, User } from './users.service';
@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
     isLoading = false;
     errorMessage = '';
 
-    constructor(private usersService: UsersService) { }
+    constructor(private usersService: UsersService, private cdr: ChangeDetectorRef) { }
 
     ngOnInit(): void {
         this.loadUsers();
@@ -25,8 +25,9 @@ export class UsersComponent implements OnInit {
     loadUsers(): void {
         this.isLoading = true;
         this.usersService.getUsers().subscribe({
-            next: (data) => {
+            next: (data: any) => {
                 this.users = data;
+                this.cdr.detectChanges();
                 this.isLoading = false;
             },
             error: () => {
@@ -59,10 +60,13 @@ export class UsersComponent implements OnInit {
             next: () => {
                 this.loadUsers();
                 this.toggleModal();
+                this.isLoading = false; // Reset loading state
+                this.cdr.detectChanges();
             },
             error: (err: any) => {
                 this.errorMessage = err.error?.message || 'Error al crear el usuario';
                 this.isLoading = false;
+                this.cdr.detectChanges();
             }
         });
     }

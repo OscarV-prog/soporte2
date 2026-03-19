@@ -1,0 +1,1403 @@
+﻿
+[2m> [22m[2mnx run[22m quetzaltic-ui:serve:development --port 4200 --host 0.0.0.0
+
+node.exe : [1m[33m
+En línea: 1 Carácter: 1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: ([1m[33m:Str   
+ ing) [], RemoteExc    
+eption
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+Warning: This is a 
+simple server for use 
+in testing or 
+debugging Angular 
+applications
+locally. It hasn't 
+been reviewed for 
+security issues.
+Binding this server to 
+an open connection can 
+result in compromising 
+your application or
+computer. Using a 
+different host than 
+the one passed to the 
+"--host" flag might 
+result in
+websocket connection 
+issues.
+    [39m[22m
+[33mÔØ»[39m Building...
+[32mÔ£ö[39m Building...
+[37mApplication bundle generation failed. [3.347 seconds] - 2026-03-11T22:31:38.494Z
+[39m
+[1m[31m[31mX [41;31
+m[[41;97mERROR[41;31m
+][0m [1mTS2532: 
+Object is possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:235:
+[37m      88 Ôöé 
+...events-none 
+font-sans" title="{{ [
+32mpreviewData.resoluti
+ons[key][37m }}">
+         ÔòÁ           
+                       
+   [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2532: Object is 
+possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+9:21:
+[37m      89 Ôöé      
+             {{ [32mpr
+eviewData.resolutions[k
+ey][37m }}
+         ÔòÁ           
+           [32m~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~[
+0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2531: Object is 
+possibly 'null'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+88:73:
+[37m      188 Ôöé 
+...&& objectKeys(previe
+wData.[32mresolutions
+[37m).length > 0" 
+class="mt-3...
+          ÔòÁ          
+                    
+[32m~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m [1
+mT[39m[22m[1m[31mS2
+531: Object is 
+possibly 'null'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+90:140:
+[37m      190 Ôöé ... 
+overflow-x-auto">{{ for
+matJson(previewData.[3
+2mresolutions[37m) 
+}}</pre>
+          ÔòÁ          
+                       
+               
+[32m~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[37mWatch mode enabled. Watching for file changes...[39m
+[33mÔØ»[39m Changes detected. Rebuilding...
+[32mÔ£ö[39m Changes detected. Rebuilding...
+[37mApplication bundle generation failed. [3.962 seconds] - 2026-03-11T22:35:23.800Z
+[39m
+[1m[33m[33mÔû▓ [43;
+33m[[43;30mWARNING[43
+;33m][0m [1mNG8107: 
+NG8107: The left side 
+of this optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:41:
+[37m      88 Ôöé ... 
+<div *ngIf="previewData
+?.[32mresolutions[37m
+ && previewData.resolut
+ion...
+         ÔòÁ           
+                   
+[32m~~~~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[1m[31m[31mX [41;31
+m[[41;97mERROR[41;31m
+][0m [1mTS2532: 
+Object is possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:56:
+[37m      88 Ôöé 
+...a?.resolutions && [
+32mpreviewData.resoluti
+ons[key][37m" 
+class="absolute...
+         ÔòÁ           
+           [32m~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~[
+0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2532: Object is 
+possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:261:
+[37m      88 Ôöé 
+...events-none 
+font-sans" title="{{ [
+32mpreviewData.resoluti
+ons[key][37m }}">
+         ÔòÁ           
+                       
+   [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2532: Object is 
+possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+9:21:
+[37m      89 Ôöé      
+             {{ [32mpr
+eviewData.resolutions[k
+ey][37m }}
+         ÔòÁ           
+           [32m~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~[
+0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31[39m[22m
+[1m[31mm][0m 
+[1mTS2531: Object is 
+possibly 'null'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+88:73:
+[37m      188 Ôöé 
+...&& objectKeys(previe
+wData.[32mresolutions
+[37m).length > 0" 
+class="mt-3...
+          ÔòÁ          
+                    
+[32m~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2531: Object is 
+possibly 'null'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+90:140:
+[37m      190 Ôöé ... 
+overflow-x-auto">{{ for
+matJson(previewData.[3
+2mresolutions[37m) 
+}}</pre>
+          ÔòÁ          
+                       
+               
+[32m~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[33mÔØ»[39m Changes detected. Rebuilding...
+[32mÔ£ö[39m Changes detected. Rebuilding...
+[37mApplication bundle generation failed. [3.222 seconds] - 2026-03-11T22:36:12.103Z
+[39m
+[1m[33m[33mÔû▓ [43;
+33m[[43;30mWARNING[43
+;33m][0m [1mNG8107: 
+NG8107: The left side 
+of this optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:41:
+[37m      88 Ôöé ... 
+<div *ngIf="previewData
+?.[32mresolutions[37m
+ && previewData.resolut
+ion...
+         ÔòÁ           
+                   
+[32m~~~~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+66:78:
+[37m      166 Ôöé 
+...z-emerald">> 
+Registro Localizado 
+[{{ previewData?.[32mt
+able[37m }}]</div>
+          ÔòÁ          
+                       
+                     
+[32m~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.de
+[39m[22m
+[1m[33mv/extended-dia
+gnostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+67:62:
+[37m      167 Ôöé 
+...">> Clave: {{ previe
+wData?.[32mpkColumn[3
+7m }} = {{ 
+previewData?.pkVal...
+          ÔòÁ          
+                     
+[32m~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+67:92:
+[37m      167 Ôöé 
+...e: {{ 
+previewData?.pkColumn 
+}} = {{ previewData?.[
+32mpkValue[37m 
+}}</div>
+          ÔòÁ          
+                       
+                    
+[32m~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+69:136:
+[37m      169 Ôöé 
+...t-xs 
+overflow-x-auto">{{ for
+matJson(previewData?.[
+32mrecord[37m) 
+}}</pre>
+          ÔòÁ       
+[39m[22m[1m[33m    
+                       
+                   
+[32m~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+70:35:
+[37m      170 Ôöé ... 
+<div *ngIf="previewData
+?.[32mresolutions[37m
+ && objectKeys(previewD
+at...
+          ÔòÁ          
+                    
+[32m~~~~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+70:74:
+[37m      170 Ôöé 
+...& objectKeys(preview
+Data?.[32mresolutions
+[37m).length > 0" 
+class="mt-3...
+          ÔòÁ          
+                    
+[32m~~~~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+    
+[39m[22m[1m[33m    
+ ÔòÁ                  
+[32m~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+72:141:
+[37m      172 Ôöé 
+...overflow-x-auto">{{ 
+formatJson(previewData?
+.[32mresolutions[37m)
+ }}</pre>
+          ÔòÁ          
+                       
+               
+[32m~~~~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[1m[31m[31mX [41;31
+m[[41;97mERROR[41;31m
+][0m [1mTS2532: 
+Object is possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:56:
+[37m      88 Ôöé 
+...a?.resolutions && [
+32mpreviewData.resoluti
+ons[key][37m" 
+class="absolute...
+         ÔòÁ           
+           [32m~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~[
+0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2532: Object is 
+possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:261:
+[37m      88 Ôöé 
+...events-none 
+font-sans" title="{{ [
+32mpreviewData.resoluti
+ons[key][37m }}">
+         ÔòÁ           
+                       
+   [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2532: Object is 
+possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+9:21:
+[37m      89 Ôöé      
+             {{ [32mpr
+eviewData.resolutions[k
+ey][37m }}
+         ÔòÁ           
+           [32m~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~[
+0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31[39m[22m
+[1m[31mm][0m 
+[1mTS2531: Object is 
+possibly 'null'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+88:73:
+[37m      188 Ôöé 
+...&& objectKeys(previe
+wData.[32mresolutions
+[37m).length > 0" 
+class="mt-3...
+          ÔòÁ          
+                    
+[32m~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2531: Object is 
+possibly 'null'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+90:140:
+[37m      190 Ôöé ... 
+overflow-x-auto">{{ for
+matJson(previewData.[3
+2mresolutions[37m) 
+}}</pre>
+          ÔòÁ          
+                       
+               
+[32m~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[33mÔØ»[39m Changes detected. Rebuilding...
+[32mÔ£ö[39m Changes detected. Rebuilding...
+[37mApplication bundle generation failed. [1.087 seconds] - 2026-03-11T22:36:42.828Z
+[39m
+[1m[33m[33mÔû▓ [43;
+33m[[43;30mWARNING[43
+;33m][0m [1mNG8107: 
+NG8107: The left side 
+of this optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:41:
+[37m      88 Ôöé ... 
+<div *ngIf="previewData
+?.[32mresolutions[37m
+ && previewData.resolut
+ion...
+         ÔòÁ           
+                   
+[32m~~~~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+66:78:
+[37m      166 Ôöé 
+...z-emerald">> 
+Registro Localizado 
+[{{ previewData?.[32mt
+able[37m }}]</div>
+          ÔòÁ          
+                       
+                     
+[32m~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.de
+[39m[22m
+[1m[33mv/extended-dia
+gnostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+67:62:
+[37m      167 Ôöé 
+...">> Clave: {{ previe
+wData?.[32mpkColumn[3
+7m }} = {{ 
+previewData?.pkVal...
+          ÔòÁ          
+                     
+[32m~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+67:92:
+[37m      167 Ôöé 
+...e: {{ 
+previewData?.pkColumn 
+}} = {{ previewData?.[
+32mpkValue[37m 
+}}</div>
+          ÔòÁ          
+                       
+                    
+[32m~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+69:136:
+[37m      169 Ôöé 
+...t-xs 
+overflow-x-auto">{{ for
+matJson(previewData?.[
+32mrecord[37m) 
+}}</pre>
+          ÔòÁ       
+[39m[22m[1m[33m    
+                       
+                   
+[32m~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+70:35:
+[37m      170 Ôöé ... 
+<div *ngIf="previewData
+?.[32mresolutions[37m
+ && objectKeys(previewD
+at...
+          ÔòÁ          
+                    
+[32m~~~~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+70:74:
+[37m      170 Ôöé 
+...& objectKeys(preview
+Data?.[32mresolutions
+[37m).length > 0" 
+class="mt-3...
+          ÔòÁ          
+                    
+[32m~~~~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+    
+[39m[22m[1m[33m    
+ ÔòÁ                  
+[32m~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;
+30mWARNING[43;33m][0m
+ [1mNG8107: NG8107: 
+The left side of this 
+optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its 
+type, therefore the 
+'?.' operator can be 
+replaced with the '.' 
+operator. Find more at 
+https://v21.angular.dev
+/extended-diagnostics/N
+G8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:1
+72:141:
+[37m      172 Ôöé 
+...overflow-x-auto">{{ 
+formatJson(previewData?
+.[32mresolutions[37m)
+ }}</pre>
+          ÔòÁ          
+                       
+               
+[32m~~~~~~~~~~~[0m
+  Warning occurs in 
+the template of 
+component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[1m[31m[31mX [41;31
+m[[41;97mERROR[41;31m
+][0m [1mTS2532: 
+Object is possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:56:
+[37m      88 Ôöé 
+...a?.resolutions && [
+32mpreviewData.resoluti
+ons[key][37m" 
+class="absolute...
+         ÔòÁ           
+           [32m~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~[
+0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2532: Object is 
+possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+8:261:
+[37m      88 Ôöé 
+...events-none 
+font-sans" title="{{ [
+32mpreviewData.resoluti
+ons[key][37m }}">
+         ÔòÁ           
+                       
+   [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mTS2532: Object is 
+possibly 
+'undefined'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.html:8
+9:21:
+[37m      89 Ôöé      
+             {{ [32mpr
+eviewData.resolutions[k
+ey][37m }}
+         ÔòÁ           
+           [32m~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~[
+0m
+  Error occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/
+src/app/operations/oper
+ations.component.ts:10:
+17:
+[37m      10 Ôöé     
+templateUrl: [32m'./op
+erations.component.html
+'[37m,
+         ÔòÁ           
+       [32m~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~[0m
+[39m[22m

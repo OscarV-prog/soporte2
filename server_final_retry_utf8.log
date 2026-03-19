@@ -1,0 +1,50 @@
+﻿    at Object.validateEnv 
+[as validate] [90m(C:\dev\
+soporte\quetzaltic\[31mapp
+s\quetzaltic-api\src\app\co
+nfig\env.schema.ts:22:15[9
+0m)[31m
+    at 
+ConfigModule.forRoot [90m(
+C:\dev\soporte\quetzaltic\
+[31mnode_modules\[4m@nestj
+s\config[24m\dist\config.m
+odule.js:88:45[90m)[31m
+    at Array.<anonymous> [
+90m(C:\dev\soporte\quetzalt
+ic\[31mapps\quetzaltic-api
+\src\app\config\config.modu
+le.ts:7:26[90m)[31m
+    at __webpack_require__ 
+[90m(C:\dev\soporte\quetza
+ltic\[31mdist\apps\quetzal
+tic-api\webpack\bootstrap:1
+9:1[90m)[31m
+    at Array.<anonymous> [
+90m(C:\dev\soporte\quetzalt
+ic\[31mapps\quetzaltic-api
+\src\app\app.module.ts:7:1
+[90m)[31m
+    at __webpack_require__ 
+[90m(C:\dev\soporte\quetza
+ltic\[31mdist\apps\quetzal
+tic-api\webpack\bootstrap:1
+9:1[90m)[31m
+    at [90mC:\dev\soporte\
+quetzaltic\[31mapps\quetza
+ltic-api\src\main.ts:9:1
+    at [90mC:\dev\soporte\
+quetzaltic\[31mdist\apps\q
+uetzaltic-api\main.js:3179:
+3
+    at Object.<anonymous> 
+[90m(C:\dev\soporte\quetzal
+tic\[31mdist\apps\quetzalt
+ic-api\main.js:3181:12[90m
+)[31m
+[90m    at 
+Module._compile (node:inter
+nal/modules/cjs/loader:1761
+:14)[31m
+[39m[22m
+[7m[1m[36m NX [39m[22m[27m [1mProcess exited with code 1, waiting for changes to restart...[22m

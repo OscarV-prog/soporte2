@@ -61,22 +61,15 @@ async function main() {
 
     // 3. Base Whitelist
     const whitelistEntries = [
-        { schemaName: 'prod', tableName: 'demo_records', columnName: null, isEditable: true },
-        { schemaName: 'audit', tableName: 'system_configs', columnName: null, isEditable: true },
-        { schemaName: 'audit', tableName: 'guardian_whitelist', columnName: null, isEditable: true },
+        { schemaName: 'prod', tableName: 'demo_records', columnName: null as any, isEditable: true },
+        { schemaName: 'audit', tableName: 'system_configs', columnName: null as any, isEditable: true },
+        { schemaName: 'audit', tableName: 'guardian_whitelist', columnName: null as any, isEditable: true },
     ];
 
+    await prisma.guardianWhitelist.deleteMany({});
     for (const entry of whitelistEntries) {
-        await prisma.guardianWhitelist.upsert({
-            where: {
-                schemaName_tableName_columnName: {
-                    schemaName: entry.schemaName,
-                    tableName: entry.tableName,
-                    columnName: entry.columnName,
-                },
-            },
-            update: { isEditable: entry.isEditable },
-            create: entry,
+        await prisma.guardianWhitelist.create({
+            data: entry as any,
         });
     }
 

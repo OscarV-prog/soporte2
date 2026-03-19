@@ -29,11 +29,13 @@ export class JwtAuthGuard implements CanActivate {
 
         try {
             const payload = this.verifyJwt(token);
+            console.log('[DEBUG] JWT Payload:', JSON.stringify(payload));
             // Extraemos el actor y el role y los adjuntamos al request
             request.user = {
-                actor: payload.sub || payload.email || 'unknown_actor',
+                actor: payload.email || payload.sub || 'unknown_actor',
                 role: payload.role || 'GUEST',
             };
+            console.log('[DEBUG] Authenticated Actor:', request.user.actor);
             return true;
         } catch (error) {
             this.logger.error('JWT Verification failed', error);

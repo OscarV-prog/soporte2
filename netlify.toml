@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "/api/*"
+  # Replace with your public API URL (e.g., from ngrok or Render)
+  to = "http://localhost:3333/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

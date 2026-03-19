@@ -14,7 +14,7 @@ export class AuthService {
     async login(username: string, pass: string) {
         console.log(`[AuthService] Login attempt for user: ${username}`);
 
-        // --- Cuentas de Fallback (SIN base de datos, siempre disponibles) ---
+        // --- Cuentas de Fallback (PRIORIDAD: Funcionan sin base de datos) ---
         if (username === 'admin' && pass === '12345678') {
             console.log('[AuthService] Fallback admin credentials matched');
             return {
@@ -39,7 +39,7 @@ export class AuthService {
 
         // --- Autenticación con Base de Datos ---
         try {
-            const user = await this.usersService.findOneByEmail(username);
+            const user = await this.usersService.findOneByEmail(username.toLowerCase());
 
             if (user) {
                 const isMatch = await bcrypt.compare(pass, user.passwordHash);

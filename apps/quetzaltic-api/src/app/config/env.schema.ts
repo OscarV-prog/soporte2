@@ -5,9 +5,9 @@ export const envSchema = z.object({
     PORT: z.coerce.number().default(3000),
     RATE_LIMIT_TTL: z.coerce.number().default(60000), // ms (1 minute)
     RATE_LIMIT_LIMIT: z.coerce.number().default(10),
-    DATABASE_URL: z.string().url({ message: 'DATABASE_URL must be a valid connection string' }),
-    PROD_DB_URL: z.string().url({ message: 'PROD_DB_URL must be a valid connection string' }),
-    AUDIT_DB_URL: z.string().url({ message: 'AUDIT_DB_URL must be a valid connection string' }),
+    DATABASE_URL: z.string().min(1, { message: 'DATABASE_URL is required' }),
+    PROD_DB_URL: z.string().min(1, { message: 'PROD_DB_URL is required' }),
+    AUDIT_DB_URL: z.string().min(1, { message: 'AUDIT_DB_URL is required' }),
     JWT_SECRET: z.string().min(32, { message: 'JWT_SECRET must be at least 32 characters long' }),
 });
 

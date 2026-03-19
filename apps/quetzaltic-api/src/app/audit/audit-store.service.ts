@@ -24,6 +24,7 @@ export interface AuditFilter {
     startDate?: Date;
     endDate?: Date;
     includeSnapshots?: boolean;
+    grouped?: boolean;
 }
 
 @Injectable()
@@ -37,9 +38,9 @@ export class AuditStoreService {
      */
     async create(input: AuditEventInput): Promise<string> {
         try {
-            const snapshotBefore = JSON.parse(deterministicStringify(input.snapshotBefore));
+            const snapshotBefore = deterministicStringify(input.snapshotBefore);
             const snapshotAfter = input.snapshotAfter
-                ? JSON.parse(deterministicStringify(input.snapshotAfter))
+                ? deterministicStringify(input.snapshotAfter)
                 : null;
 
             const event = await this.prisma.auditEvent.create({
@@ -51,8 +52,8 @@ export class AuditStoreService {
                     tableName: input.tableName,
                     primaryKeyColumn: input.primaryKeyColumn,
                     primaryKeyValue: input.primaryKeyValue,
-                    snapshotBefore,
-                    snapshotAfter,
+                    snapshotBefore: snapshotBefore as any,
+                    snapshotAfter: snapshotAfter as any,
                     status: input.status,
                 },
             });
@@ -80,6 +81,124 @@ export class AuditStoreService {
         snapshotBefore: { status: 'stable', version: '1.0' },
         snapshotAfter: { status: 'updated', version: '1.1' }
     }));
+
+    /**
+     * Recupera eventos de auditoría agrupados por correlationId (Operaciones Bulk)
+     */
+    async findGrouped(filter: AuditFilter) {
+        const {
+            page = 1,
+            limit = 8, // Basado en la preferencia del usuario
+            ticketId,
+            actor,
+            tableName,
+            startDate,
+            endDate,
+            includeSnapshots = false
+        } = filter;
+
+        try {
+            const skip = (page - 1) * limit;
+            
+            // 1. Construir filtros para la sub-consulta (Raw SQL)
+            let filterSql = 'WHERE 1=1';
+            const params: any[] = [];
+            
+            if (ticketId) {
+                filterSql += ` AND ticket_id = @p${params.length + 1}`;
+                params.push(ticketId);
+            }
+            if (actor) {
+                filterSql += ` AND actor LIKE @p${params.length + 1}`;
+                params.push(`%${actor}%`);
+            }
+            if (tableName) {
+                filterSql += ` AND table_name LIKE @p${params.length + 1}`;
+                params.push(`%${tableName}%`);
+            }
+            if (startDate) {
+                filterSql += ` AND executed_at >= @p${params.length + 1}`;
+                params.push(startDate);
+            }
+            if (endDate) {
+                filterSql += ` AND executed_at <= @p${params.length + 1}`;
+                params.push(endDate);
+            }
+
+            // 2. Obtener los correlationIds únicos para esta página (Ordenados por el más reciente)
+            const groupedQuery = `
+                SELECT correlation_id as correlationId, MAX(executed_at) as lastExecutedAt
+                FROM audit_events
+                ${filterSql}
+                GROUP BY correlation_id
+                ORDER BY lastExecutedAt DESC
+                OFFSET ${skip} ROWS FETCH NEXT ${limit} ROWS ONLY
+            `;
+            
+            // Nota: Prisma executeRaw no soporta parámetros dinámicos fácilmente en SQL Server con OFFSET.
+            // Usamos interpolación segura (filtros manuales arriba) o pasamos parámetros si Prisma lo permite.
+            const uniqueGroups: any[] = await this.prisma.$queryRawUnsafe(groupedQuery, ...params);
+            
+            if (uniqueGroups.length === 0) {
+                return { items: [], total: 0, page, limit, totalPages: 0 };
+            }
+
+            // 3. Obtener el total de grupos para la paginación
+            const totalQuery = `SELECT COUNT(DISTINCT correlation_id) as count FROM audit_events ${filterSql}`;
+            const totalRes: any = await this.prisma.$queryRawUnsafe(totalQuery, ...params);
+            const total = totalRes[0]?.count || 0;
+
+            // 4. Obtener todos los eventos para estos correlationIds
+            const correlationIds = uniqueGroups.map(g => g.correlationId);
+            const allEvents = await this.prisma.auditEvent.findMany({
+                where: { correlationId: { in: correlationIds } },
+                orderBy: { executedAt: 'desc' },
+                select: {
+                    id: true,
+                    correlationId: true,
+                    ticketId: true,
+                    actor: true,
+                    type: true,
+                    tableName: true,
+                    primaryKeyColumn: true,
+                    primaryKeyValue: true,
+                    status: true,
+                    revertedByEventId: true,
+                    executedAt: true,
+                    snapshotBefore: includeSnapshots,
+                    snapshotAfter: includeSnapshots,
+                }
+            });
+
+            // 5. Agrupar los eventos (Post-procesamiento)
+            const finalGroups: any[] = [];
+            uniqueGroups.forEach(ug => {
+                const groupEvents = allEvents.filter(e => e.correlationId === ug.correlationId);
+                if (groupEvents.length > 0) {
+                    const first = groupEvents[0];
+                    finalGroups.push({
+                        ...first, // Base info
+                        executedAt: ug.lastExecutedAt, // Usar el timestamp de la operación completa
+                        affectedRows: groupEvents.length,
+                        allPks: [...new Set(groupEvents.map(e => e.primaryKeyValue))],
+                        events: groupEvents
+                    });
+                }
+            });
+
+            return {
+                items: finalGroups,
+                total,
+                page,
+                limit,
+                totalPages: Math.ceil(total / limit)
+            };
+        } catch (error) {
+            this.logger.error('Failed to fetch grouped audit logs:', error);
+            // Fallback al listado normal si falla el RAW SQL
+            return this.findMany(filter);
+        }
+    }
 
     /**
      * Recupera eventos de auditoría con paginación y filtros.
@@ -175,12 +294,12 @@ export class AuditStoreService {
         try {
             const data: any = { status };
             if (snapshotAfter) {
-                data.snapshotAfter = JSON.parse(deterministicStringify(snapshotAfter));
+                data.snapshotAfter = deterministicStringify(snapshotAfter);
             }
 
             await this.prisma.auditEvent.update({
                 where: { id },
-                data,
+                data: data as any,
             });
         } catch (error) {
             this.logger.error(`Failed to update audit event status for ${id}:`, error);

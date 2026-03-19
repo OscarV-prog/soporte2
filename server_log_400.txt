@@ -1,0 +1,50 @@
+﻿        ]
+      },
+      "headers": {
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMDAwLTAwMDAtMDAwMCIsImVtYWlsIjoic3VwZXJhZG1pbi1mYWxsYmFja0BxdWV0emFsdGljLmxvY2FsIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzczMzM5OTU2fQ.DSBQaT9__56o44MDTmKF__WK2TxBQTrGTifs8zgB9kQ",
+        "content-type": "application/json",
+        "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.7705",
+        "host": "localhost:3333",
+        "content-length": "98"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 56630
+    }
+    [35mcontext[39m: "GlobalExceptionFilter"
+[11:42:54.250] [32mINFO[39m (7140): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 6,
+      "method": "POST",
+      "url": "/api/operations/preview",
+      "query": {},
+      "params": {
+        "path": [
+          "operations",
+          "preview"
+        ]
+      },
+      "headers": {
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMDAwLTAwMDAtMDAwMCIsImVtYWlsIjoic3VwZXJhZG1pbi1mYWxsYmFja0BxdWV0emFsdGljLmxvY2FsIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzczMzM5OTU2fQ.DSBQaT9__56o44MDTmKF__WK2TxBQTrGTifs8zgB9kQ",
+        "content-type": "application/json",
+        "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.7705",
+        "host": "localhost:3333",
+        "content-length": "98"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 56630
+    }
+    [35mcorrelationId[39m: "7a054b17-ce97-4b7d-b223-6cc6b5ec6183"
+    [35mres[39m: {
+      "statusCode": 400,
+      "headers": {
+        "x-powered-by": "Express",
+        "x-correlation-id": "7a054b17-ce97-4b7d-b223-6cc6b5ec6183",
+        "x-ratelimit-limit": "3",
+        "x-ratelimit-remaining": "2",
+        "x-ratelimit-reset": "60",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "494",
+        "etag": "W/\"1ee-efoE9ggTmXsuUsgI2Lc+zogFYU0\""
+      }
+    }
+    [35mresponseTime[39m: 603

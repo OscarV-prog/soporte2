@@ -1,0 +1,50 @@
+﻿[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/health, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mOperationsController {/api/operations}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/operations/preview, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/operations/execute, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/operations/rollback/:id, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mGovernanceController {/api/governance}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/audit-logs, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/stats, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/lockdown/status, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/lockdown/toggle, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/whitelist, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/whitelist, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/whitelist/update, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/whitelist/delete, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mAuthController {/api/auth}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/auth/login, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mUsersController {/api/users}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/users, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/users, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/users/:id, DELETE} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mTestOscarController {/api/test-oscar}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/test-oscar, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36m­ƒÉÿ Database connected successfully[39m
+    [35mcontext[39m: "PrismaService"
+[11:37:52.498] [32mINFO[39m (7140): [36mNest application successfully started[39m
+    [35mcontext[39m: "NestApplication"
+[11:37:52.498] [32mINFO[39m (7140): [36m­ƒÜÇ Application is running on: http://localhost:3333/api[39m
+[11:37:52.498] [32mINFO[39m (7140): [36m­ƒîì Environment: dev[39m

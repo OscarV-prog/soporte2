@@ -1,0 +1,50 @@
+﻿[7m1[0m import { SelectFromStatement, ExprBinary, FromTable } from 'pgsql-ast-parser';
+[7m [0m [91m                              ~~~~~~~~~~[0m
+[39m[22m
+[2m[31m[39m[22m
+[7m[1m[31m NX [39m[22m[27m  [31mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on failed[39m
+[2mFailed tasks:[22m
+[2m-[22m guardian-core:build
+[2mHint: run the command with[22m --verbose [2mfor more details.[22m
+[1m[31mBuild failed, 
+waiting for changes to 
+restart...[39m[22m
+[7m[1m[36m NX [39m[22m[27m [1mFile change detected. Restarting...[22m
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on:[39m
+[2m[36m[39m[22m
+[7m[1m[36m NX [39m[22m[27m [1mFile change detected. Restarting...[22m
+[2m> [22m[2mnx run[22m guardian-core:build
+Compiling TypeScript files for project "guardian-core"...
+[1m[31m[96m/dev/soporte/quetzaltic/libs/guardian-core/src/lib/policy/equality-policy.ts[0m:[93m1[0m:[93m31[0m - [91merror[0m[90m TS6133: [0m'ExprBinary' is declared but its value is never read.
+[7m1[0m import { SelectFromStatement, ExprBinary, FromTable } from 'pgsql-ast-parser';
+[7m [0m [91m                              ~~~~~~~~~~[0m
+[96m/dev/soporte/quetzaltic/libs/guardian-core/src/lib/policy/guardian-validator.ts[0m:[93m1[0m:[93m31[0m - [91merror[0m[90m TS6133: [0m'ExprBinary' is declared but its value is never read.
+[7m1[0m import { SelectFromStatement, ExprBinary, FromTable } from 'pgsql-ast-parser';
+[7m [0m [91m                              ~~~~~~~~~~[0m
+[39m[22m
+[2m[31m[39m[22m
+[7m[1m[31m NX [39m[22m[27m  [31mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on failed[39m
+[2mFailed tasks:[22m
+[2m-[22m guardian-core:build
+[2mHint: run the command with[22m --verbose [2mfor more details.[22m
+[1m[31mBuild failed, 
+waiting for changes to 
+restart...[39m[22m
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on:[39m
+[2m[36m[39m[22m
+[2m> [22m[2mnx run[22m guardian-core:build
+Compiling TypeScript files for project "guardian-core"...
+[1m[31m[96m/dev/soporte/quetzaltic/libs/guardian-core/src/lib/policy/equality-policy.ts[0m:[93m1[0m:[93m31[0m - [91merror[0m[90m TS6133: [0m'ExprBinary' is declared but its value is never read.
+[7m1[0m import { SelectFromStatement, ExprBinary, FromTable } from 'pgsql-ast-parser';
+[7m [0m [91m                              ~~~~~~~~~~[0m
+[96m/dev/soporte/quetzaltic/libs/guardian-core/src/lib/policy/guardian-validator.ts[0m:[93m1[0m:[93m31[0m - [91merror[0m[90m TS6133: [0m'ExprBinary' is declared but its value is never read.
+[7m1[0m import { SelectFromStatement, ExprBinary, FromTable } from 'pgsql-ast-parser';
+[7m [0m [91m                              ~~~~~~~~~~[0m
+[39m[22m
+[2m[31m[39m[22m
+[7m[1m[31m NX [39m[22m[27m  [31mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on failed[39m
+[2mFailed tasks:[22m
+[2m-[22m guardian-core:build
+[2mHint: run the command with[22m --verbose [2mfor more details.[22m
+[7m[1m[36m NX [39m[22m[27m [1mFile change detected. Restarting...[22m
+[7m[1m[36m NX [39m[22m[27m [1mFile change detected. Restarting...[22m

@@ -6,7 +6,7 @@
 <div class="flex h-screen bg-qz-dark overflow-hidden font-sans text-qz-text" [class.mt-10]="isLockdownActive">
 
     <!-- Sidebar -->
-    <aside *ngIf="authService.isLoggedIn()"
+    <aside *ngIf="authService.isLoggedIn() || router.url === '/test-db'"
         class="w-64 bg-qz-darkest flex-shrink-0 border-r border-qz-light flex flex-col justify-between">
 
         <!-- Logo Area -->
@@ -39,6 +39,16 @@
                 Operaciones
             </a>
 
+            <a routerLink="/test-db" routerLinkActive="bg-qz-card text-qz-emerald border-l-4 border-qz-emerald"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-qz-muted hover:text-white hover:bg-qz-card transition-colors border-l-4 border-transparent">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 7v10c0 1.105 2.239 2 5 2s5-.895 5-2V7m-10 0c0-1.105 2.239-2 5-2s5 .895 5 2m-10 0c0 1.105 2.239 2 5 2s5-.895 5-2">
+                    </path>
+                </svg>
+                Pruebas SQL
+            </a>
+
             <a *ngIf="userRole === 'ADMIN'" routerLink="/governance"
                 routerLinkActive="bg-qz-card text-qz-emerald border-l-4 border-qz-emerald"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-r-lg text-sm font-medium text-qz-muted hover:text-white hover:bg-qz-card transition-colors border-l-4 border-transparent">
@@ -66,12 +76,17 @@
         <div class="p-6 border-t border-qz-light">
             <div class="flex items-center justify-between mb-2">
                 <span class="text-xs font-medium text-qz-muted">Estado del Sistema</span>
-                <span class="w-2 h-2 rounded-full bg-qz-emerald"></span>
+                <span [class]="isOperational ? 'bg-qz-emerald' : 'bg-qz-danger animate-pulse'" 
+                      class="w-2 h-2 rounded-full"></span>
             </div>
             <div class="w-full h-1.5 bg-qz-light rounded-full overflow-hidden mb-2">
-                <div class="h-full bg-qz-emerald w-full"></div>
+                <div [class]="isOperational ? 'bg-qz-emerald' : 'bg-qz-danger'" 
+                     class="h-full w-full transition-colors duration-500"></div>
             </div>
-            <span class="text-[10px] text-qz-muted uppercase tracking-wider">Todos los servicios operativos</span>
+            <span class="text-[10px] uppercase tracking-wider transition-colors"
+                  [class]="isOperational ? 'text-qz-muted' : 'text-qz-danger font-bold'">
+                {{ isOperational ? 'Todos los servicios operativos' : 'Sincronización Pausada - Sin Conexión' }}
+            </span>
         </div>
     </aside>
 
@@ -79,7 +94,7 @@
     <div class="flex-1 flex flex-col h-full relative">
 
         <!-- Topbar -->
-        <header *ngIf="authService.isLoggedIn()"
+        <header *ngIf="authService.isLoggedIn() || router.url === '/test-db'"
             class="h-20 px-8 flex items-center justify-between flex-shrink-0 z-10 w-full">
             <!-- Search -->
             <div class="flex items-center max-w-md w-full relative">

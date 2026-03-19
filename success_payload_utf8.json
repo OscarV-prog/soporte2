@@ -1,0 +1,38 @@
+﻿{
+    "success":  true,
+    "data":  {
+                 "status":  "SUCCESS",
+                 "correlationId":  "test_corr_9",
+                 "data":  {
+                              "id_Empresa":  1,
+                              "id_Sucursal":  5,
+                              "id_Almacen":  2,
+                              "nb_Almacen":  "Almacen de Materiales y Servicios",
+                              "id_TipoAlmacen":  2,
+                              "nb_AlmacenCorto":  "PruebaExitosaFinal",
+                              "nu_Telefono":  "6642727515",
+                              "de_Direccion":  "Sebastián Vizcaíno 51, Garita de Otay, Tijuana, Baja California",
+                              "sn_InventarioBloqueado":  false,
+                              "id_EmpresaEmpleadoResponsable":  7,
+                              "id_EmpleadoResponsable":  9897,
+                              "id_ReferenciaContable":  "10",
+                              "sn_AlmacenNuevo":  true,
+                              "sn_ActivoSession":  1,
+                              "id_AlmacenFisico":  null,
+                              "id_TipoAlmacenGrupo":  null,
+                              "sn_CierreOdoo":  false,
+                              "sn_Activo":  true,
+                              "de_Horario":  "Lunes a viernes de 8:30 am - 1:30 pm y de 3:30 - 6:30 pm y sábados de 8:30 am – 1:30 pm"
+                          },
+                 "resolutions":  {
+                                     "id_Empresa":  "Abastecedora",
+                                     "id_Sucursal":  "Ensenada",
+                                     "id_Almacen":  "Almacen de Materiales y Servicios"
+                                 },
+                 "auditEventId":  "33ceb877-c513-42be-961b-c069684d11f6"
+             },
+    "meta":  {
+                 "timestamp":  "2026-03-11T21:55:03.745Z",
+                 "correlationId":  "test_corr_9"
+             }
+}

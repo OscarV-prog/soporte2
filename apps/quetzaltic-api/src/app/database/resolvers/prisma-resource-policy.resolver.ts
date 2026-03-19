@@ -41,20 +41,25 @@ export class PrismaResourcePolicyResolver implements ResourcePolicyResolver {
         }
     }
 
-    private async checkPersistedWhitelist(schema: string, table: string, column?: string): Promise<boolean> {
+    private async checkPersistedWhitelist(schemaInput: string, tableInput: string, column?: string): Promise<boolean> {
         try {
-            // Usamos el modelo GuardianWhitelist si es posible, o raw query si preferimos consistencia con lo anterior
-            const result = await this.prisma.$queryRawUnsafe<any[]>(`
-                SELECT COUNT(*) as count 
-                FROM audit.guardian_whitelist
-                WHERE lower(schema_name) = $1 
-                  AND lower(table_name) = $2
-                  AND (column_name IS NULL OR lower(column_name) = $3);
-            `, schema.toLowerCase(), table.toLowerCase(), column?.toLowerCase() || null);
+            const schema = (schemaInput.toLowerCase() === 'prod' || !schemaInput) ? 'dbo' : schemaInput.toLowerCase();
+            const table = tableInput.toLowerCase();
+            const col = column?.toLowerCase() || null;
 
-            return Number(result[0].count) > 0;
+            const result = await this.prisma.$queryRawUnsafe<any[]>(`
+                SELECT COUNT(*) as [count]
+                FROM guardian_whitelist
+                WHERE LOWER(schema_name) = @p1 
+                  AND LOWER(table_name) = @p2
+                  AND (column_name IS NULL OR LOWER(column_name) = @p3);
+            `, schema, table, col);
+
+            const count = Number(Object.values(result[0])[0]);
+            this.logger.log(`Whitelist check for ${schema}.${table}.${col}: ${count} matches`);
+            return count > 0;
         } catch (e) {
-            this.logger.warn('Guardian whitelist table not found or inaccessible. Denying all access.');
+            this.logger.warn(`Guardian whitelist check failed for ${schemaInput}.${tableInput}:`, e);
             return false;
         }
     }

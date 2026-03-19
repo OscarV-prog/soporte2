@@ -1,0 +1,493 @@
+﻿
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mserve[22m for project quetzaltic-api and [1m2[22m tasks it depends on:[39m
+
+[2m[36m[39m[22m
+
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[existing outputs match the cache, left as is][22m
+
+
+[2m> [22m[2mnx run[22m quetzaltic-api:build
+
+[2m> [22mwebpack-cli build --node-env=production
+
+webpack compiled [1m[32msuccessfully[39m[22m (e6f8f9dec12e8e96)
+
+[2m> [22m[2mnx run[22m quetzaltic-api:serve:development
+
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on:[39m
+[2m[36m[39m[22m
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[existing outputs match the cache, left as is][22m
+[2m> [22m[2mnx run[22m quetzaltic-api:build:development  [2m[local cache][22m
+[2m> [22mwebpack-cli build --node-env=development
+webpack compiled [1m[32msuccessfully[39m[22m (e6f8f9dec12e8e96)
+[2m[32m[39m[22m
+[7m[1m[32m NX [39m[22m[27m  [32mSuccessfully ran target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on[39m
+[2mNx read the output from the cache instead of running the command for 2 out of 2 tasks.[22m
+[7m[1m[33m NX [39m[22m[27m  [33mNx detected a flaky task[39m
+  guardian-core:build
+Flaky tasks can disrupt your CI pipeline. Automatically retry them with Nx Cloud. Learn more at https://nx.dev/ci/features/flaky-tasks
+node.exe : 
+[1m[31mDebugger 
+listening on ws://localhost
+:9229/843c91d7-3b79-4f86-9b
+ae-fd7c0868f60e
+En línea: 1 Carácter: 1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: ([1  
+  m[31mDebugg...ae-fd7c   
+ 0868f60e:String) [], R    
+emoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+Debugger listening on ws://
+localhost:9229/843c91d7-3b7
+9-4f86-9bae-fd7c0868f60e
+For help, see: https://node
+js.org/en/docs/inspector
+[39m[22m
+[11:37:52.496] [32mINFO[39m (7140): [36mStarting Nest application...[39m
+    [35mcontext[39m: "NestFactory"
+[11:37:52.497] [32mINFO[39m (7140): [36mConfigModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mCommonModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mConfigHostModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mDatabaseModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mAuditStoreModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mConfigModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mConfigModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mTransactionModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mTerminusModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mTestOscarModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mLoggerModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mUsersModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mHealthModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mThrottlerModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mAuthModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mOperationsModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mGovernanceModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [32mINFO[39m (7140): [36mAppModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[11:37:52.497] [33mWARN[39m (7140): [36mUnsupported route path: "/api/*". In previous versions, the symbols ?, *, and + were used to denote optional or repeating path parameters. The latest version of "path-to-regexp" now requires the use of named parameters. For example, instead of using a route like /users/* to capture all routes starting with "/users", you should use /users/*path. For more details, refer to the migration guide. Attempting to auto-convert...[39m
+    [35mcontext[39m: "LegacyRouteConverter"
+[11:37:52.497] [33mWARN[39m (7140): [36mUnsupported route path: "/api/*". In previous versions, the symbols ?, *, and + were used to denote optional or repeating path parameters. The latest version of "path-to-regexp" now requires the use of named parameters. For example, instead of using a route like /users/* to capture all routes starting with "/users", you should use /users/*path. For more details, refer to the migration guide. Attempting to auto-convert...[39m
+    [35mcontext[39m: "LegacyRouteConverter"
+[11:37:52.497] [33mWARN[39m (7140): [36mUnsupported route path: "/api/*". In previous versions, the symbols ?, *, and + were used to denote optional or repeating path parameters. The latest version of "path-to-regexp" now requires the use of named parameters. For example, instead of using a route like /users/* to capture all routes starting with "/users", you should use /users/*path. For more details, refer to the migration guide. Attempting to auto-convert...[39m
+    [35mcontext[39m: "LegacyRouteConverter"
+[11:37:52.498] [32mINFO[39m (7140): [36mAppController {/api}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mTestController {/api/test}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/test/reset, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mHealthController {/api/health}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/health, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mOperationsController {/api/operations}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/operations/preview, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/operations/execute, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/operations/rollback/:id, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mGovernanceController {/api/governance}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/audit-logs, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/stats, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/lockdown/status, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/lockdown/toggle, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/whitelist, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/whitelist, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/whitelist/update, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/governance/whitelist/delete, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mAuthController {/api/auth}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/auth/login, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mUsersController {/api/users}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/users, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/users, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/users/:id, DELETE} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36mTestOscarController {/api/test-oscar}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[11:37:52.498] [32mINFO[39m (7140): [36mMapped {/api/test-oscar, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[11:37:52.498] [32mINFO[39m (7140): [36m­ƒÉÿ Database connected successfully[39m
+    [35mcontext[39m: "PrismaService"
+[11:37:52.498] [32mINFO[39m (7140): [36mNest application successfully started[39m
+    [35mcontext[39m: "NestApplication"
+[11:37:52.498] [32mINFO[39m (7140): [36m­ƒÜÇ Application is running on: http://localhost:3333/api[39m
+[11:37:52.498] [32mINFO[39m (7140): [36m­ƒîì Environment: dev[39m
+[11:39:06.444] [31mERROR[39m (7140): [36mHealth Check has failed! {"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}[39m
+    [35mreq[39m: {
+      "id": 1,
+      "method": "HEAD",
+      "url": "/api/health",
+      "query": {},
+      "params": {
+        "path": [
+          "health"
+        ]
+      },
+      "headers": {
+        "host": "localhost:3333",
+        "user-agent": "Go-http-client/1.1"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 52297
+    }
+[11:39:06.447] [31mERROR[39m (7140): [36m[e76506e2-26b8-41e5-b7ad-b541db74ea5e] HEAD /api/health - Status: 503 - Error: {"status":"error","info":{},"error":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}},"details":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}}[39m
+    [35mreq[39m: {
+      "id": 1,
+      "method": "HEAD",
+      "url": "/api/health",
+      "query": {},
+      "params": {
+        "path": [
+          "health"
+        ]
+      },
+      "headers": {
+        "host": "localhost:3333",
+        "user-agent": "Go-http-client/1.1"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 52297
+    }
+    [35mcontext[39m: "GlobalExceptionFilter"
+[11:39:06.454] [32mINFO[39m (7140): [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": 1,
+      "method": "HEAD",
+      "url": "/api/health",
+      "query": {},
+      "params": {
+        "path": [
+          "health"
+        ]
+      },
+      "headers": {
+        "host": "localhost:3333",
+        "user-agent": "Go-http-client/1.1"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 52297
+    }
+    [35mcorrelationId[39m: "e76506e2-26b8-41e5-b7ad-b541db74ea5e"
+    [35mres[39m: {
+      "statusCode": 503,
+      "headers": {
+        "x-powered-by": "Express",
+        "x-correlation-id": "e76506e2-26b8-41e5-b7ad-b541db74ea5e",
+        "x-ratelimit-limit": "3",
+        "x-ratelimit-remaining": "2",
+        "x-ratelimit-reset": "60",
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "2342",
+        "etag": "W/\"926-+rjD/vhomnq3WhB9PBM6RcVA/Rw\""
+      }
+    }
+    [35mresponseTime[39m: 711
+    err: {
+      "type": "Error",
+      "message": "failed with status code 503",
+      "stack":
+          Error: failed with status code 503
+              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+              at ServerResponse.emit (node:events:520:35)
+              at onFinish (node:_http_outgoing:1026:10)
+              at afterWrite (node:internal/streams/writable:708:5)
+              at afterWriteTick (node:internal/streams/writable:694:10)
+              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+    }
+[11:39:06.547] [31mERROR[39m (7140): [36mHealth Check has failed! {"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}[39m
+    [35mreq[39m: {
+      "id": 2,
+      "method": "GET",
+      "url": "/api/health",
+      "query": {},
+      "params": {
+        "path": [
+          "health"
+        ]
+      },
+      "headers": {
+        "host": "localhost:3333",
+        "user-agent": "Go-http-client/1.1",
+        "accept-encoding": "gzip"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 52297
+    }
+[11:39:06.547] [31mERROR[39m (7140): [36m[8d5ea12c-9d3c-42fb-a9a3-e0a34b2222ce] GET /api/health - Status: 503 - Error: {"status":"error","info":{},"error":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}},"details":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}}[39m
+    [35mreq[39m: {
+      "id": 2,
+      "method": "GET",
+      "url": "/api/health",
+      "query": {},
+      "params": {
+        "path": [
+          "health"
+        ]
+      },
+      "headers": {
+        "host": "localhost:3333",
+        "user-agent": "Go-http-client/1.1",
+        "accept-encoding": "gzip"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 52297
+    }
+    [35mcontext[39m: "GlobalExceptionFilter"
+[11:39:06.549] [32mINFO[39m (7140): [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": 2,
+      "method": "GET",
+      "url": "/api/health",
+      "query": {},
+      "params": {
+        "path": [
+          "health"
+        ]
+      },
+      "headers": {
+        "host": "localhost:3333",
+        "user-agent": "Go-http-client/1.1",
+        "accept-encoding": "gzip"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 52297
+    }
+    [35mcorrelationId[39m: "8d5ea12c-9d3c-42fb-a9a3-e0a34b2222ce"
+    [35mres[39m: {
+      "statusCode": 503,
+      "headers": {
+        "x-powered-by": "Express",
+        "x-correlation-id": "8d5ea12c-9d3c-42fb-a9a3-e0a34b2222ce",
+        "x-ratelimit-limit": "3",
+        "x-ratelimit-remaining": "1",
+        "x-ratelimit-reset": "60",
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "2342",
+        "etag": "W/\"926-4pxYSY51jamexzb4+gl1KhCqZgk\""
+      }
+    }
+    [35mresponseTime[39m: 90
+    err: {
+      "type": "Error",
+      "message": "failed with status code 503",
+      "stack":
+          Error: failed with status code 503
+              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+              at ServerResponse.emit (node:events:520:35)
+              at onFinish (node:_http_outgoing:1026:10)
+              at callback (node:internal/streams/writable:764:21)
+              at afterWrite (node:internal/streams/writable:708:5)
+              at afterWriteTick (node:internal/streams/writable:694:10)
+              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+    }
+[11:39:20.019] [31mERROR[39m (7140): [36mHealth Check has failed! {"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}[39m
+    [35mreq[39m: {
+      "id": 3,
+      "method": "GET",
+      "url": "/api/health",
+      "query": {},
+      "params": {
+        "path": [
+          "health"
+        ]
+      },
+      "headers": {
+        "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.7705",
+        "host": "localhost:3333",
+        "connection": "Keep-Alive"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 59399
+    }
+[11:39:20.019] [31mERROR[39m (7140): [36m[4b238f0f-cfad-4d32-a76e-14890a7b6ac6] GET /api/health - Status: 503 - Error: {"status":"error","info":{},"error":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}},"details":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}}[39m
+    [35mreq[39m: {
+      "id": 3,
+      "method": "GET",
+      "url": "/api/health",
+      "query": {},
+      "params": {
+        "path": [
+          "health"
+        ]
+      },
+      "headers": {
+        "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.7705",
+        "host": "localhost:3333",
+        "connection": "Keep-Alive"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 59399
+    }
+    [35mcontext[39m: "GlobalExceptionFilter"
+[11:39:20.020] [32mINFO[39m (7140): [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": 3,
+      "method": "GET",
+      "url": "/api/health",
+      "query": {},
+      "params": {
+        "path": [
+          "health"
+        ]
+      },
+      "headers": {
+        "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.7705",
+        "host": "localhost:3333",
+        "connection": "Keep-Alive"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 59399
+    }
+    [35mcorrelationId[39m: "4b238f0f-cfad-4d32-a76e-14890a7b6ac6"
+    [35mres[39m: {
+      "statusCode": 503,
+      "headers": {
+        "x-powered-by": "Express",
+        "x-correlation-id": "4b238f0f-cfad-4d32-a76e-14890a7b6ac6",
+        "x-ratelimit-limit": "3",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "46",
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "2342",
+        "etag": "W/\"926-F0TZHxTPkgwlPawbYRgRV5GG/jU\""
+      }
+    }
+    [35mresponseTime[39m: 88
+    err: {
+      "type": "Error",
+      "message": "failed with status code 503",
+      "stack":
+          Error: failed with status code 503
+              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+              at ServerResponse.emit (node:events:520:35)
+              at onFinish (node:_http_outgoing:1026:10)
+              at callback (node:internal/streams/writable:764:21)
+              at afterWrite (node:internal/streams/writable:708:5)
+              at afterWriteTick (node:internal/streams/writable:694:10)
+              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+    }
+[11:39:37.893] [31mERROR[39m (7140): [36m[95f31130-1be0-44c6-9ae6-7de0a33706cd] POST /api/operations/preview - Status: 503 - Error: {"message":"Operational Hardening: Write operations are currently blocked due to Audit Store unavailability. Fail-Closed policy is active.","error":"Service Unavailable","statusCode":503}[39m
+    [35mreq[39m: {
+      "id": 4,
+      "method": "POST",
+      "url": "/api/operations/preview",
+      "query": {},
+      "params": {
+        "path": [
+          "operations",
+          "preview"
+        ]
+      },
+      "headers": {
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMDAwLTAwMDAtMDAwMCIsImVtYWlsIjoic3VwZXJhZG1pbi1mYWxsYmFja0BxdWV0emFsdGljLmxvY2FsIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzczMzM5OTU2fQ.DSBQaT9__56o44MDTmKF__WK2TxBQTrGTifs8zgB9kQ",
+        "content-type": "application/json",
+        "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.7705",
+        "host": "localhost:3333",
+        "content-length": "98"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 53534
+    }
+    [35mcontext[39m: "GlobalExceptionFilter"
+[11:39:37.895] [32mINFO[39m (7140): [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": 4,
+      "method": "POST",
+      "url": "/api/operations/preview",
+      "query": {},
+      "params": {
+        "path": [
+          "operations",
+          "preview"
+        ]
+      },
+      "headers": {
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMDAwLTAwMDAtMDAwMCIsImVtYWlsIjoic3VwZXJhZG1pbi1mYWxsYmFja0BxdWV0emFsdGljLmxvY2FsIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzczMzM5OTU2fQ.DSBQaT9__56o44MDTmKF__WK2TxBQTrGTifs8zgB9kQ",
+        "content-type": "application/json",
+        "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.7705",
+        "host": "localhost:3333",
+        "content-length": "98"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 53534
+    }
+    [35mcorrelationId[39m: "95f31130-1be0-44c6-9ae6-7de0a33706cd"
+    [35mres[39m: {
+      "statusCode": 503,
+      "headers": {
+        "x-powered-by": "Express",
+        "x-correlation-id": "95f31130-1be0-44c6-9ae6-7de0a33706cd",
+        "x-ratelimit-limit": "3",
+        "x-ratelimit-remaining": "2",
+        "x-ratelimit-reset": "60",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "478",
+        "etag": "W/\"1de-xN+5nGcQddT3VA6T4WqV7+GDHxo\""
+      }
+    }
+    [35mresponseTime[39m: 6
+    err: {
+      "type": "Error",
+      "message": "failed with status code 503",
+      "stack":
+          Error: failed with status code 503
+              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+              at ServerResponse.emit (node:events:520:35)
+              at onFinish (node:_http_outgoing:1026:10)
+              at callback (node:internal/streams/writable:764:21)
+              at afterWrite (node:internal/streams/writable:708:5)
+              at afterWriteTick (node:internal/streams/writable:694:10)
+              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+    }

@@ -19,16 +19,16 @@ export class AuthService {
 
     setToken(token: string): void {
         console.log('[AuthService] Setting new token...');
-        localStorage.setItem(this.TOKEN_KEY, token);
+        sessionStorage.setItem(this.TOKEN_KEY, token);
         this.updateUserFromToken();
     }
 
     getToken(): string | null {
-        return localStorage.getItem(this.TOKEN_KEY);
+        return sessionStorage.getItem(this.TOKEN_KEY);
     }
 
     clearToken(): void {
-        localStorage.removeItem(this.TOKEN_KEY);
+        sessionStorage.removeItem(this.TOKEN_KEY);
         this.currentUserSubject.next({ role: null, email: null });
     }
 

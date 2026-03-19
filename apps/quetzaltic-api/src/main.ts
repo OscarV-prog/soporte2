@@ -22,6 +22,13 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalExceptionFilter());
 
   const port = configService.get<number>('PORT') || 3000;
+  
+  app.enableCors({
+    origin: '*', // Permitir cualquier origen por ahora (luego podemos restringirlo a la URL de Netlify)
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
+
   await app.listen(port);
 
   const logger = app.get(Logger);

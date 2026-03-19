@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { GovernanceService } from './governance/governance.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
 import { Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   imports: [RouterModule, CommonModule, FormsModule],
@@ -15,6 +16,7 @@ import { Subscription } from 'rxjs';
 export class App implements OnInit, OnDestroy {
   protected title = 'quetzaltic-ui';
   isLockdownActive = false;
+  isOperational = true;
   lockdownLoading = false;
   showLockdownConfirm = false;
 
@@ -24,27 +26,48 @@ export class App implements OnInit, OnDestroy {
 
   searchQuery = '';
 
-  // Last used ticket ID (updated by child components via a shared service — for now we use localStorage)
+  // Last used ticket ID (updated by child components via a shared service — for now we use sessionStorage)
   get lastTicketId(): string {
-    return localStorage.getItem('qz_last_ticket') || 'REQ-XXXXX';
+    return sessionStorage.getItem('qz_last_ticket') || 'REQ-XXXXX';
   }
 
   constructor(
     private govService: GovernanceService,
     public authService: AuthService,
-    private router: Router
+    private cdr: ChangeDetectorRef,
+    public router: Router
   ) { }
 
   ngOnInit() {
-    this.govService.getLockdownStatus().subscribe({
-      next: res => { this.isLockdownActive = res.active; },
-      error: () => { this.isLockdownActive = false; }
+    // 1. Inicializar el sondeo global de bloqueo (una sola vez)
+    this.govService.initializeLockdownPolling();
+    
+    // 2. Escuchar cambios globales de bloqueo
+    this.govService.lockdown$.pipe(delay(0)).subscribe(active => {
+      this.isLockdownActive = active;
+      this.cdr.detectChanges(); // Asegurar que el botón y el banner cambien YA
+    });
+
+    // 3. Escuchar estado de conectividad/operatividad
+    this.govService.isOperational$.pipe(delay(0)).subscribe(ok => {
+      this.isOperational = ok;
+      this.cdr.detectChanges();
     });
 
     this.roleSub = this.authService.getCurrentUser$().subscribe(user => {
       this.userRole = user.role;
       this.userEmail = user.email;
     });
+  }
+
+  onSearch(event: any) {
+    if (event.key === 'Enter' && this.searchQuery.trim()) {
+      // Redirigir a la bitácora con el filtro de CorrelationID
+      this.router.navigate(['/governance'], { 
+        queryParams: { correlationId: this.searchQuery.trim() } 
+      });
+      this.searchQuery = ''; // Limpiar buscador
+    }
   }
 
   ngOnDestroy() {
@@ -60,32 +83,32 @@ export class App implements OnInit, OnDestroy {
   confirmLockdownToggle() {
     this.showLockdownConfirm = false;
     this.lockdownLoading = true;
+    this.cdr.detectChanges();
+    
     const newState = !this.isLockdownActive;
 
     this.govService.toggleLockdown(newState).subscribe({
       next: (res) => {
-        this.isLockdownActive = res.active;
-        this.lockdownLoading = false;
+        this.govService.updateLocalLockdownState(res.active);
+        // Usar setTimeout para asegurar que el cambio de 'lockdownLoading' ocurra en el siguiente ciclo
+        // y evitar el ruidoso ExpressionChangedAfterItHasBeenCheckedError
+        setTimeout(() => {
+          this.lockdownLoading = false;
+          this.cdr.detectChanges();
+        });
       },
       error: () => {
-        // Virtual mode: toggle in memory
-        this.isLockdownActive = newState;
-        this.lockdownLoading = false;
+        this.govService.updateLocalLockdownState(newState);
+        setTimeout(() => {
+          this.lockdownLoading = false;
+          this.cdr.detectChanges();
+        });
       }
     });
   }
 
   cancelLockdownToggle() {
     this.showLockdownConfirm = false;
-  }
-
-  // Search CorrelationID — navigate to governance and apply filter
-  onSearch(event: KeyboardEvent) {
-    if (event.key === 'Enter' && this.searchQuery.trim()) {
-      this.router.navigate(['/governance'], {
-        queryParams: { correlationId: this.searchQuery.trim() }
-      });
-    }
   }
 
   logout() {

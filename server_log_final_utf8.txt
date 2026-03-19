@@ -1,0 +1,136 @@
+﻿
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mserve[22m for project quetzaltic-api and [1m2[22m tasks it depends on:[39m
+
+[2m[36m[39m[22m
+
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[existing outputs match the cache, left as is][22m
+
+
+[2m> [22m[2mnx run[22m quetzaltic-api:build
+
+[2m> [22mwebpack-cli build --node-env=production
+
+webpack compiled [1m[32msuccessfully[39m[22m (af614cdd83848be2)
+
+[2m> [22m[2mnx run[22m quetzaltic-api:serve:development
+
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on:[39m
+[2m[36m[39m[22m
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[existing outputs match the cache, left as is][22m
+[2m> [22m[2mnx run[22m quetzaltic-api:build:development
+[2m> [22mwebpack-cli build --node-env=development
+webpack compiled [1m[32msuccessfully[39m[22m (af614cdd83848be2)
+[2m[32m[39m[22m
+[7m[1m[32m NX [39m[22m[27m  [32mSuccessfully ran target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on[39m
+[2mNx read the output from the cache instead of running the command for 1 out of 2 tasks.[22m
+node.exe : 
+[1m[31mDebugger 
+listening on ws://localhost
+:9229/8d1f2797-fe49-49d8-8d
+2c-7db7f82beaef
+En línea: 1 Carácter: 1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: ([1  
+  m[31mDebugg...2c-7db7   
+ f82beaef:String) [], R    
+emoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+Debugger listening on ws://
+localhost:9229/8d1f2797-fe4
+9-49d8-8d2c-7db7f82beaef
+For help, see: https://node
+js.org/en/docs/inspector
+[39m[22m
+[1m[31mÔØî Invalid 
+environment variables:
+[39m[22m
+[1m[31m{
+  "_errors": [],
+  "DATABASE_URL": {
+    "_errors": [
+      "DATABASE_URL must 
+be a valid connection 
+string"
+    ]
+  },
+  "PROD_DB_URL": {
+    "_errors": [
+      "PROD_DB_URL must be 
+a valid connection string"
+    ]
+  },
+  "AUDIT_DB_URL": {
+    "_errors": [
+      "AUDIT_DB_URL must 
+be a valid connection 
+string"
+    ]
+  }
+}
+[39m[22m
+[32m[Nest] 21892  - [39m11/03/2026, 11:11:33 a.m. [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[1m[31m[31m[Nest] 21892 
+ - [31m11/03/2026, 
+11:11:33 a.m. [31m  
+ERROR[31m [38;5;3m[Except
+ionHandler] [31mError: 
+Config validation failed
+    at Object.validateEnv 
+[as validate] [90m(C:\dev\
+soporte\quetzaltic\[31mapp
+s\quetzaltic-api\src\app\co
+nfig\env.schema.ts:22:15[9
+0m)[31m
+    at 
+ConfigModule.forRoot [90m(
+C:\dev\soporte\quetzaltic\
+[31mnode_modules\[4m@nestj
+s\config[24m\dist\config.m
+odule.js:88:45[90m)[31m
+    at Array.<anonymous> [
+90m(C:\dev\soporte\quetzalt
+ic\[31mapps\quetzaltic-api
+\src\app\config\config.modu
+le.ts:7:26[90m)[31m
+    at __webpack_require__ 
+[90m(C:\dev\soporte\quetza
+ltic\[31mdist\apps\quetzal
+tic-api\webpack\bootstrap:1
+9:1[90m)[31m
+    at Array.<anonymous> [
+90m(C:\dev\soporte\quetzalt
+ic\[31mapps\quetzaltic-api
+\src\app\app.module.ts:7:1
+[90m)[31m
+    at __webpack_require__ 
+[90m(C:\dev\soporte\quetza
+ltic\[31mdist\apps\quetzal
+tic-api\webpack\bootstrap:1
+9:1[90m)[31m
+    at [90mC:\dev\soporte\
+quetzaltic\[31mapps\quetza
+ltic-api\src\main.ts:9:1
+    at [90mC:\dev\soporte\
+quetzaltic\[31mdist\apps\q
+uetzaltic-api\main.js:3106:
+3
+    at Object.<anonymous> 
+[90m(C:\dev\soporte\quetzal
+tic\[31mdist\apps\quetzalt
+ic-api\main.js:3108:12[90m
+)[31m
+[90m    at 
+Module._compile (node:inter
+nal/modules/cjs/loader:1761
+:14)[31m
+[39m[22m
+[7m[1m[36m NX [39m[22m[27m [1mProcess exited with code 1, waiting for changes to restart...[22m

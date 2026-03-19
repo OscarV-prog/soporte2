@@ -10,5 +10,5 @@ export interface MetadataResolver {
      * @param table El nombre de la tabla.
      * @returns El nombre de la columna PK o null si no se encuentra/no tiene.
      */
-    getPrimaryKeyColumn(schema: string, table: string): Promise<string | null>;
+    getPrimaryKeyColumn(schema: string, table: string): Promise<string | string[] | null>;
 }

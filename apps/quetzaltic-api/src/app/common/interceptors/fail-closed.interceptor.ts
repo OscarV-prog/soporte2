@@ -15,8 +15,9 @@ export class FailClosedInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         const request = context.switchToHttp().getRequest();
         const isWriteOperation = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(request.method);
+        const isAuthRoute = (request.url as string).includes('/auth/');
 
-        if (isWriteOperation && !this.healthState.isAuditDbUp()) {
+        if (isWriteOperation && !isAuthRoute && !this.healthState.isAuditDbUp()) {
             throw new ServiceUnavailableException(
                 'Operational Hardening: Write operations are currently blocked due to Audit Store unavailability. Fail-Closed policy is active.'
             );

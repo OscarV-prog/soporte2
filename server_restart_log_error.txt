@@ -1,0 +1,100 @@
+﻿        "x-powered-by": "Express",
+        "x-correlation-id": "4b238f0f-cfad-4d32-a76e-14890a7b6ac6",
+        "x-ratelimit-limit": "3",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-reset": "46",
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "2342",
+        "etag": "W/\"926-F0TZHxTPkgwlPawbYRgRV5GG/jU\""
+      }
+    }
+    [35mresponseTime[39m: 88
+    err: {
+      "type": "Error",
+      "message": "failed with status code 503",
+      "stack":
+          Error: failed with status code 503
+              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+              at ServerResponse.emit (node:events:520:35)
+              at onFinish (node:_http_outgoing:1026:10)
+              at callback (node:internal/streams/writable:764:21)
+              at afterWrite (node:internal/streams/writable:708:5)
+              at afterWriteTick (node:internal/streams/writable:694:10)
+              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+    }
+[11:39:37.893] [31mERROR[39m (7140): [36m[95f31130-1be0-44c6-9ae6-7de0a33706cd] POST /api/operations/preview - Status: 503 - Error: {"message":"Operational Hardening: Write operations are currently blocked due to Audit Store unavailability. Fail-Closed policy is active.","error":"Service Unavailable","statusCode":503}[39m
+    [35mreq[39m: {
+      "id": 4,
+      "method": "POST",
+      "url": "/api/operations/preview",
+      "query": {},
+      "params": {
+        "path": [
+          "operations",
+          "preview"
+        ]
+      },
+      "headers": {
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMDAwLTAwMDAtMDAwMCIsImVtYWlsIjoic3VwZXJhZG1pbi1mYWxsYmFja0BxdWV0emFsdGljLmxvY2FsIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzczMzM5OTU2fQ.DSBQaT9__56o44MDTmKF__WK2TxBQTrGTifs8zgB9kQ",
+        "content-type": "application/json",
+        "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.7705",
+        "host": "localhost:3333",
+        "content-length": "98"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 53534
+    }
+    [35mcontext[39m: "GlobalExceptionFilter"
+[11:39:37.895] [32mINFO[39m (7140): [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": 4,
+      "method": "POST",
+      "url": "/api/operations/preview",
+      "query": {},
+      "params": {
+        "path": [
+          "operations",
+          "preview"
+        ]
+      },
+      "headers": {
+        "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMDAwLTAwMDAtMDAwMCIsImVtYWlsIjoic3VwZXJhZG1pbi1mYWxsYmFja0BxdWV0emFsdGljLmxvY2FsIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzczMzM5OTU2fQ.DSBQaT9__56o44MDTmKF__WK2TxBQTrGTifs8zgB9kQ",
+        "content-type": "application/json",
+        "user-agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.7705",
+        "host": "localhost:3333",
+        "content-length": "98"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 53534
+    }
+    [35mcorrelationId[39m: "95f31130-1be0-44c6-9ae6-7de0a33706cd"
+    [35mres[39m: {
+      "statusCode": 503,
+      "headers": {
+        "x-powered-by": "Express",
+        "x-correlation-id": "95f31130-1be0-44c6-9ae6-7de0a33706cd",
+        "x-ratelimit-limit": "3",
+        "x-ratelimit-remaining": "2",
+        "x-ratelimit-reset": "60",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "478",
+        "etag": "W/\"1de-xN+5nGcQddT3VA6T4WqV7+GDHxo\""
+      }
+    }
+    [35mresponseTime[39m: 6
+    err: {
+      "type": "Error",
+      "message": "failed with status code 503",
+      "stack":
+          Error: failed with status code 503
+              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+              at ServerResponse.emit (node:events:520:35)
+              at onFinish (node:_http_outgoing:1026:10)
+              at callback (node:internal/streams/writable:764:21)
+              at afterWrite (node:internal/streams/writable:708:5)
+              at afterWriteTick (node:internal/streams/writable:694:10)
+              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+    }

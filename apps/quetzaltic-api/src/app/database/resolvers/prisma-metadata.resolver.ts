@@ -19,45 +19,60 @@ export class PrismaMetadataResolver implements MetadataResolver {
 
     constructor(private readonly prisma: PrismaService) { }
 
-    async getPrimaryKeyColumn(schemaInput: string, tableInput: string): Promise<string | null> {
-        const schema = schemaInput.toLowerCase();
+    async getPrimaryKeyColumn(schemaInput: string, tableInput: string): Promise<string | string[] | null> {
+        const schema = (schemaInput.toLowerCase() === 'prod' || !schemaInput) ? 'dbo' : schemaInput.toLowerCase();
         const table = tableInput.toLowerCase();
         const cacheKey = `${schema}.${table}`;
         const now = Date.now();
 
         const cached = this.cache.get(cacheKey);
         if (cached && cached.expiry > now) {
-            return cached.pkColumn;
+            return cached.pkColumn.includes(',') ? cached.pkColumn.split(',') : cached.pkColumn;
         }
 
         try {
-            const result = await this.prisma.$queryRawUnsafe<any[]>(`
-                SELECT kcu.column_name
-                FROM information_schema.table_constraints tc
-                JOIN information_schema.key_column_usage kcu
-                  ON tc.constraint_name = kcu.constraint_name
-                  AND tc.table_schema = kcu.table_schema
-                WHERE tc.constraint_type = 'PRIMARY KEY'
-                  AND lower(tc.table_schema) = $1
-                  AND lower(tc.table_name) = $2;
+            let result = await this.prisma.$queryRawUnsafe<any[]>(`
+                SELECT col.name AS COLUMN_NAME
+                FROM sys.indexes i
+                INNER JOIN sys.index_columns ic ON i.object_id = ic.object_id AND i.index_id = ic.index_id
+                INNER JOIN sys.columns col ON ic.object_id = col.object_id AND ic.column_id = col.column_id
+                INNER JOIN sys.tables t ON i.object_id = t.object_id
+                INNER JOIN sys.schemas s ON t.schema_id = s.schema_id
+                WHERE i.is_primary_key = 1
+                AND s.name = @p1
+                AND t.name = @p2
+                ORDER BY ic.key_ordinal;
             `, schema, table);
 
             if (result.length === 0) {
-                throw new GuardianPrimaryKeyViolationError(table, 'N/A');
+                // Fallback sin esquema
+                const fallbackResult = await this.prisma.$queryRawUnsafe<any[]>(`
+                    SELECT col.name AS COLUMN_NAME
+                    FROM sys.indexes i
+                    INNER JOIN sys.index_columns ic ON i.object_id = ic.object_id AND i.index_id = ic.index_id
+                    INNER JOIN sys.columns col ON ic.object_id = col.object_id AND ic.column_id = col.column_id
+                    INNER JOIN sys.tables t ON i.object_id = t.object_id
+                    WHERE i.is_primary_key = 1
+                    AND t.name = @p1
+                    ORDER BY ic.key_ordinal;
+                `, table);
+                if (fallbackResult.length > 0) result = fallbackResult;
             }
 
-            if (result.length > 1) {
-                throw new GuardianCompositePrimaryKeyNotSupportedError(table);
+            if (result.length === 0) {
+                this.logger.warn(`Primary key not found for table ${schema}.${table}. Falling back to default validation.`);
+                return null;
             }
 
-            const pkColumn = result[0].column_name.toLowerCase();
+            const columns = result.map(r => r.COLUMN_NAME);
+            const pkValue = columns.join(',');
 
             this.cache.set(cacheKey, {
-                pkColumn,
+                pkColumn: pkValue,
                 expiry: now + this.TTL_MS,
             });
 
-            return pkColumn;
+            return columns.length === 1 ? columns[0] : columns;
         } catch (error) {
             if (error instanceof GuardianPrimaryKeyViolationError ||
                 error instanceof GuardianCompositePrimaryKeyNotSupportedError) {

@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException, ConflictException, Logger } from '@nestjs/common';
 import { PrismaService } from '../database/prisma.service';
-import { Prisma } from '@prisma/client';
+
 
 export interface IdempotencyResult {
     isDuplicate: boolean;
@@ -35,7 +35,8 @@ export class IdempotencyService {
             // Regla: Si existe y está SUCCESS -> retornar respuesta previa
             if (existing.status === 'SUCCESS') {
                 this.logger.log(`Idempotency hit: returning previous SUCCESS result for key ${keyString}`);
-                return { isDuplicate: true, response: existing.responseBody };
+                const response = existing.responseBody ? JSON.parse(existing.responseBody as any as string) : undefined;
+                return { isDuplicate: true, response };
             }
 
             // Regla: Si existe y está PENDING -> 409 Conflict (Concurrency protection)
@@ -74,7 +75,7 @@ export class IdempotencyService {
             where: { idempotencyKey: keyString },
             data: {
                 status: 'SUCCESS',
-                responseBody: response as Prisma.InputJsonValue
+                responseBody: (response ? JSON.stringify(response) : null) as any
             },
         });
     }

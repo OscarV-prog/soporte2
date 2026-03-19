@@ -15,7 +15,8 @@ export class ProdDbHealthIndicator extends HealthIndicator {
 
     async isHealthy(key: string): Promise<HealthIndicatorResult> {
         try {
-            await this.prisma.$queryRaw`SELECT 1`;
+            // Verificamos conexión al esquema 'prod' intentando acceder a una tabla específica
+            await this.prisma.demoRecord.findFirst({ select: { id: true } });
             this.state.setProdDbStatus(true);
             return this.getStatus(key, true);
         } catch (error: any) {
@@ -37,7 +38,8 @@ export class AuditDbHealthIndicator extends HealthIndicator {
 
     async isHealthy(key: string): Promise<HealthIndicatorResult> {
         try {
-            await this.prisma.$queryRaw`SELECT 1`;
+            // Verificamos conexión al esquema 'audit' intentando acceder a la tabla de eventos
+            await this.prisma.auditEvent.findFirst({ select: { id: true } });
             this.state.setAuditDbStatus(true);
             return this.getStatus(key, true);
         } catch (error: any) {

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription, interval } from 'rxjs';
+import { startWith } from 'rxjs/operators';
+import { v4 as uuidv4 } from 'uuid';
 import { AuthService } from '../auth/auth.service';
 
 export interface AuditLogResponse {
@@ -16,32 +18,70 @@ export interface AuditLogResponse {
 })
 export class GovernanceService {
     private apiUrl = '/api/governance';
+    private lockdownSubject = new BehaviorSubject<boolean>(false);
+    public lockdown$ = this.lockdownSubject.asObservable();
+    private operationalSubject = new BehaviorSubject<boolean>(true);
+    public isOperational$ = this.operationalSubject.asObservable();
+    private pollSubscription?: Subscription;
 
     constructor(private http: HttpClient, private authService: AuthService) { }
+
+    /**
+     * Inicia el sondeo global del estado de bloqueo. 
+     * Debe llamarse una sola vez al inicio de la aplicación (AppComponent).
+     */
+    initializeLockdownPolling() {
+        if (this.pollSubscription) return;
+
+        this.pollSubscription = interval(5000).pipe(
+            startWith(0)
+        ).subscribe(() => {
+            this.getLockdownStatus().subscribe({
+                next: (res) => {
+                    this.operationalSubject.next(true); // Conectado
+                    if (this.lockdownSubject.value !== res.active) {
+                        console.warn('[GovernanceService] Global Lockdown state changed:', res.active);
+                        this.lockdownSubject.next(res.active);
+                    }
+                },
+                error: (err) => {
+                    console.error('[GovernanceService] Polling failed:', err);
+                    this.operationalSubject.next(false); // Desconectado
+                }
+            });
+        });
+    }
+
+    /**
+     * Permite actualizar el estado local inmediatamente después de una acción del usuario.
+     */
+    updateLocalLockdownState(active: boolean) {
+        this.lockdownSubject.next(active);
+    }
 
     private getHeaders(): HttpHeaders {
         const token = this.authService.getToken();
         const actor = this.authService.getEmail() || 'ui_user';
+        const idempotencyKey = uuidv4();
+        
         return new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
             'X-Actor': actor,
-            'X-Correlation-Id': 'ui_gov_' + Date.now()
+            'X-Correlation-Id': 'ui_gov_' + Date.now(),
+            'X-Idempotency-Key': idempotencyKey
         });
     }
 
 
     getAuditLogs(params: any): Observable<AuditLogResponse> {
-        let httpParams = new HttpParams();
-        Object.keys(params).forEach(key => {
-            if (params[key]) {
-                httpParams = httpParams.set(key, params[key]);
-            }
-        });
-
         return this.http.get<AuditLogResponse>(`${this.apiUrl}/audit-logs`, {
             headers: this.getHeaders(),
-            params: httpParams
+            params: {
+                ...params,
+                limit: params.limit || 8,
+                grouped: 'true'
+            }
         });
     }
 
@@ -103,6 +143,18 @@ export class GovernanceService {
         return this.http.get<AuditLogResponse>(`${this.apiUrl}/audit-logs`, {
             headers: this.getHeaders(),
             params: httpParams
+        });
+    }
+
+    rollbackOperation(auditEventId: string): Observable<any> {
+        return this.http.post(`/api/operations/rollback/${auditEventId}`, {}, {
+            headers: this.getHeaders()
+        });
+    }
+
+    getUsers(): Observable<any[]> {
+        return this.http.get<any[]>('/api/users', {
+            headers: this.getHeaders()
         });
     }
 }

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { OperationsService, OperationResponse, PreviewResponse } from './operations.service';
+import { GovernanceService } from '../governance/governance.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-operations',
@@ -10,10 +12,12 @@ import { OperationsService, OperationResponse, PreviewResponse } from './operati
     templateUrl: './operations.component.html',
     styleUrls: ['./operations.component.css']
 })
-export class OperationsComponent {
+export class OperationsComponent implements OnInit, OnDestroy {
     sql = '';
     ticketId = '';
     jsonError: string | null = null;
+    isLockdown = false;
+    private lockdownSub?: Subscription;
 
     // Preview state
     isPreviewing = false;
@@ -25,13 +29,35 @@ export class OperationsComponent {
     isExecuting = false;
     rollbackLoading = false;
     showRollbackConfirm = false;
+    showExecutionConfirm = false;
     hasExecuted = false;
     isMaintenance = false;
 
     lastResponse: OperationResponse | null = null;
     lastError: any = null;
 
-    constructor(private operationsService: OperationsService) { }
+    constructor(
+        private operationsService: OperationsService,
+        private govService: GovernanceService,
+        private cdr: ChangeDetectorRef
+    ) { }
+
+    ngOnInit() {
+        // 🚨 BLOQUEO CENTRALIZADO: Usar el estado compartido del servicio
+        this.lockdownSub = this.govService.lockdown$.subscribe(active => {
+            if (this.isLockdown !== active) {
+                console.warn('[Operations] Lockdown state changed:', active);
+                this.isLockdown = active;
+                this.cdr.detectChanges();
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        if (this.lockdownSub) {
+            this.lockdownSub.unsubscribe();
+        }
+    }
 
     // Step 1: Preview record from SELECT
     preview() {
@@ -44,27 +70,37 @@ export class OperationsComponent {
 
         this.operationsService.previewRecord(this.sql).subscribe({
             next: (res) => {
+                console.log('[OperationsComponent] Received preview response:', res);
                 this.previewData = res;
                 this.isPreviewing = false;
-                // Build editable copy, stringify all values for easy editing
-                for (const key of Object.keys(res.record)) {
-                    const val = res.record[key];
-                    this.editableRecord[key] = val === null ? '' : String(val);
+                // Build editable copy from the FIRST record as template
+                if (res && res.records && res.records.length > 0) {
+                    const firstRecord = res.records[0].data;
+                    for (const key of Object.keys(firstRecord)) {
+                        const val = firstRecord[key];
+                        this.editableRecord[key] = val === null ? '' : String(val);
+                    }
+                } else {
+                    console.error('[OperationsComponent] Response does not contain records:', res);
                 }
+                this.cdr.detectChanges();
             },
             error: (err) => {
-                this.previewError = err.error?.message || 'Could not fetch record. Check your SELECT query.';
+                const errorBody = err.error || {};
+                this.previewError = errorBody.error?.message || errorBody.message || 'Could not fetch records. Check your SELECT query.';
                 this.isPreviewing = false;
+                this.cdr.detectChanges();
             }
         });
     }
 
     // Return keys of the record that are actually different
     get changedFields(): Record<string, string> {
-        if (!this.previewData) return {};
+        if (!this.previewData || this.previewData.records.length === 0) return {};
         const changed: Record<string, string> = {};
+        const firstRecord = this.previewData.records[0].data;
         for (const key of Object.keys(this.editableRecord)) {
-            const original = this.previewData.record[key];
+            const original = firstRecord[key];
             const originalStr = original === null ? '' : String(original);
             if (this.editableRecord[key] !== originalStr) {
                 changed[key] = this.editableRecord[key];
@@ -77,10 +113,25 @@ export class OperationsComponent {
         return Object.keys(this.changedFields).length;
     }
 
-    // Step 2: Execute with diff as payload
+    // Step 2: Request confirmation
     execute() {
-        if (!this.ticketId.trim()) return;
+        if (!this.ticketId.trim() || this.isLockdown) return;
+        const changed = this.changedFields;
+        if (Object.keys(changed).length === 0) return;
+        this.showExecutionConfirm = true;
+    }
 
+    cancelExecution() {
+        this.showExecutionConfirm = false;
+    }
+
+    confirmExecution() {
+        this.showExecutionConfirm = false;
+        this.executeNow();
+    }
+
+    // Actual execution logic
+    executeNow() {
         const changed = this.changedFields;
         if (Object.keys(changed).length === 0) return;
 
@@ -109,7 +160,7 @@ export class OperationsComponent {
 
         // Save last used ticket to topbar badge
         if (this.ticketId.trim()) {
-            localStorage.setItem('qz_last_ticket', this.ticketId.trim());
+            sessionStorage.setItem('qz_last_ticket', this.ticketId.trim());
         }
 
         this.operationsService.executeOperation({
@@ -121,10 +172,20 @@ export class OperationsComponent {
                 this.lastResponse = res;
                 this.isExecuting = false;
                 this.hasExecuted = true;
+                this.cdr.detectChanges();
+                
+                // Auto-refresh the editable data grid with the newly updated database state
+                if (res.status === 'SUCCESS') {
+                    this.preview();
+                }
             },
             error: (err) => {
                 this.lastError = err.error || { message: 'Unknown connection error', statusCode: 500 };
-                this.isExecuting = false;
+                // Consolidate nested error object from GlobalExceptionFilter
+                if (this.lastError.error) {
+                    this.lastError.message = this.lastError.error.message;
+                    this.lastError.statusCode = this.lastError.error.code;
+                }
 
                 if (this.lastError.statusCode === 503) {
                     this.isMaintenance = true;
@@ -132,6 +193,7 @@ export class OperationsComponent {
                 if (this.lastError.statusCode === 401) {
                     this.lastError.message = 'Sesión inválida o expirada.';
                 }
+                this.cdr.detectChanges();
             }
         });
     }
@@ -140,20 +202,31 @@ export class OperationsComponent {
     cancelRollback() { this.showRollbackConfirm = false; }
 
     rollback() {
-        if (!this.lastResponse?.auditEventId) return;
+        if (!this.lastResponse?.auditEventIds || this.lastResponse.auditEventIds.length === 0) return;
 
         this.rollbackLoading = true;
         this.showRollbackConfirm = false;
         this.lastError = null;
 
-        this.operationsService.rollbackOperation(this.lastResponse.auditEventId).subscribe({
+        // Backend rollback finds siblings by correlationId, so any ID from the group works
+        this.operationsService.rollbackOperation(this.lastResponse.auditEventIds[0]).subscribe({
             next: (res) => {
                 this.lastResponse = res;
                 this.rollbackLoading = false;
+                this.showRollbackConfirm = false;
+                alert('¡Reversión exitosa! Los datos han sido restaurados.');
+                this.reset();
+                this.cdr.detectChanges(); // Force UI update
             },
             error: (err) => {
                 this.lastError = err.error || { message: 'Rollback failed', statusCode: 500 };
+                // Consolidate nested error object from GlobalExceptionFilter
+                if (this.lastError.error) {
+                    this.lastError.message = this.lastError.error.message;
+                    this.lastError.statusCode = this.lastError.error.code;
+                }
                 this.rollbackLoading = false;
+                this.cdr.detectChanges();
             }
         });
     }
@@ -173,14 +246,18 @@ export class OperationsComponent {
     }
 
     isFieldChanged(key: string): boolean {
-        if (!this.previewData) return false;
-        const original = this.previewData.record[key];
+        if (!this.previewData || this.previewData.records.length === 0) return false;
+        const original = this.previewData.records[0].data[key];
         const originalStr = original === null ? '' : String(original);
         return this.editableRecord[key] !== originalStr;
     }
 
     isKeyField(key: string): boolean {
-        return !!this.previewData && key === this.previewData.pkColumn;
+        if (!this.previewData || this.previewData.records.length === 0) return false;
+        if (Array.isArray(this.previewData.pkColumn)) {
+            return this.previewData.pkColumn.includes(key);
+        }
+        return key === this.previewData.pkColumn;
     }
 
     formatJson(val: any): string {

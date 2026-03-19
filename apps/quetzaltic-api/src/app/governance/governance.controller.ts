@@ -33,15 +33,19 @@ export class GovernanceController {
     ) {
         const filter: AuditFilter = {
             page: query.page ? parseInt(query.page) : 1,
-            limit: query.limit ? parseInt(query.limit) : 10,
+            limit: query.limit ? parseInt(query.limit) : 8,
             ticketId: query.ticketId,
             actor: query.actor,
             tableName: query.tableName,
             startDate: query.startDate ? new Date(query.startDate) : undefined,
             endDate: query.endDate ? new Date(query.endDate) : undefined,
-            includeSnapshots: includeSnapshots === 'true'
+            includeSnapshots: includeSnapshots === 'true',
+            grouped: query.grouped === 'true'
         };
 
+        if (filter.grouped) {
+            return this.auditStore.findGrouped(filter);
+        }
         return this.auditStore.findMany(filter);
     }
 

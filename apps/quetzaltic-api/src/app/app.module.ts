@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
-import { APP_GUARD, APP_INTERCEPTOR, APP_FILTER } from '@nestjs/core';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
-import { ConfigService } from '@nestjs/config';
+import { APP_INTERCEPTOR, APP_FILTER } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
@@ -19,6 +17,7 @@ import { LockdownInterceptor } from './common/interceptors/lockdown.interceptor'
 import { OperationalExceptionFilter } from './common/filters/operational-exception.filter';
 import { LoggerModule } from 'nestjs-pino';
 import { TestController } from './common/test/test.controller';
+import { TestOscarModule } from './test-oscar/test-oscar.module';
 
 @Module({
   imports: [
@@ -33,15 +32,6 @@ import { TestController } from './common/test/test.controller';
       },
     }),
     ConfigModule,
-    ThrottlerModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => [
-        {
-          ttl: config.get<number>('RATE_LIMIT_TTL') || 60000,
-          limit: config.get<number>('RATE_LIMIT_LIMIT') || 10,
-        },
-      ],
-    }),
     HealthModule,
     CommonModule,
     DatabaseModule,
@@ -51,14 +41,16 @@ import { TestController } from './common/test/test.controller';
     GovernanceModule,
     AuthModule,
     UsersModule,
+    TestOscarModule,
   ],
   controllers: [AppController, TestController],
   providers: [
     AppService,
-    {
-      provide: APP_GUARD,
-      useClass: ThrottlerGuard,
-    },
+    // Deshabilitado por petición del usuario - No queremos límites en desarrollo
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: ThrottlerGuard,
+    // },
     {
       provide: APP_INTERCEPTOR,
       useClass: FailClosedInterceptor,

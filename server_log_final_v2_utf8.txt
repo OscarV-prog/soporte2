@@ -1,0 +1,80 @@
+﻿
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mserve[22m for project quetzaltic-api and [1m2[22m tasks it depends on:[39m
+
+[2m[36m[39m[22m
+
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[existing outputs match the cache, left as is][22m
+
+
+[2m> [22m[2mnx run[22m quetzaltic-api:build
+
+[2m> [22mwebpack-cli build --node-env=production
+
+webpack compiled [1m[32msuccessfully[39m[22m (4446bf9e84a335e9)
+
+[2m> [22m[2mnx run[22m quetzaltic-api:serve:development
+
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on:[39m
+[2m[36m[39m[22m
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[existing outputs match the cache, left as is][22m
+[2m> [22m[2mnx run[22m quetzaltic-api:build:development  [2m[local cache][22m
+[2m> [22mwebpack-cli build --node-env=development
+webpack compiled [1m[32msuccessfully[39m[22m (4446bf9e84a335e9)
+[2m[32m[39m[22m
+[7m[1m[32m NX [39m[22m[27m  [32mSuccessfully ran target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on[39m
+[2mNx read the output from the cache instead of running the command for 2 out of 2 tasks.[22m
+node.exe : 
+[1m[31mStarting 
+inspector on 
+localhost:9229 failed: 
+address already in use
+En línea: 1 Carácter: 1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: ([1  
+  m[31mStarti... alread   
+ y in use:String) [], R    
+emoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+[39m[22m
+[1m[31mError: listen 
+EADDRINUSE: address 
+already in use :::3333
+    at 
+Server.setupListenHandle 
+[as _listen2] 
+(node:net:1940:16)
+    at listenInCluster 
+(node:net:1997:12)
+    at Server.listen 
+(node:net:2102:7)
+    at 
+ExpressAdapter.listen (C:\d
+ev\soporte\quetzaltic\node_
+modules\@nestjs\platform-ex
+press\adapters\express-adap
+ter.js:127:32)
+    at C:\dev\soporte\quetz
+altic\node_modules\@nestjs\
+core\nest-application.js:18
+8:30
+    at new Promise 
+(<anonymous>)
+    at 
+NestApplication.listen (C:\
+dev\soporte\quetzaltic\node
+_modules\@nestjs\core\nest-
+application.js:178:16)
+    at bootstrap (C:\dev\so
+porte\quetzaltic\apps\quetz
+altic-api\src\main.ts:25:3)
+[39m[22m
+[7m[1m[36m NX [39m[22m[27m [1mProcess exited with code 1, waiting for changes to restart...[22m

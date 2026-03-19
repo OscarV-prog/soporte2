@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, ServiceUnavailableException } from '@nestjs/common';
 import { PrismaService } from '../database/prisma.service';
 import { PrismaMetadataResolver } from '../database/resolvers/prisma-metadata.resolver';
 import { PrismaResourcePolicyResolver } from '../database/resolvers/prisma-resource-policy.resolver';
@@ -70,45 +70,35 @@ export class WhitelistService {
         actor: string,
         correlationId: string
     ) {
-        const created = await this.prisma.guardianWhitelist.create({
-            data,
-        });
-
-        this.invalidateCaches();
-
-        await this.auditStore.create({
-            correlationId,
-            actor,
-            type: 'POLICY_CHANGE',
-            tableName: 'guardian_whitelist',
-            primaryKeyColumn: 'id',
-            primaryKeyValue: created.id,
-            snapshotBefore: null,
-            snapshotAfter: created,
-            status: 'SUCCESS',
-        });
-
-        return created;
+        try {
+            const created = await this.prisma.guardianWhitelist.create({ data });
+            this.invalidateCaches();
+            await this.auditStore.create({
+                correlationId, actor, type: 'POLICY_CHANGE',
+                tableName: 'guardian_whitelist', primaryKeyColumn: 'id',
+                primaryKeyValue: created.id, snapshotBefore: null, snapshotAfter: created, status: 'SUCCESS',
+            });
+            return created;
+        } catch (error) {
+            this.logger.error('Whitelist create failed — BD no disponible', error);
+            throw new ServiceUnavailableException('Base de datos no disponible. Operación no permitida sin BD activa.');
+        }
     }
 
     async delete(id: string, actor: string, correlationId: string) {
-        const original = await this.prisma.guardianWhitelist.findUnique({ where: { id } });
-
-        await this.prisma.guardianWhitelist.delete({ where: { id } });
-
-        this.invalidateCaches();
-
-        await this.auditStore.create({
-            correlationId,
-            actor,
-            type: 'POLICY_CHANGE',
-            tableName: 'guardian_whitelist',
-            primaryKeyColumn: 'id',
-            primaryKeyValue: id,
-            snapshotBefore: original,
-            snapshotAfter: null,
-            status: 'SUCCESS',
-        });
+        try {
+            const original = await this.prisma.guardianWhitelist.findUnique({ where: { id } });
+            await this.prisma.guardianWhitelist.delete({ where: { id } });
+            this.invalidateCaches();
+            await this.auditStore.create({
+                correlationId, actor, type: 'POLICY_CHANGE',
+                tableName: 'guardian_whitelist', primaryKeyColumn: 'id',
+                primaryKeyValue: id, snapshotBefore: original, snapshotAfter: null, status: 'SUCCESS',
+            });
+        } catch (error) {
+            this.logger.error('Whitelist delete failed — BD no disponible', error);
+            throw new ServiceUnavailableException('Base de datos no disponible. Operación no permitida sin BD activa.');
+        }
     }
 
     private invalidateCaches() {

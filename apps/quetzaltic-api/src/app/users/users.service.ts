@@ -9,7 +9,7 @@ export class UsersService {
 
     async findOneByEmail(email: string): Promise<User | null> {
         return this.prisma.user.findUnique({
-            where: { email },
+            where: { email: email.toLowerCase() },
         });
     }
 
@@ -39,6 +39,7 @@ export class UsersService {
         return this.prisma.user.create({
             data: {
                 ...data,
+                email: data.email.toLowerCase(),
                 passwordHash: hashedPassword,
             },
         });

@@ -1,0 +1,189 @@
+﻿> C:\dev\soporte\quetzaltic\server_restart_log.txt:46:emoteException
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:47:    + FullyQualifiedErrorI 
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:48:   d : NativeCommandError
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:49: 
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:50:Debugger listening on ws://
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:51:localhost:9229/843c91d7-3b7
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:52:9-4f86-9bae-fd7c0868f60e
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:53:For help, see: https://node
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:54:js.org/en/docs/inspector
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:55:[39m[22m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:56:[11:37:52.496] [32mINFO[39m (7140): [36mStarting Nest application...[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:57:    [35mcontext[39m: "NestFactory"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:58:[11:37:52.497] [32mINFO[39m (7140): [36mConfigModule dependencies initialized[39m
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:160:[11:39:06.444] [31mERROR[39m (7140): [36mHealth Check has failed! {"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:161:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:162:      "id": 1,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:163:      "method": "HEAD",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:164:      "url": "/api/health",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:165:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:166:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:167:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:168:          "health"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:169:        ]
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:170:      },
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:178:[11:39:06.447] [31mERROR[39m (7140): [36m[e76506e2-26b8-41e5-b7ad-b541db74ea5e] HEAD /api/health - Status: 503 - Error: {"status":"error","info":{},"error":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}},"details":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}}[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:179:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:180:      "id": 1,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:181:      "method": "HEAD",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:182:      "url": "/api/health",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:183:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:184:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:185:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:186:          "health"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:187:        ]
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:188:      },
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:196:    [35mcontext[39m: "GlobalExceptionFilter"
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:197:[11:39:06.454] [32mINFO[39m (7140): [36mrequest errored[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:198:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:199:      "id": 1,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:200:      "method": "HEAD",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:201:      "url": "/api/health",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:202:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:203:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:204:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:205:          "health"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:206:        ]
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:207:      },
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:232:      "type": "Error",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:233:      "message": "failed with status code 503",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:234:      "stack":
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:235:          Error: failed with status code 503
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:236:              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:237:              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:238:              at ServerResponse.emit (node:events:520:35)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:239:              at onFinish (node:_http_outgoing:1026:10)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:240:              at afterWrite (node:internal/streams/writable:708:5)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:241:              at afterWriteTick (node:internal/streams/writable:694:10)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:242:              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:243:    }
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:244:[11:39:06.547] [31mERROR[39m (7140): [36mHealth Check has failed! {"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:245:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:246:      "id": 2,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:247:      "method": "GET",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:248:      "url": "/api/health",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:249:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:250:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:251:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:252:          "health"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:253:        ]
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:254:      },
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:263:[11:39:06.547] [31mERROR[39m (7140): [36m[8d5ea12c-9d3c-42fb-a9a3-e0a34b2222ce] GET /api/health - Status: 503 - Error: {"status":"error","info":{},"error":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}},"details":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}}[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:264:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:265:      "id": 2,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:266:      "method": "GET",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:267:      "url": "/api/health",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:268:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:269:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:270:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:271:          "health"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:272:        ]
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:273:      },
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:282:    [35mcontext[39m: "GlobalExceptionFilter"
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:283:[11:39:06.549] [32mINFO[39m (7140): [36mrequest errored[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:284:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:285:      "id": 2,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:286:      "method": "GET",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:287:      "url": "/api/health",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:288:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:289:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:290:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:291:          "health"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:292:        ]
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:293:      },
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:319:      "type": "Error",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:320:      "message": "failed with status code 503",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:321:      "stack":
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:322:          Error: failed with status code 503
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:323:              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:324:              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:325:              at ServerResponse.emit (node:events:520:35)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:326:              at onFinish (node:_http_outgoing:1026:10)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:327:              at callback (node:internal/streams/writable:764:21)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:328:              at afterWrite (node:internal/streams/writable:708:5)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:329:              at afterWriteTick (node:internal/streams/writable:694:10)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:330:              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:331:    }
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:332:[11:39:20.019] [31mERROR[39m (7140): [36mHealth Check has failed! {"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:333:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:334:      "id": 3,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:335:      "method": "GET",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:336:      "url": "/api/health",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:337:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:338:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:339:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:340:          "health"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:341:        ]
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:342:      },
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:351:[11:39:20.019] [31mERROR[39m (7140): [36m[4b238f0f-cfad-4d32-a76e-14890a7b6ac6] GET /api/health - Status: 503 - Error: {"status":"error","info":{},"error":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}},"details":{"production_database":{"status":"down","message":"\nInvalid `this.prisma.demoRecord.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:19:42\n\n  16 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  17     try {\n  18         // Verificamos conexi├│n al esquema 'prod' intentando acceder a una tabla espec├¡fica\nÔåÆ 19         await this.prisma.demoRecord.findFirst(\nThe table `dbo.demo_records` does not exist in the current database."},"audit_database":{"status":"down","message":"\nInvalid `this.prisma.auditEvent.findFirst()` invocation in\nC:\\dev\\soporte\\quetzaltic\\apps\\quetzaltic-api\\src\\app\\health\\indicators\\database.indicators.ts:42:42\n\n  39 async isHealthy(key: string): Promise<HealthIndicatorResult> {\n  40     try {\n  41         // Verificamos conexi├│n al esquema 'audit' intentando acceder a la tabla de eventos\nÔåÆ 42         await this.prisma.auditEvent.findFirst(\nThe table `dbo.audit_events` does not exist in the current database."}}}[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:352:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:353:      "id": 3,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:354:      "method": "GET",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:355:      "url": "/api/health",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:356:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:357:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:358:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:359:          "health"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:360:        ]
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:361:      },
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:370:    [35mcontext[39m: "GlobalExceptionFilter"
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:371:[11:39:20.020] [32mINFO[39m (7140): [36mrequest errored[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:372:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:373:      "id": 3,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:374:      "method": "GET",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:375:      "url": "/api/health",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:376:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:377:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:378:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:379:          "health"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:380:        ]
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:381:      },
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:407:      "type": "Error",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:408:      "message": "failed with status code 503",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:409:      "stack":
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:410:          Error: failed with status code 503
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:411:              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:412:              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:413:              at ServerResponse.emit (node:events:520:35)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:414:              at onFinish (node:_http_outgoing:1026:10)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:415:              at callback (node:internal/streams/writable:764:21)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:416:              at afterWrite (node:internal/streams/writable:708:5)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:417:              at afterWriteTick (node:internal/streams/writable:694:10)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:418:              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:419:    }
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:420:[11:39:37.893] [31mERROR[39m (7140): [36m[95f31130-1be0-44c6-9ae6-7de0a33706cd] POST /api/operations/preview - Status: 503 - Error: {"message":"Operational Hardening: Write operations are currently blocked due to Audit Store unavailability. Fail-Closed policy is active.","error":"Service Unavailable","statusCode":503}[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:421:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:422:      "id": 4,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:423:      "method": "POST",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:424:      "url": "/api/operations/preview",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:425:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:426:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:427:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:428:          "operations",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:429:          "preview"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:430:        ]
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:442:    [35mcontext[39m: "GlobalExceptionFilter"
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:443:[11:39:37.895] [32mINFO[39m (7140): [36mrequest errored[39m
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:444:    [35mreq[39m: {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:445:      "id": 4,
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:446:      "method": "POST",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:447:      "url": "/api/operations/preview",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:448:      "query": {},
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:449:      "params": {
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:450:        "path": [
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:451:          "operations",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:452:          "preview"
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:453:        ]
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:481:      "type": "Error",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:482:      "message": "failed with status code 503",
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:483:      "stack":
+> C:\dev\soporte\quetzaltic\server_restart_log.txt:484:          Error: failed with status code 503
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:485:              at onResFinished (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:115:39)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:486:              at ServerResponse.onResponseComplete (C:\dev\soporte\quetzaltic\node_modules\pino-http\logger.js:178:14)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:487:              at ServerResponse.emit (node:events:520:35)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:488:              at onFinish (node:_http_outgoing:1026:10)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:489:              at callback (node:internal/streams/writable:764:21)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:490:              at afterWrite (node:internal/streams/writable:708:5)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:491:              at afterWriteTick (node:internal/streams/writable:694:10)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:492:              at processTicksAndRejections (node:internal/process/task_queues:88:21)
+  C:\dev\soporte\quetzaltic\server_restart_log.txt:493:    }
