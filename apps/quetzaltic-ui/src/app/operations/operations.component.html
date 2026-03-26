@@ -40,20 +40,33 @@
 
       <div class="p-6 space-y-6">
 
-        <!-- PASO 1: Consulta SELECT -->
+        <!-- PASO 1: Ticket ID -->
         <div>
           <label class="block text-xs font-bold text-qz-muted uppercase tracking-wider mb-2">
-            PASO 1 — SQL de Selección de Registro *
+            PASO 1 — Requerimiento / ID de Ticket *
+          </label>
+          <input type="text" [(ngModel)]="ticketId" [disabled]="hasExecuted"
+            class="w-full bg-qz-darkest border border-qz-light rounded-lg px-4 py-2.5 text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald transition-all disabled:opacity-50"
+            placeholder="ej. TICKET-1234" />
+          <p class="text-[10px] text-qz-muted mt-1.5 ml-1">Identificador único del cambio para auditoría y trazabilidad.</p>
+        </div>
+
+        <!-- PASO 2: Consulta SELECT -->
+        <div>
+          <label class="block text-xs font-bold text-qz-muted uppercase tracking-wider mb-2" [class.opacity-50]="!ticketId.trim()">
+            PASO 2 — SQL de Selección de Registro *
           </label>
           <div class="relative">
-            <textarea id="sql" name="sql" [(ngModel)]="sql" [disabled]="isPreviewing || hasExecuted"
+            <textarea id="sql" name="sql" [(ngModel)]="sql" [disabled]="isPreviewing || hasExecuted || !ticketId.trim()"
               class="w-full h-24 bg-qz-darkest border border-qz-light rounded-lg px-4 py-3 text-white font-mono text-sm placeholder-qz-muted focus:outline-none focus:border-qz-emerald transition-all disabled:opacity-50 resize-none"
               placeholder="SELECT * FROM usuarios WHERE id = 'uuid'"></textarea>
           </div>
-          <p class="text-[10px] text-qz-muted mt-1.5 ml-1">Debe ser un SELECT que resuelva uno o más registros para actualización en masa.</p>
+          <p class="text-[10px] text-qz-muted mt-1.5 ml-1" [class.text-qz-danger]="!ticketId.trim() && sql.length > 0">
+            {{ !ticketId.trim() ? '⚠️ Primero ingresa un ID de Ticket' : 'Debe ser un SELECT que resuelva uno o más registros para actualización en masa.' }}
+          </p>
 
           <!-- Botón de vista previa -->
-          <button *ngIf="!previewData && !hasExecuted" (click)="preview()" [disabled]="!sql.trim() || isPreviewing || isLockdown"
+          <button *ngIf="!previewData && !hasExecuted" (click)="preview()" [disabled]="!sql.trim() || !ticketId.trim() || isPreviewing || isLockdown"
             class="mt-3 w-full bg-qz-darkest border border-qz-emerald text-qz-emerald hover:bg-qz-emerald hover:text-qz-darkest px-4 py-2 rounded-lg text-sm font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
             <svg *ngIf="isPreviewing" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -70,11 +83,11 @@
           </div>
         </div>
 
-        <!-- PASO 2: Campos editables del registro -->
+        <!-- PASO 3: Campos editables del registro -->
         <div *ngIf="previewData && !hasExecuted" class="space-y-4">
           <div class="flex items-center justify-between">
             <label class="block text-xs font-bold text-qz-muted uppercase tracking-wider">
-              PASO 2 — Editar Campos
+              PASO 3 — Editar Campos y Enviar
             </label>
             <div class="flex items-center gap-2">
               <span *ngIf="previewData && previewData.count > 1" class="text-[10px] font-black text-qz-darkest bg-yellow-400 px-2 py-0.5 rounded animate-pulse">
@@ -86,7 +99,7 @@
             </div>
           </div>
 
-          <div class="bg-qz-darkest border border-qz-light rounded-lg overflow-hidden">
+          <div class="bg-qz-darkest border border-qz-light rounded-lg overflow-hidden border-qz-emerald/30 shadow-[0_0_15px_rgba(25,198,131,0.05)]">
             <div *ngFor="let key of objectKeys(editableRecord)"
               class="flex items-center border-b border-qz-light/30 last:border-0"
               [class.bg-qz-emerald/5]="isFieldChanged(key)">
@@ -108,26 +121,14 @@
             </div>
           </div>
 
-          <div *ngIf="changedCount > 0" class="text-xs text-qz-muted">
-            <span class="text-qz-emerald font-bold">{{ changedCount }}</span> campo(s) modificado(s)
+          <div *ngIf="changedCount > 0" class="text-xs text-qz-muted flex justify-between items-center">
+            <span><span class="text-qz-emerald font-bold">{{ changedCount }}</span> campo(s) modificado(s)</span>
           </div>
           <div *ngIf="changedCount === 0" class="text-xs text-qz-muted/50 italic">
             Edita los campos de arriba para preparar tu mutación.
           </div>
-        </div>
 
-        <!-- PASO 3: Ticket ID + Envío -->
-        <div *ngIf="previewData && !hasExecuted" class="space-y-4 pt-4 border-t border-qz-light/30">
-          <div>
-            <label class="block text-xs font-bold text-qz-muted uppercase tracking-wider mb-2">
-              PASO 3 — Requerimiento / ID de Ticket *
-            </label>
-            <input type="text" [(ngModel)]="ticketId" [disabled]="isExecuting"
-              class="w-full bg-qz-darkest border border-qz-light rounded-lg px-4 py-2.5 text-white placeholder-qz-muted focus:outline-none focus:border-qz-emerald transition-all disabled:opacity-50"
-              placeholder="ej. TICKET-1234" />
-          </div>
-
-          <div class="flex gap-3">
+          <div class="flex gap-3 pt-2">
             <button (click)="reset()"
               class="px-4 py-2 text-sm font-bold text-qz-muted border border-qz-light/50 rounded-lg hover:text-white transition-colors">
               Reiniciar
