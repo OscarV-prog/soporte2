@@ -261,25 +261,27 @@ export class OperationsComponent implements OnInit, OnDestroy {
         this.editableRecord = {};
     }
 
-    get recordAfter(): Record<string, any> {
-        if (!this.previewData?.records?.[0]?.data) return {};
-        const after = { ...this.previewData.records[0].data };
-        for (const key of Object.keys(this.editableRecord)) {
-            const val = this.editableRecord[key];
-            const originalVal = after[key];
-            const originalType = typeof originalVal;
+    get recordsAfter(): any[] {
+        if (!this.previewData?.records) return [];
+        return this.previewData.records.map(record => {
+            const after = { ...record.data };
+            for (const key of Object.keys(this.editableRecord)) {
+                const val = this.editableRecord[key];
+                const originalVal = after[key];
+                const originalType = typeof originalVal;
 
-            if (val === '') {
-                after[key] = null;
-            } else if (originalType === 'number') {
-                after[key] = Number(val);
-            } else if (originalType === 'boolean') {
-                after[key] = val.toLowerCase() === 'true';
-            } else {
-                after[key] = val;
+                if (val === '') {
+                    after[key] = null;
+                } else if (originalType === 'number') {
+                    after[key] = Number(val);
+                } else if (originalType === 'boolean') {
+                    after[key] = val?.toString().toLowerCase() === 'true';
+                } else {
+                    after[key] = val;
+                }
             }
-        }
-        return after;
+            return after;
+        });
     }
 
     onScroll(event: any, otherId: string) {
@@ -289,6 +291,7 @@ export class OperationsComponent implements OnInit, OnDestroy {
         const other = document.getElementById(otherId);
         if (other) {
             other.scrollLeft = source.scrollLeft;
+            other.scrollTop = source.scrollTop;
         }
         // Small timeout to prevent feedback loops
         setTimeout(() => this.syncingScroll = false, 10);
