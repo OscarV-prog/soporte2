@@ -273,7 +273,7 @@
                 <div class="bg-qz-darkest/50 border border-qz-light/50 rounded-xl p-5 space-y-3">
                     <div class="flex justify-between items-center text-sm">
                         <span class="text-qz-muted">Registros Afectados</span>
-                        <span class="text-white font-mono font-bold">{{ previewData?.records?.length || 0 }} filas</span>
+                        <span class="text-white font-mono font-bold">{{ previewData?.count || 0 }} filas</span>
                     </div>
                     <div class="flex justify-between items-center text-sm">
                         <span class="text-qz-muted">Ticket / ID</span>
@@ -306,5 +306,27 @@
                 </button>
             </div>
         </div>
+    </div>
+</div>
+<!-- Full-screen Loading Overlay -->
+<div *ngIf="isExecuting || rollbackLoading"
+    class="fixed inset-0 bg-qz-darkest/80 backdrop-blur-md z-[100] flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-300">
+    <div class="relative mb-8">
+        <div class="absolute inset-0 bg-qz-emerald/20 blur-2xl rounded-full animate-pulse"></div>
+        <div class="w-24 h-24 border-4 border-qz-light/20 border-t-qz-emerald rounded-full animate-spin"></div>
+        <div class="absolute inset-2 w-20 h-20 border-4 border-qz-light/10 border-b-qz-emerald rounded-full animate-spin [animation-direction:reverse] opacity-50"></div>
+    </div>
+    
+    <h2 class="text-2xl font-black text-white tracking-widest uppercase mb-2 drop-shadow-lg">
+        {{ rollbackLoading ? 'Restaurando Datos' : 'Procesando Operación' }}
+    </h2>
+    <p class="text-qz-emerald font-mono text-sm animate-pulse tracking-tight max-w-sm">
+        {{ rollbackLoading ? 'Por favor, espera mientras revertimos los cambios en la base de datos...' : 'Estamos aplicando tus cambios masivos con integridad transaccional.' }}
+    </p>
+    
+    <div class="mt-8 flex gap-2">
+        <div class="w-1.5 h-1.5 bg-qz-emerald rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+        <div class="w-1.5 h-1.5 bg-qz-emerald rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+        <div class="w-1.5 h-1.5 bg-qz-emerald rounded-full animate-bounce"></div>
     </div>
 </div>

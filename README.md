@@ -8,7 +8,7 @@ El sistema se basa en una arquitectura de capas concéntricas donde cada operaci
 
 ```mermaid
 graph TD
-    UI[Quetzaltic UI] --> API[Quetzaltic API]
+    UI[Quetzaltic UI :4200] --> API[Quetzaltic API :3333]
     subgraph Security Layer
         API --> JWT[RBAC/JWT Auth]
         JWT --> LOCK[Global Lockdown Check]
@@ -16,8 +16,8 @@ graph TD
         IDEMP --> GUARD[Guardian SQL Pipeline]
     end
     subgraph Data Layer
-        GUARD --> DB_PROD[(Schema: PROD)]
-        GUARD --> DB_AUDIT[(Schema: AUDIT)]
+        GUARD --> DB_PROD[(SQL Server: PROD)]
+        GUARD --> DB_AUDIT[(SQL Server: AUDIT)]
     end
     DB_AUDIT --> ALOG[Immutable Audit Log]
 ```
@@ -26,20 +26,17 @@ graph TD
 
 El **Guardian** es el corazón de la seguridad. No es solo un validador; es un proxy inteligente que analiza cada sentencia SQL.
 
-1.  **Parsing**: Descompone la query usando `pgsql-ast-parser`.
+1.  **Parsing**: Descompone la query usando `pgsql-ast-parser` (normalizado para SQL Server).
 2.  **Whitelist Enforcement**: Solo permite operaciones sobre tablas y columnas autorizadas.
 3.  **Command Restriction**: Bloquea sentencias DDL (DROP, ALTER) y comandos peligrosos.
-4.  **Audit Capturing**: Genera snapshots `before` y `after` para cada cambio de estado.
+4.  **Audit Capturing**: Genera snapshots `before` y `after` en formato JSON para cada cambio de estado.
 
-## 🔄 Flujo Transaccional & Resiliencia
+## 🔄 Flujo de Reversión (Rollback)
 
-### Idempotencia
-Cada petición requiere un `X-Idempotency-Key`. El sistema garantiza que:
-- **Replay Protection**: Re-envíos de la misma clave retornan el resultado cacheado sin re-ejecutar.
-- **Collision Block**: Claves iguales con payloads distintos son rechazadas.
-
-### Assisted Rollback (Detección de Drift)
-El sistema permite revertir cualquier evento de auditoría. Antes de aplicar el rollback, el **Drift Detector** compara el estado actual de la fila con el snapshot `after` guardado. Si hay discrepancias (cambio externo), el rollback se bloquea por seguridad.
+A diferencia de un `ROLLBACK` de SQL tradicional, Quetzaltic implementa una **Reversión por Estado**:
+- **Snapshots**: Se almacena el JSON del registro previo en `audit_events`.
+- **Inverse Update**: Al ejecutar una reversión, el sistema genera un `UPDATE` dinámico con los datos del snapshot.
+- **Auditoría de Reversión**: Cada rollback genera su propio evento de auditoría (`RB-`), manteniendo la trazabilidad total.
 
 ## 🔐 Zero-Trust & Security Posture
 
@@ -47,8 +44,7 @@ El sistema permite revertir cualquier evento de auditoría. Antes de aplicar el 
 | :--- | :--- | :--- |
 | SQL Injection | Guardian Pipeline (AST Parsing + Whitelist) | ✅ Protegido |
 | Privilege Escalation | RBAC Estricto (ADMIN/OPERATOR) | ✅ Protegido |
-| Data Drift | Atomic Drift Detection on Rollback | ✅ Protegido |
-| Race Conditions | Redis/DB Lock en Idempotencia | ✅ Protegido |
+| Port Conflict | Absolute Path Interceptor (Local 3333/4200) | ✅ Resuelto |
 | System Sabotage | Global Emergency Lockdown Mode | ✅ Protegido |
 
 ### Modelo de Confianza
@@ -56,22 +52,22 @@ El sistema permite revertir cualquier evento de auditoría. Antes de aplicar el 
 - **Least Privilege**: Los operadores solo ven logs; solo administradores gestionan políticas.
 - **Audit trail**: Todo cambio es persistido de forma inmutable.
 
-## 🚀 Despliegue con Docker (Reproducible)
+## 🚀 Desarrollo Local
 
 ### Requisitos
-- Docker y Docker Compose v2+
+- Node.js v18+
+- SQL Server Local/Cloud (Configurar en `.env`)
 
-### Quick Start
+### Comandos Principales
 ```bash
-# 1. Clonar y configurar entorno
-cp .env.example .env
+# 1. Instalar dependencias
+npm install
 
-# 2. Levantar el stack (DB + API + UI)
-docker-compose up -d --build
+# 2. Levantar API (Puerto 3333)
+npx nx run quetzaltic-api:serve
 
-# 3. La API ejecutará automáticamente:
-# - prisma migrate deploy
-# - seed-data.ts (Carga usuarios y tablas demo)
+# 3. Levantar UI en modo estático (Puerto 4200)
+npx nx run quetzaltic-ui:serve-static --port 4200
 ```
 
 ### Ejecutar Pruebas E2E (Hardening Suite)
@@ -80,9 +76,9 @@ docker-compose up -d --build
 ./scripts/run-e2e.sh
 ```
 
-## 🛠️ Credenciales de Seed (Default)
-- **Admin**: `admin@quetzaltic.com` / `admin_secret_2026`
-- **Operator**: `operator@quetzaltic.com` / `operator_secret_2026`
+## 🛠️ Credenciales de Acceso (Local)
+- **Admin**: `admin` / `12345678`
+- **Soporte**: `soporte` / `support_quetzal_2026`
 
 > [!WARNING]
-> Cambie las contraseñas base y el `JWT_SECRET` en el archivo `.env` antes de exponer el sistema a la red.
+> Cambie las contraseñas base y el `JWT_SECRET` en el archivo `.env` antes de exponer el sistema a la red pública.

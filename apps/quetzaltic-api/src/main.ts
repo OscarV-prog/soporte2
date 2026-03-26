@@ -21,10 +21,10 @@ async function bootstrap() {
   app.useGlobalInterceptors(new GlobalResponseInterceptor());
   app.useGlobalFilters(new GlobalExceptionFilter());
 
-  const port = configService.get<number>('PORT') || 3333;
+  const port = 3333;
   
   app.enableCors({
-    origin: '*', // Permitir cualquier origen por ahora (luego podemos restringirlo a la URL de Netlify)
+    origin: '*', // Permitir cualquier origen por ahora. RECOMENDACIÓN: Cambiar a 'https://tu-sitio.netlify.app' una vez desplegado.
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });

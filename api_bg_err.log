@@ -1,0 +1,6 @@
+Calculating the project graph on the Nx Daemon
+[1m[33mNX Daemon is not running. Node process will not restart automatically after file changes.[39m[22m
+[1m[31mDebugger listening on ws://localhost:9229/f0594286-1d9e-408d-8ab5-3ed833026564
+Debugger listening on ws://localhost:9229/f0594286-1d9e-408d-8ab5-3ed833026564
+For help, see: https://nodejs.org/en/docs/inspector
+[39m[22m

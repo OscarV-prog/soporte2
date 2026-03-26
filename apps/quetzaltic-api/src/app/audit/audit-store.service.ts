@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../database/prisma.service';
 import { deterministicStringify } from '@quetzaltic/audit-utils';
+import { Prisma } from '@prisma/client';
 
 export interface AuditEventInput {
     correlationId: string;
@@ -36,14 +37,15 @@ export class AuditStoreService {
     /**
      * Crea un nuevo registro de auditoría inmutable.
      */
-    async create(input: AuditEventInput): Promise<string> {
+    async create(input: AuditEventInput, tx?: Prisma.TransactionClient): Promise<string> {
+        const client = tx || this.prisma;
         try {
             const snapshotBefore = deterministicStringify(input.snapshotBefore);
             const snapshotAfter = input.snapshotAfter
                 ? deterministicStringify(input.snapshotAfter)
                 : null;
 
-            const event = await this.prisma.auditEvent.create({
+            const event = await client.auditEvent.create({
                 data: {
                     correlationId: input.correlationId,
                     ticketId: input.ticketId,
@@ -61,6 +63,39 @@ export class AuditStoreService {
             return event.id;
         } catch (error) {
             this.logger.error('Failed to create audit event:', error);
+            throw error;
+        }
+    }
+
+    /**
+     * Crea múltiples registros de auditoría en una sola operación.
+     */
+    async createMany(inputs: AuditEventInput[], tx?: Prisma.TransactionClient): Promise<string[]> {
+        const client = tx || this.prisma;
+        try {
+            const data = inputs.map(input => ({
+                correlationId: input.correlationId,
+                ticketId: input.ticketId,
+                actor: input.actor,
+                type: input.type || 'OPERATION',
+                tableName: input.tableName,
+                primaryKeyColumn: input.primaryKeyColumn,
+                primaryKeyValue: input.primaryKeyValue,
+                snapshotBefore: deterministicStringify(input.snapshotBefore) as any,
+                snapshotAfter: input.snapshotAfter ? deterministicStringify(input.snapshotAfter) as any : null,
+                status: input.status,
+            }));
+
+            await client.auditEvent.createMany({ data });
+            
+            const events = await client.auditEvent.findMany({
+                where: { correlationId: inputs[0].correlationId },
+                select: { id: true }
+            });
+            
+            return events.map(e => e.id);
+        } catch (error) {
+            this.logger.error('Failed to create many audit events:', error);
             throw error;
         }
     }
@@ -164,6 +199,11 @@ export class AuditStoreService {
                     primaryKeyValue: true,
                     status: true,
                     revertedByEventId: true,
+                    revertingEvent: {
+                        select: {
+                            actor: true
+                        }
+                    },
                     executedAt: true,
                     snapshotBefore: includeSnapshots,
                     snapshotAfter: includeSnapshots,
@@ -178,6 +218,7 @@ export class AuditStoreService {
                     const first = groupEvents[0];
                     finalGroups.push({
                         ...first, // Base info
+                        revertedByActor: first.revertingEvent?.actor,
                         executedAt: ug.lastExecutedAt, // Usar el timestamp de la operación completa
                         affectedRows: groupEvents.length,
                         allPks: [...new Set(groupEvents.map(e => e.primaryKeyValue))],
@@ -244,6 +285,11 @@ export class AuditStoreService {
                     primaryKeyValue: true,
                     status: true,
                     revertedByEventId: true,
+                    revertingEvent: {
+                        select: {
+                            actor: true
+                        }
+                    },
                     executedAt: true,
                     snapshotBefore: includeSnapshots,
                     snapshotAfter: includeSnapshots,
@@ -253,7 +299,10 @@ export class AuditStoreService {
             const total = await this.prisma.auditEvent.count({ where });
 
             return {
-                items,
+                items: items.map(i => ({
+                    ...i,
+                    revertedByActor: i.revertingEvent?.actor
+                })),
                 total,
                 page,
                 limit,
@@ -290,14 +339,15 @@ export class AuditStoreService {
      * Actualiza el estado de un evento de auditoría existente.
      * Utilizado exclusivamente por el orquestador transaccional para marcar éxito o fallo.
      */
-    async updateStatus(id: string, status: 'SUCCESS' | 'FAILED', snapshotAfter?: unknown): Promise<void> {
+    async updateStatus(id: string, status: 'SUCCESS' | 'FAILED', snapshotAfter?: unknown, tx?: Prisma.TransactionClient): Promise<void> {
+        const client = tx || this.prisma;
         try {
             const data: any = { status };
             if (snapshotAfter) {
                 data.snapshotAfter = deterministicStringify(snapshotAfter);
             }
 
-            await this.prisma.auditEvent.update({
+            await client.auditEvent.update({
                 where: { id },
                 data: data as any,
             });
@@ -313,8 +363,9 @@ export class AuditStoreService {
         });
     }
 
-    async markAsReverted(originalId: string, revertedByEventId: string): Promise<void> {
-        await this.prisma.auditEvent.update({
+    async markAsReverted(originalId: string, revertedByEventId: string, tx?: Prisma.TransactionClient): Promise<void> {
+        const client = tx || this.prisma;
+        await client.auditEvent.update({
             where: { id: originalId },
             data: { revertedByEventId },
         });
@@ -331,11 +382,11 @@ export class AuditStoreService {
         avgExecutionMs: number | null;
     }> {
         try {
-            const since24h = new Date(Date.now() - 24 * 60 * 60 * 1000);
+            const since48h = new Date(Date.now() - 48 * 60 * 60 * 1000);
 
             const [totalEvents, rollbacksExecuted, schemaChanges] = await Promise.all([
                 this.prisma.auditEvent.count({
-                    where: { executedAt: { gte: since24h } }
+                    where: { executedAt: { gte: since48h } }
                 }),
                 this.prisma.auditEvent.count({
                     where: { revertedByEventId: { not: null } }

@@ -34,9 +34,10 @@ export class LoginComponent {
 
         this.http.post<{ access_token: string }>('/api/auth/login', this.loginForm.value).subscribe({
             next: (res) => {
+                this.isLoading = false;
                 console.log('[Login] Received token:', !!res.access_token);
                 this.authService.setToken(res.access_token);
-                const user = this.authService.getRole(); // Actually this is a sync call now
+                const user = this.authService.getRole();
                 console.log('[Login] Decoded role:', user);
 
                 if (user === 'ADMIN') {
@@ -45,9 +46,19 @@ export class LoginComponent {
                     this.router.navigate(['/operations']);
                 }
             },
-            error: () => {
+            error: (err) => {
                 this.isLoading = false;
-                this.errorMessage = 'Credenciales inválidas. Por favor, inténtelo de nuevo.';
+                // Limpiar contraseña para seguridad y reintento
+                this.loginForm.get('password')?.setValue('');
+                
+                if (err.status === 401) {
+                    this.errorMessage = 'Credenciales inválidas. Por favor, verifica tu Usuario y Contraseña.';
+                } else if (err.status === 0 || err.status === 404) {
+                    this.errorMessage = 'No se pudo conectar con el servidor (Offline).';
+                } else {
+                    this.errorMessage = 'Error inesperado al iniciar sesión.';
+                }
+                console.error('[Login] Error:', err);
             }
         });
     }

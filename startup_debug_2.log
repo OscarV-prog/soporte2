@@ -1,0 +1,44 @@
+﻿
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mserve[22m for project quetzaltic-api and [1m2[22m tasks it depends on:[39m
+
+[2m[36m[39m[22m
+
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[local cache][22m
+
+
+[2m> [22m[2mnx run[22m quetzaltic-api:build
+
+[2m> [22mwebpack-cli build --node-env=production
+
+[1m[31mERROR[39m[22m in [1m./src/app/auth/auth.service.ts:[32m[1m10:26[22m[39m[1m[39m[22m
+[90mTS6138: [39mProperty 'config' is declared but its value is never read.
+  [0m [90m  8 |[39m [36mexport[39m [36mclass[39m [33mAuthService[39m {
+   [90m  9 |[39m     constructor(
+  [31m[1m>[22m[39m[90m 10 |[39m         [36mprivate[39m readonly config[33m:[39m [33mConfigService[39m[33m,[39m
+   [90m    |[39m                          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 11 |[39m         [36mprivate[39m readonly usersService[33m:[39m [33mUsersService[39m
+   [90m 12 |[39m     ) { }
+   [90m 13 |[39m[0m
+
+[1m[31mERROR[39m[22m in [1m./src/app/common/guards/jwt-auth.guard.ts:[32m[1m15:34[22m[39m[1m[39m[22m
+[90mTS6138: [39mProperty 'config' is declared but its value is never read.
+  [0m [90m 13 |[39m     [36mprivate[39m readonly logger [33m=[39m [36mnew[39m [33mLogger[39m([33mJwtAuthGuard[39m[33m.[39mname)[33m;[39m
+   [90m 14 |[39m
+  [31m[1m>[22m[39m[90m 15 |[39m     constructor([36mprivate[39m readonly config[33m:[39m [33mConfigService[39m) { }
+   [90m    |[39m                                  [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 16 |[39m
+   [90m 17 |[39m     [36masync[39m canActivate(context[33m:[39m [33mExecutionContext[39m)[33m:[39m [33mPromise[39m[33m<[39m[33mboolean[39m[33m>[39m {
+   [90m 18 |[39m         [36mconst[39m request [33m=[39m context[33m.[39mswitchToHttp()[33m.[39mgetRequest()[33m;[39m[0m
+
+webpack compiled with [1m[31m2 errors[39m[22m (add71c305967b295)
+
+[2m[31m[39m[22m
+
+[7m[1m[31m NX [39m[22m[27m  [31mRunning target [1mserve[22m for project quetzaltic-api and [1m2[22m tasks it depends on failed[39m
+
+[2mFailed tasks:[22m
+
+[2m-[22m quetzaltic-api:build
+
+[2mHint: run the command with[22m --verbose [2mfor more details.[22m
+

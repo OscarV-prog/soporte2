@@ -1,0 +1,90 @@
+﻿
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mserve[22m for project quetzaltic-api and [1m2[22m tasks it depends on:[39m
+
+[2m[36m[39m[22m
+
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[local cache][22m
+
+
+[2m> [22m[2mnx run[22m quetzaltic-api:build
+
+[2m> [22mwebpack-cli build --node-env=production
+
+[1m[31mERROR[39m[22m in [1m./src/app/auth/auth.service.ts:[32m[1m10:26[22m[39m[1m[39m[22m
+[90mTS6138: [39mProperty 'config' is declared but its value is never read.
+  [0m [90m  8 |[39m [36mexport[39m [36mclass[39m [33mAuthService[39m {
+   [90m  9 |[39m     constructor(
+  [31m[1m>[22m[39m[90m 10 |[39m         [36mprivate[39m readonly config[33m:[39m [33mConfigService[39m[33m,[39m
+   [90m    |[39m                          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 11 |[39m         [36mprivate[39m readonly usersService[33m:[39m [33mUsersService[39m
+   [90m 12 |[39m     ) { }
+   [90m 13 |[39m[0m
+
+[1m[31mERROR[39m[22m in [1m./src/app/common/guards/jwt-auth.guard.ts:[32m[1m15:34[22m[39m[1m[39m[22m
+[90mTS6138: [39mProperty 'config' is declared but its value is never read.
+  [0m [90m 13 |[39m     [36mprivate[39m readonly logger [33m=[39m [36mnew[39m [33mLogger[39m([33mJwtAuthGuard[39m[33m.[39mname)[33m;[39m
+   [90m 14 |[39m
+  [31m[1m>[22m[39m[90m 15 |[39m     constructor([36mprivate[39m readonly config[33m:[39m [33mConfigService[39m) { }
+   [90m    |[39m                                  [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 16 |[39m
+   [90m 17 |[39m     [36masync[39m canActivate(context[33m:[39m [33mExecutionContext[39m)[33m:[39m [33mPromise[39m[33m<[39m[33mboolean[39m[33m>[39m {
+   [90m 18 |[39m         [36mconst[39m request [33m=[39m context[33m.[39mswitchToHttp()[33m.[39mgetRequest()[33m;[39m[0m
+
+[1m[31mERROR[39m[22m in [1m./src/app/transaction/transaction-orchestrator.service.ts:[32m[1m247:9[22m[39m[1m[39m[22m
+[90mTS6133: [39m'data' is declared but its value is never read.
+  [0m [90m 245 |[39m     [36mprivate[39m [36masync[39m executeTransactionalLoop(
+   [90m 246 |[39m         validatedQuery[33m:[39m [33mValidatedQuery[39m[33m,[39m
+  [31m[1m>[22m[39m[90m 247 |[39m         data[33m:[39m [33mRecord[39m[33m<[39m[33mstring[39m[33m,[39m unknown[33m>[39m[33m,[39m
+   [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 248 |[39m         correlationId[33m:[39m string[33m,[39m
+   [90m 249 |[39m         ticketId[33m:[39m string [33m|[39m undefined[33m,[39m
+   [90m 250 |[39m         actor[33m:[39m string[0m
+
+[1m[31mERROR[39m[22m in [1m./src/app/transaction/transaction-orchestrator.service.ts:[32m[1m331:42[22m[39m[1m[39m[22m
+[90mTS2339: [39mProperty 'updates' does not exist on type 'ValidatedQuery'.
+  [0m [90m 329 |[39m                 [36mconst[39m updateRes [33m=[39m [36mawait[39m tableProxy[33m.[39mupdateMany({
+   [90m 330 |[39m                     where[33m:[39m where [36mas[39m any[33m,[39m
+  [31m[1m>[22m[39m[90m 331 |[39m                     data[33m:[39m validatedQuery[33m.[39mupdates
+   [90m     |[39m                                          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 332 |[39m                 })[33m;[39m
+   [90m 333 |[39m
+   [90m 334 |[39m                 [90m// d) Audit SUCCESS for all (Fetch again using same raw query)[39m[0m
+
+webpack compiled with [1m[31m4 errors[39m[22m (cd3995f7229e63b8)
+
+[2m[31m[39m[22m
+
+[7m[1m[31m NX [39m[22m[27m  [31mRunning target [1mserve[22m for project quetzaltic-api and [1m2[22m tasks it depends on failed[39m
+
+[2mFailed tasks:[22m
+
+[2m-[22m quetzaltic-api:build
+
+[2mHint: run the command with[22m --verbose [2mfor more details.[22m
+
+node.exe : Warning: 
+command "webpack-cli 
+build 
+--node-env=production" 
+exited with non-zero 
+status code
+En línea: 1 Carácter: 1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (Warning: comm   
+ an...ero status co    
+de:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 

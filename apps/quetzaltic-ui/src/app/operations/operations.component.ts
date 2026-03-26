@@ -96,9 +96,9 @@ export class OperationsComponent implements OnInit, OnDestroy {
 
     // Return keys of the record that are actually different
     get changedFields(): Record<string, string> {
-        if (!this.previewData || this.previewData.records.length === 0) return {};
-        const changed: Record<string, string> = {};
+        if (!this.previewData?.records?.[0]?.data) return {};
         const firstRecord = this.previewData.records[0].data;
+        const changed: Record<string, string> = {};
         for (const key of Object.keys(this.editableRecord)) {
             const original = firstRecord[key];
             const originalStr = original === null ? '' : String(original);
@@ -141,19 +141,32 @@ export class OperationsComponent implements OnInit, OnDestroy {
         this.isMaintenance = false;
         this.showRollbackConfirm = false;
 
-        // Cast changed fields back to proper types
+        // Cast changed fields based on original data types
+        if (!this.previewData?.records?.[0]?.data) return;
+        const firstRecord = this.previewData.records[0].data;
         const parsedData: Record<string, unknown> = {};
         for (const key of Object.keys(changed)) {
             const val = changed[key];
+            const originalVal = firstRecord[key];
+            const originalType = typeof originalVal;
+
             if (val === '') {
                 parsedData[key] = null;
-            } else if (!isNaN(Number(val)) && val !== '') {
+            } else if (originalVal === null) {
+                // Fallback to auto-detection if the template record is null
+                if (!isNaN(Number(val)) && val !== '') {
+                    parsedData[key] = Number(val);
+                } else if (val.toLowerCase() === 'true' || val.toLowerCase() === 'false') {
+                    parsedData[key] = val.toLowerCase() === 'true';
+                } else {
+                    parsedData[key] = val;
+                }
+            } else if (originalType === 'number') {
                 parsedData[key] = Number(val);
-            } else if (val.toLowerCase() === 'true') {
-                parsedData[key] = true;
-            } else if (val.toLowerCase() === 'false') {
-                parsedData[key] = false;
+            } else if (originalType === 'boolean') {
+                parsedData[key] = val.toLowerCase() === 'true';
             } else {
+                // Default to string (e.g. VARCHAR)
                 parsedData[key] = val;
             }
         }
@@ -246,7 +259,7 @@ export class OperationsComponent implements OnInit, OnDestroy {
     }
 
     isFieldChanged(key: string): boolean {
-        if (!this.previewData || this.previewData.records.length === 0) return false;
+        if (!this.previewData?.records?.[0]?.data) return false;
         const original = this.previewData.records[0].data[key];
         const originalStr = original === null ? '' : String(original);
         return this.editableRecord[key] !== originalStr;

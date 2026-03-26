@@ -1,0 +1,508 @@
+﻿
+[2m> [22m[2mnx run[22m quetzaltic-ui:serve:development --port=4200
+
+[33mÔØ»[39m Building...
+[32mÔ£ö[39m Building...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m[36m322.80 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m [36m37.64 kB[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m360.44 kB[22m
+Application bundle generation complete. [11.481 seconds] - 2026-03-23T20:49:12.438Z
+[39m
+node.exe : 
+[1m[33m[33mÔû▓ [43;33
+m[[43;30mWARNING[43;33m
+][0m [1mNG8107: 
+NG8107: The left side of 
+this optional chain 
+operation does not 
+include 'null' or 
+'undefined' in its type, 
+therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+En línea: 1 Carácter: 1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo       
+       : NotSpecifi    
+ed: ([1m[33m[33    
+mÔ...r-compiler][    
+0m:String) [], Rem    
+oteException
+    + FullyQualifiedEr   
+ rorId : NativeComm    
+andError
+ 
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:84:32:
+[37m      84 Ôöé        
+         {{ previewData?.
+[32mtable[37m }}
+         ÔòÁ             
+                    
+[32m~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:104:41:
+[37m      104 Ôöé ...   
+<div *ngIf="previewData?.
+[32mrecords[37m?.[0]?.r
+esolutions?.[key]" ...
+          ÔòÁ            
+                    
+[32m~~~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin a[39m[
+22m[1m[33mngular-compil
+er][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:104:262
+:
+[37m      104 Ôöé 
+...sans" [title]="preview
+Data?.[32mrecords[37m?.
+[0]?.resolutions?.[key] 
+|...
+          ÔòÁ            
+                    
+[32m~~~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:105:34:
+[37m      105 Ôöé ...   
+           {{ previewData
+?.[32mrecords[37m?.[0]?
+.resolutions?.[key] }}
+          ÔòÁ            
+                      
+[32m~~~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:182:80:
+[37m      182 Ôöé 
+...Localizados [{{ previe
+wData?.[32mtable[37m 
+}}]: {{ 
+previewData?.count ...
+          ÔòÁ            
+                     
+[32m~~~~~[0m
+  Warning occurs in the t
+empl[39m[22m[1m[33mat
+e of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:182:107
+:
+[37m      182 Ôöé 
+...izados [{{ 
+previewData?.table }}]: 
+{{ previewData?.[32mcoun
+t[37m }}</div>
+          ÔòÁ            
+                         
+                  
+[32m~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:183:73:
+[37m      183 Ôöé 
+...00">> Coincidencia 
+por: {{ previewData?.[32
+mpkColumn[37m }} / 
+WHERE</div>
+          ÔòÁ            
+                         
+       [32m~~~~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0[39m[2
+2m[1m[33mm
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:185:136
+:
+[37m      185 Ôöé 
+...w-x-auto">{{ formatJso
+n(previewData?.[32mrecor
+ds[37m?.[0]?.data) 
+}}</pre>
+          ÔòÁ            
+                         
+    [32m~~~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:192:35:
+[37m      192 Ôöé ...   
+<div *ngIf="previewData?.
+[32mrecords[37m?.[0]?.r
+esolutions && objec...
+          ÔòÁ            
+                    
+[32m~~~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/exte[39m[22
+m[1m[33mnded-diagnostic
+s/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:192:88:
+[37m      192 Ôöé ... 
+&& objectKeys(previewData
+?.[32mrecords[37m?.[0]?
+.resolutions).length ...
+          ÔòÁ            
+                    
+[32m~~~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:194:141
+:
+[37m      194 Ôöé 
+...o">{{ formatJson(previ
+ewData?.[32mrecords[37m
+?.[0]?.resolutions) 
+}}</pre>
+          ÔòÁ            
+                      
+[32m~~~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[33mÔû▓ [43;33m[[43;30
+mWARNING[43;33m][0m 
+[1mNG8107: NG8107: The 
+left side of this 
+optional chain operation 
+does not include 'null' 
+or 'undefined' in its 
+type, therefore the '?.' 
+operator can be replaced 
+with the '.' operator. 
+Find more at https://v21.
+angular.dev/extended-diag
+nostics/NG8107[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.html:209:143
+:
+[37m      209 Ôöé ... 
+text-xs">{{ formatJson(pr
+eviewData?.[32mrecords[
+37m?.[0]?.data) }}</pre>
+          ÔòÁ            
+                   
+[39m[22m[1m[33m      
+    [32m~~~~~~~[0m
+  Warning occurs in the 
+template of component 
+OperationsComponent.
+    apps/quetzaltic-ui/sr
+c/app/operations/operatio
+ns.component.ts:12:17:
+[37m      12 Ôöé     
+templateUrl: [32m'./oper
+ations.component.html'[3
+7m,
+         ÔòÁ             
+     [32m~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~[0m
+[39m[22m
+[37mWatch mode enabled. Watching for file changes...[39m
+[37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
+  [32mÔ×£[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
+[2m[32m  Ô×£[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m

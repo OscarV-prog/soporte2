@@ -5,7 +5,7 @@ import { GuardianValidator, ValidatedQuery } from '@quetzaltic/guardian-core';
 import { PrismaMetadataResolver } from '../database/resolvers/prisma-metadata.resolver';
 import { PrismaResourcePolicyResolver } from '../database/resolvers/prisma-resource-policy.resolver';
 import { IdempotencyService } from './idempotency.service';
-import { computeRequestHash } from '@quetzaltic/audit-utils';
+import { computeRequestHash, deterministicStringify } from '@quetzaltic/audit-utils';
 
 export interface TransactionInput {
     query: string; // La consulta SELECT que define el registro a afectar
@@ -19,7 +19,7 @@ export interface TransactionInput {
 @Injectable()
 export class TransactionOrchestratorService {
     private readonly logger = new Logger(TransactionOrchestratorService.name);
-    private readonly TRANSACTION_TIMEOUT_MS = 35000; // Increased to 35s for heavy bulk updates
+    private readonly TRANSACTION_TIMEOUT_MS = 300000; // Increased to 300s for massive bulk updates
 
     constructor(
         private readonly prisma: PrismaService,
@@ -61,7 +61,7 @@ export class TransactionOrchestratorService {
             const updateTask = this.executeTransactionalLoop(validatedQuery, data, correlationId, ticketId, actor);
 
             const timeoutTask = new Promise((_, reject) =>
-                setTimeout(() => reject(new RequestTimeoutException('Production Transaction Timeout: Operation exceeded 10s limit.')),
+                setTimeout(() => reject(new RequestTimeoutException(`Production Transaction Timeout: Operation exceeded ${this.TRANSACTION_TIMEOUT_MS / 1000}s limit.`)),
                     this.TRANSACTION_TIMEOUT_MS)
             );
 
@@ -83,14 +83,15 @@ export class TransactionOrchestratorService {
      * Obtiene un registro actual sin abrir transacción.
      * Útil para verificaciones de drift previas a la orquestación.
      */
-    async fetchCurrentRecord(tableName: string, pkColumn: string | string[], pkValue: unknown | unknown[]): Promise<Record<string, unknown> | null> {
-        const records = await this.fetchRecords(tableName, this.buildWhereClause(pkColumn, pkValue));
+    async fetchCurrentRecord(tableName: string, pkColumn: string | string[], pkValue: unknown | unknown[], tx?: any): Promise<Record<string, unknown> | null> {
+        const records = await this.fetchRecords(tableName, this.buildWhereClause(pkColumn, pkValue), tx);
         return records.length > 0 ? records[0] : null;
     }
 
-    async fetchRecords(tableName: string, where: Record<string, unknown>): Promise<Record<string, unknown>[]> {
+    async fetchRecords(tableName: string, where: Record<string, unknown>, tx?: any): Promise<Record<string, unknown>[]> {
         const delegateKey = this.getPrismaDelegateKey(tableName);
-        const tableProxy = (this.prisma as unknown as Record<string, {
+        const client = tx || this.prisma;
+        const tableProxy = (client as unknown as Record<string, {
             findMany: (args: { where: Record<string, unknown> }) => Promise<Record<string, unknown>[]>
         }>)[delegateKey];
 
@@ -256,19 +257,27 @@ export class TransactionOrchestratorService {
                 updateMany: (args: { where: Record<string, unknown>, data: Record<string, unknown> }) => Promise<{ count: number }>,
             }>)[delegateKey];
 
-            if (!tableProxy) {
-                throw new InternalServerErrorException(`Table ${validatedQuery.table} not found in model`);
-            }
+            // NOTE: tableProxy may be null for tables not in Prisma schema (e.g. oscar_prueba).
+            // In that case we fall back to raw SQL for the UPDATE.
 
             // Usamos el prismaWhere del Guardián (soporta Bulk)
             const where = validatedQuery.prismaWhere || (this as any).buildWhereClause(validatedQuery.pkColumn, validatedQuery.pkValue);
 
-            // a) Get Snapshots Before using Raw SQL to avoid case-sensitivity issues with Prisma filters
-            // We use the table name and the prismaWhere to build a simple SELECT
+            // a) Build WHERE clause for raw SQL
             const whereEntries = Object.entries(where);
             let whereClause = '1=1';
             if (whereEntries.length > 0) {
                 whereClause = whereEntries.map(([col, val]) => {
+                    if (val === null) return `[${col}] IS NULL`;
+                    if (typeof val === 'boolean') return `[${col}] = ${val ? 1 : 0}`;
+                    if (typeof val === 'object' && val !== null) {
+                        const keys = Object.keys(val);
+                        if (keys.includes('in') && Array.isArray((val as any).in)) {
+                            const vals = (val as any).in.map((v: any) => typeof v === 'string' ? `'${v}'` : v).join(', ');
+                            return `[${col}] IN (${vals})`;
+                        }
+                        return `[${col}] = '${JSON.stringify(val)}'`;
+                    }
                     const formattedVal = typeof val === 'string' ? `'${val}'` : val;
                     return `[${col}] = ${formattedVal}`;
                 }).join(' AND ');
@@ -286,19 +295,18 @@ export class TransactionOrchestratorService {
                 throw new InternalServerErrorException(`No records found on table ${validatedQuery.table} matching the filter.`);
             }
 
-            // b) Audit PENDING for each record
-            const auditEventIds: string[] = [];
+            // b) Audit PENDING for each record (Individual creates to guarantee ID-to-Record parity)
+            let auditEventIds: string[] = [];
             const pkCols = Array.isArray(validatedQuery.pkColumn) ? validatedQuery.pkColumn : [validatedQuery.pkColumn];
 
             for (const snapshot of snapshotsBefore) {
-                // Extraer el valor de la PK para este registro específico (Case-insensitive lookup)
                 const snapshotKeys = Object.keys(snapshot);
                 const pkVals = pkCols.map(col => {
                     const realKey = snapshotKeys.find(k => k.toLowerCase() === col.toLowerCase());
                     return String(snapshot[realKey || col]);
                 }).join(',');
-                
-                const eventId = await this.auditStore.create({
+
+                const auditId = await this.auditStore.create({
                     correlationId,
                     ticketId,
                     actor,
@@ -307,60 +315,119 @@ export class TransactionOrchestratorService {
                     primaryKeyValue: pkVals,
                     snapshotBefore: snapshot,
                     status: 'PENDING',
-                });
-                auditEventIds.push(eventId);
+                }, tx);
+                auditEventIds.push(auditId);
             }
 
             try {
-                // c) Execute Bulk UPDATE via Raw SQL for maximum robustness against mapping/case issues
                 this.logger.log(`[ORCHESTRATOR] Bulk Update on ${validatedQuery.table}. Records: ${snapshotsBefore.length}`);
-                
-                const dataEntries = Object.entries(data);
-                const setClause = dataEntries.map(([col, val]) => {
-                    const formattedVal = typeof val === 'string' ? `'${val}'` : (val === null ? 'NULL' : val);
-                    return `[${col}] = ${formattedVal}`;
-                }).join(', ');
 
-                const updateQuery = `UPDATE [${validatedQuery.table}] SET ${setClause} WHERE ${whereClause}`;
-                console.log(`[ORCHESTRATOR] Executing Update SQL: ${updateQuery}`);
-                
-                const count = await tx.$executeRawUnsafe(updateQuery);
-                console.log(`[ORCHESTRATOR] Update result count: ${count}`);
+                let updatedCount = 0;
 
-                const updateRes = { count };
+                if (tableProxy) {
+                    // c-a) Prisma updateMany (table exists in schema)
+                    // FIX: Ensure 'where' keys match Prisma case-sensitivity
+                    const prismaWhere: any = {};
 
-                // d) Audit SUCCESS for all (Fetch again using same raw query)
-                const snapshotsAfter = await tx.$queryRawUnsafe(selectQuery) as Record<string, unknown>[];
-                const snapshotAfterKeys = snapshotsAfter.length > 0 ? Object.keys(snapshotsAfter[0]) : [];
-                
-                for (let i = 0; i < auditEventIds.length; i++) {
-                    const eventId = auditEventIds[i];
-                    const before = snapshotsBefore[i];
-                    const beforeKeys = Object.keys(before);
+                    // Better: We know Prisma fields are usually camelCase or match the model.
+                    // For now, we'll try to match the keys in 'where' to the keys available in the snapshotsBefore
+                    const firstSnapshot = snapshotsBefore[0];
+                    const snapshotKeys = Object.keys(firstSnapshot);
+                    
+                    for (const [wKey, wVal] of Object.entries(where as any)) {
+                        const matchedKey = snapshotKeys.find(k => k.toLowerCase() === wKey.toLowerCase());
+                        prismaWhere[matchedKey || wKey] = wVal;
+                    }
 
-                    // Intentar encontrar el "after" correspondiente por PK (Case-insensitive match)
-                    const after = snapshotsAfter.find(s => 
-                        pkCols.every(col => {
-                            const bKey = beforeKeys.find(k => k.toLowerCase() === col.toLowerCase());
-                            const aKey = snapshotAfterKeys.find(k => k.toLowerCase() === col.toLowerCase());
-                            return String(s[aKey || col]) === String(before[bKey || col]);
-                        })
-                    );
-                    await this.auditStore.updateStatus(eventId, 'SUCCESS', after || snapshotsAfter[0] || before);
+                    const prismaData: any = {};
+                    for (const [dKey, dVal] of Object.entries(data as any)) {
+                        const matchedKey = snapshotKeys.find(k => k.toLowerCase() === dKey.toLowerCase());
+                        prismaData[matchedKey || dKey] = dVal;
+                    }
+
+                    const updateRes = await tableProxy.updateMany({
+                        where: prismaWhere,
+                        data: prismaData
+                    });
+                    updatedCount = updateRes.count;
+                } else {
+                    // c-b) Raw SQL UPDATE fallback
+                    this.logger.warn(`[ORCHESTRATOR] Table ${validatedQuery.table} not in Prisma model – using raw SQL UPDATE`);
+                    const setClauses = Object.entries(data).map(([col, val]) => {
+                        if (val === null) return `[${col}] = NULL`;
+                        if (typeof val === 'boolean') return `[${col}] = ${val ? 1 : 0}`;
+                        if (typeof val === 'string') return `[${col}] = '${val.replace(/'/g, "''")}'`;
+                        return `[${col}] = ${val}`;
+                    });
+                    if (setClauses.length === 0) {
+                        throw new InternalServerErrorException('No data fields provided for update.');
+                    }
+                    const rawUpdateSql = `UPDATE [${validatedQuery.table}] SET ${setClauses.join(', ')} WHERE ${whereClause}`;
+                    this.logger.debug(`[ORCHESTRATOR] Raw UPDATE SQL: ${rawUpdateSql}`);
+                    await tx.$executeRawUnsafe(rawUpdateSql);
+                    updatedCount = snapshotsBefore.length;
                 }
 
-                return { result: updateRes, auditEventIds, count: updateRes.count };
+                // d) Audit SUCCESS — update status and capture snapshots after
+                // Fetch snapshots AFTER using PKs for precision
+                try {
+                    const pkColsToFetch = pkCols.map(c => c.trim());
+                    
+                    for (let i = 0; i < auditEventIds.length; i++) {
+                        const eventId = auditEventIds[i];
+                        const snapshotBefore = snapshotsBefore[i];
+                        
+                        // Re-identify PK values for THIS record correctly
+                        const snapshotBeforeKeys = Object.keys(snapshotBefore);
+                        const pkVals = pkColsToFetch.map(col => {
+                            const realKey = snapshotBeforeKeys.find(k => k.toLowerCase() === col.toLowerCase());
+                            return String(snapshotBefore[realKey || col]);
+                        });
+
+                        const where = pkColsToFetch.map((col: string, idx: number) => {
+                            const val = pkVals[idx].trim();
+                            const isNum = !isNaN(Number(val)) && val.length > 0 && !(val.startsWith('0') && val.length > 1);
+                            return `[${col}] = ${isNum ? Number(val) : `'${val.replace(/'/g, "''")}'`}`;
+                        }).join(' AND ');
+
+                        const refreshed = await tx.$queryRawUnsafe(`SELECT * FROM [${validatedQuery.table}] WHERE ${where}`) as any[];
+                        
+                        if (refreshed && refreshed.length > 0) {
+                            await tx.auditEvent.update({
+                                where: { id: eventId },
+                                data: { 
+                                    status: 'SUCCESS',
+                                    snapshotAfter: deterministicStringify(refreshed[0]) as any
+                                }
+                            });
+                        } else {
+                            await tx.auditEvent.update({
+                                where: { id: eventId },
+                                data: { status: 'SUCCESS' }
+                            });
+                        }
+                    }
+                } catch (snapErr: any) {
+                    this.logger.error(`[ORCHESTRATOR] Could not capture snapshotsAfter: ${snapErr.message}`);
+                }
+
+                return { result: { count: updatedCount }, auditEventIds, count: updatedCount };
             } catch (error: any) {
                 console.error(`[ORCHESTRATOR FATAL] Bulk update failed for ${validatedQuery.table}:`, error.message);
-                if (error.stack) console.error(error.stack);
-                for (const id of auditEventIds) {
-                    await this.auditStore.updateStatus(id, 'FAILED').catch(() => { });
+                
+                // Optimized FAILED status update
+                if (auditEventIds.length > 0) {
+                    await tx.auditEvent.updateMany({
+                        where: { id: { in: auditEventIds } },
+                        data: { status: 'FAILED' }
+                    }).catch(e => console.error('Failed to mark audits as FAILED:', e.message));
                 }
+                
                 throw error;
             }
         }, {
-            maxWait: 10000,
-            timeout: 30000
+            maxWait: 15000,
+            timeout: 300000  // 5 minutes – needed for 100+ row bulk updates with audit
         });
     }
 }

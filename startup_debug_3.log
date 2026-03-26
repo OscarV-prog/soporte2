@@ -1,0 +1,127 @@
+﻿
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mserve[22m for project quetzaltic-api and [1m2[22m tasks it depends on:[39m
+
+[2m[36m[39m[22m
+
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[local cache][22m
+
+
+[2m> [22m[2mnx run[22m quetzaltic-api:build
+
+[2m> [22mwebpack-cli build --node-env=production
+
+webpack compiled [1m[32msuccessfully[39m[22m (3620f04753eecc2c)
+
+[2m> [22m[2mnx run[22m quetzaltic-api:serve:development
+
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on:[39m
+[2m[36m[39m[22m
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[local cache][22m
+[2m> [22m[2mnx run[22m quetzaltic-api:build:development
+[2m> [22mwebpack-cli build --node-env=development
+webpack compiled [1m[32msuccessfully[39m[22m (3620f04753eecc2c)
+[2m[32m[39m[22m
+[7m[1m[32m NX [39m[22m[27m  [32mSuccessfully ran target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on[39m
+[2mNx read the output from the cache instead of running the command for 1 out of 2 tasks.[22m
+[13:37:50.589] [32mINFO[39m (22560): [36mStarting Nest application...[39m
+    [35mcontext[39m: "NestFactory"
+[13:37:50.590] [32mINFO[39m (22560): [36mConfigModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.590] [32mINFO[39m (22560): [36mCommonModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.590] [32mINFO[39m (22560): [36mConfigHostModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.590] [32mINFO[39m (22560): [36mDatabaseModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.590] [32mINFO[39m (22560): [36mAuditStoreModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.590] [32mINFO[39m (22560): [36mConfigModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.590] [32mINFO[39m (22560): [36mConfigModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.590] [32mINFO[39m (22560): [36mTerminusModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.590] [32mINFO[39m (22560): [36mTransactionModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.591] [32mINFO[39m (22560): [36mTestOscarModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.591] [32mINFO[39m (22560): [36mLoggerModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.591] [32mINFO[39m (22560): [36mHealthModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.591] [32mINFO[39m (22560): [36mOperationsModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.591] [32mINFO[39m (22560): [36mAuthModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.591] [32mINFO[39m (22560): [36mUsersModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.591] [32mINFO[39m (22560): [36mAppModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.591] [32mINFO[39m (22560): [36mGovernanceModule dependencies initialized[39m
+    [35mcontext[39m: "InstanceLoader"
+[13:37:50.591] [33mWARN[39m (22560): [36mUnsupported route path: "/api/*". In previous versions, the symbols ?, *, and + were used to denote optional or repeating path parameters. The latest version of "path-to-regexp" now requires the use of named parameters. For example, instead of using a route like /users/* to capture all routes starting with "/users", you should use /users/*path. For more details, refer to the migration guide. Attempting to auto-convert...[39m
+    [35mcontext[39m: "LegacyRouteConverter"
+[13:37:50.591] [33mWARN[39m (22560): [36mUnsupported route path: "/api/*". In previous versions, the symbols ?, *, and + were used to denote optional or repeating path parameters. The latest version of "path-to-regexp" now requires the use of named parameters. For example, instead of using a route like /users/* to capture all routes starting with "/users", you should use /users/*path. For more details, refer to the migration guide. Attempting to auto-convert...[39m
+    [35mcontext[39m: "LegacyRouteConverter"
+[13:37:50.591] [33mWARN[39m (22560): [36mUnsupported route path: "/api/*". In previous versions, the symbols ?, *, and + were used to denote optional or repeating path parameters. The latest version of "path-to-regexp" now requires the use of named parameters. For example, instead of using a route like /users/* to capture all routes starting with "/users", you should use /users/*path. For more details, refer to the migration guide. Attempting to auto-convert...[39m
+    [35mcontext[39m: "LegacyRouteConverter"
+[13:37:50.591] [32mINFO[39m (22560): [36mAppController {/api}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mTestController {/api/test}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/test/reset, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mHealthController {/api/health}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/health, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mOperationsController {/api/operations}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/operations/preview, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/operations/execute, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/operations/rollback/:id, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mGovernanceController {/api/governance}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/governance/audit-logs, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/governance/stats, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/governance/lockdown/status, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/governance/lockdown/toggle, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/governance/whitelist, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/governance/whitelist, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/governance/whitelist/update, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/governance/whitelist/delete, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mAuthController {/api/auth}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/auth/login, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mUsersController {/api/users}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/users, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/users, POST} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/users/:id, DELETE} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.591] [32mINFO[39m (22560): [36mTestOscarController {/api/test-oscar}:[39m
+    [35mcontext[39m: "RoutesResolver"
+[13:37:50.591] [32mINFO[39m (22560): [36mMapped {/api/test-oscar, GET} route[39m
+    [35mcontext[39m: "RouterExplorer"
+[13:37:50.592] [31mERROR[39m (22560): [36mÔØî Database connection failed[39m
+    [35mcontext[39m: "PrismaService"
+[13:37:50.592] [32mINFO[39m (22560): [36mNest application successfully started[39m
+    [35mcontext[39m: "NestApplication"
+[13:37:50.592] [32mINFO[39m (22560): [36m­ƒÜÇ Application is running on: http://localhost:3333/api[39m
+[13:37:50.593] [32mINFO[39m (22560): [36m­ƒîì Environment: dev[39m

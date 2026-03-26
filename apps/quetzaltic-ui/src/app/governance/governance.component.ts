@@ -55,6 +55,7 @@ export class GovernanceComponent implements OnInit, OnDestroy {
 
     // Export State
     exportLoading = false;
+    rollbackLoading = false;
 
     private statsSub?: Subscription;
     private routeSub?: Subscription;
@@ -339,13 +340,14 @@ export class GovernanceComponent implements OnInit, OnDestroy {
         const confirmMsg = `¿Seguro que desea revertir la operación en la tabla "${log.tableName}"? Esta acción intentará restaurar los datos al estado anterior.`;
         if (!confirm(confirmMsg)) return;
 
-        this.loadingLogs = true;
+        this.rollbackLoading = true;
         this.govService.rollbackOperation(log.id).subscribe({
             next: () => {
+                this.rollbackLoading = false;
                 this.refreshAll();
             },
             error: (err: any) => {
-                this.loadingLogs = false;
+                this.rollbackLoading = false;
                 alert('Error al ejecutar la reversión: ' + (err.error?.error?.message || 'Error desconocido'));
             }
         });

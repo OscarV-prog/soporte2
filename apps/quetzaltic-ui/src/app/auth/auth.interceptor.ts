@@ -15,12 +15,18 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const router = inject(Router);
     const token = authService.getToken();
 
-    const authReq = token
-        ? req.clone({ headers: req.headers.set('Authorization', `Bearer ${token}`) })
-        : req;
+    let url = req.url;
+    // Si la URL es relativa y empieza con /api, la dejamos pasar.
+    // Netlify (o el proxy de dev) se encargará de redirigirla al backend correcto.
+
+    const authReq = req.clone({
+        url,
+        headers: token ? req.headers.set('Authorization', `Bearer ${token}`) : req.headers
+    });
 
     return next(authReq).pipe(
         catchError((error: HttpErrorResponse) => {
+            console.error('[AuthInterceptor] Error detectado:', error.status, error.url);
             if (error.status === 401) {
                 authService.clearToken();
                 router.navigate(['/login']);

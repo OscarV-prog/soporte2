@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  # Replace with your public API URL (e.g., from ngrok or Render)
+  # IMPORTANTE: Reemplaza esto con la URL pública de tu API (ej. https://api.quetzal.com)
   to = "http://localhost:3333/api/:splat"
   status = 200
   force = true

@@ -27,8 +27,11 @@ model AuditEvent {
   snapshotAfter    String?  @map("snapshot_after")
   status           String   // PENDING | SUCCESS | FAILED
   revertedByEventId String?  @map("reverted_by_event_id")
+  revertingEvent    AuditEvent? @relation("Reversion", fields: [revertedByEventId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  revertedEvents   AuditEvent[] @relation("Reversion")
   executedAt       DateTime @default(now()) @map("executed_at")
 
+  @@index([correlationId])
   @@map("audit_events")
 }
 

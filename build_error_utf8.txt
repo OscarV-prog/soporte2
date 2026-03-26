@@ -1,0 +1,93 @@
+﻿
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on:[39m
+
+[2m[36m[39m[22m
+
+[2m> [22m[2mnx run[22m guardian-core:build  [2m[local cache][22m
+
+
+[2m> [22m[2mnx run[22m quetzaltic-api:build
+
+[2m> [22mwebpack-cli build --node-env=production
+
+[1m[31mERROR[39m[22m in [1m./src/app/transaction/transaction-orchestrator.service.ts:[32m[1m397:55[22m[39m[1m[39m[22m
+[90mTS7006: [39mParameter 'col' implicitly has an 'any' type.
+  [0m [90m 395 |[39m                         [36mfor[39m ([36mconst[39m pkValStr [36mof[39m allPkValues) {
+   [90m 396 |[39m                             [36mconst[39m pkVals [33m=[39m pkValStr[33m.[39msplit([32m','[39m)[33m;[39m
+  [31m[1m>[22m[39m[90m 397 |[39m                             [36mconst[39m where [33m=[39m pkCols[33m.[39mmap((col[33m,[39m i) [33m=>[39m {
+   [90m     |[39m                                                       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 398 |[39m                                 [36mconst[39m val [33m=[39m pkVals[i][33m.[39mtrim()[33m;[39m
+   [90m 399 |[39m                                 [36mconst[39m formatted [33m=[39m [33m![39misNaN([33mNumber[39m(val)) [33m?[39m [33mNumber[39m(val) [33m:[39m [32m`'${val.replace(/'/g, "''")}'`[39m[33m;[39m
+   [90m 400 |[39m                                 [36mreturn[39m [32m`[${col}] = ${formatted}`[39m[33m;[39m[0m
+
+[1m[31mERROR[39m[22m in [1m./src/app/transaction/transaction-orchestrator.service.ts:[32m[1m397:60[22m[39m[1m[39m[22m
+[90mTS7006: [39mParameter 'i' implicitly has an 'any' type.
+  [0m [90m 395 |[39m                         [36mfor[39m ([36mconst[39m pkValStr [36mof[39m allPkValues) {
+   [90m 396 |[39m                             [36mconst[39m pkVals [33m=[39m pkValStr[33m.[39msplit([32m','[39m)[33m;[39m
+  [31m[1m>[22m[39m[90m 397 |[39m                             [36mconst[39m where [33m=[39m pkCols[33m.[39mmap((col[33m,[39m i) [33m=>[39m {
+   [90m     |[39m                                                            [31m[1m^[22m[39m
+   [90m 398 |[39m                                 [36mconst[39m val [33m=[39m pkVals[i][33m.[39mtrim()[33m;[39m
+   [90m 399 |[39m                                 [36mconst[39m formatted [33m=[39m [33m![39misNaN([33mNumber[39m(val)) [33m?[39m [33mNumber[39m(val) [33m:[39m [32m`'${val.replace(/'/g, "''")}'`[39m[33m;[39m
+   [90m 400 |[39m                                 [36mreturn[39m [32m`[${col}] = ${formatted}`[39m[33m;[39m[0m
+
+[1m[31mERROR[39m[22m in [1m./src/app/transaction/transaction-orchestrator.service.ts:[32m[1m403:40[22m[39m[1m[39m[22m
+[90mTS7053: [39mElement implicitly has an 'any' type because expression of type '0' can't be used to index type '{}'.
+  Property '0' does not exist on type '{}'.
+  [0m [90m 401 |[39m                             })[33m.[39mjoin([32m' AND '[39m)[33m;[39m
+   [90m 402 |[39m                             [36mconst[39m rec [33m=[39m [36mawait[39m tx[33m.[39m$queryRawUnsafe([32m`SELECT * FROM [${validatedQuery.table}] WHERE ${where}`[39m)[33m;[39m
+  [31m[1m>[22m[39m[90m 403 |[39m                             [36mif[39m (rec [33m&&[39m rec[[35m0[39m]) postUpdateSnapshots[33m.[39mpush(rec[[35m0[39m])[33m;[39m
+   [90m     |[39m                                        [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 404 |[39m                         }
+   [90m 405 |[39m                     }
+   [90m 406 |[39m[0m
+
+[1m[31mERROR[39m[22m in [1m./src/app/transaction/transaction-orchestrator.service.ts:[32m[1m403:73[22m[39m[1m[39m[22m
+[90mTS7053: [39mElement implicitly has an 'any' type because expression of type '0' can't be used to index type '{}'.
+  Property '0' does not exist on type '{}'.
+  [0m [90m 401 |[39m                             })[33m.[39mjoin([32m' AND '[39m)[33m;[39m
+   [90m 402 |[39m                             [36mconst[39m rec [33m=[39m [36mawait[39m tx[33m.[39m$queryRawUnsafe([32m`SELECT * FROM [${validatedQuery.table}] WHERE ${where}`[39m)[33m;[39m
+  [31m[1m>[22m[39m[90m 403 |[39m                             [36mif[39m (rec [33m&&[39m rec[[35m0[39m]) postUpdateSnapshots[33m.[39mpush(rec[[35m0[39m])[33m;[39m
+   [90m     |[39m                                                                         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 404 |[39m                         }
+   [90m 405 |[39m                     }
+   [90m 406 |[39m[0m
+
+webpack compiled with [1m[31m4 errors[39m[22m (f3433dd5c9b21d54)
+
+[2m[31m[39m[22m
+
+[7m[1m[31m NX [39m[22m[27m  [31mRunning target [1mbuild[22m for project quetzaltic-api and [1m1[22m task it depends on failed[39m
+
+[2mFailed tasks:[22m
+
+[2m-[22m quetzaltic-api:build
+
+[2mHint: run the command with[22m --verbose [2mfor more details.[22m
+
+node.exe : Warning: 
+command "webpack-cli 
+build 
+--node-env=production" 
+exited with non-zero 
+status code
+En línea: 1 Carácter: 1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (Warning: comm   
+ an...ero status co    
+de:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+

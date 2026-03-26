@@ -1,0 +1,430 @@
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:84:32:
+[37m      84 │                 {{ previewData?.[32mtable[37m }}
+         ╵                                 [32m~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:104:41:
+[37m      104 │ ...   <div *ngIf="previewData?.[32mrecords[37m?.[0]?.resolutions?.[key]" ...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin a[39m[22m[1m[33mngular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:104:262:
+[37m      104 │ ...sans" [title]="previewData?.[32mrecords[37m?.[0]?.resolutions?.[key] |...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:105:34:
+[37m      105 │ ...              {{ previewData?.[32mrecords[37m?.[0]?.resolutions?.[key] }}
+          ╵                                  [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:182:80:
+[37m      182 │ ...Localizados [{{ previewData?.[32mtable[37m }}]: {{ previewData?.count ...
+          ╵                                 [32m~~~~~[0m
+  Warning occurs in the templ[39m[22m[1m[33mate of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:182:107:
+[37m      182 │ ...izados [{{ previewData?.table }}]: {{ previewData?.[32mcount[37m }}</div>
+          ╵                                                       [32m~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:183:73:
+[37m      183 │ ...00">> Coincidencia por: {{ previewData?.[32mpkColumn[37m }} / WHERE</div>
+          ╵                                            [32m~~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0[39m[22m[1m[33mm
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:185:136:
+[37m      185 │ ...w-x-auto">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.data) }}</pre>
+          ╵                                         [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:192:35:
+[37m      192 │ ...   <div *ngIf="previewData?.[32mrecords[37m?.[0]?.resolutions && objec...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/exte[39m[22m[1m[33mnded-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:192:88:
+[37m      192 │ ... && objectKeys(previewData?.[32mrecords[37m?.[0]?.resolutions).length ...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:194:141:
+[37m      194 │ ...o">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.resolutions) }}</pre>
+          ╵                                  [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:209:143:
+[37m      209 │ ... text-xs">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.data) }}</pre>
+          ╵                               [39m[22m[1m[33m          [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:84:32:
+[37m      84 │                 {{ previewData?.[32mtable[37m }}
+         ╵                                 [32m~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:104:41:
+[37m      104 │ ...   <div *ngIf="previewData?.[32mrecords[37m?.[0]?.resolutions?.[key]" ...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin a[39m[22m[1m[33mngular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:104:262:
+[37m      104 │ ...sans" [title]="previewData?.[32mrecords[37m?.[0]?.resolutions?.[key] |...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:105:34:
+[37m      105 │ ...              {{ previewData?.[32mrecords[37m?.[0]?.resolutions?.[key] }}
+          ╵                                  [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:182:80:
+[37m      182 │ ...Localizados [{{ previewData?.[32mtable[37m }}]: {{ previewData?.count ...
+          ╵                                 [32m~~~~~[0m
+  Warning occurs in the templ[39m[22m[1m[33mate of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:182:107:
+[37m      182 │ ...izados [{{ previewData?.table }}]: {{ previewData?.[32mcount[37m }}</div>
+          ╵                                                       [32m~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:183:73:
+[37m      183 │ ...00">> Coincidencia por: {{ previewData?.[32mpkColumn[37m }} / WHERE</div>
+          ╵                                            [32m~~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0[39m[22m[1m[33mm
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:185:136:
+[37m      185 │ ...w-x-auto">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.data) }}</pre>
+          ╵                                         [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:192:35:
+[37m      192 │ ...   <div *ngIf="previewData?.[32mrecords[37m?.[0]?.resolutions && objec...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/exte[39m[22m[1m[33mnded-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:192:88:
+[37m      192 │ ... && objectKeys(previewData?.[32mrecords[37m?.[0]?.resolutions).length ...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:194:141:
+[37m      194 │ ...o">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.resolutions) }}</pre>
+          ╵                                  [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:209:143:
+[37m      209 │ ... text-xs">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.data) }}</pre>
+          ╵                               [39m[22m[1m[33m          [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "tr". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/test-oscar/test-oscar.component.ts:91:2:
+[37m      91 │   [32m</tr>[37m
+         ╵   [32m~~~~~[0m
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:84:32:
+[37m      84 │                 {{ previewData?.[32mtable[37m }}
+         ╵                                 [32m~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:104:41:
+[37m      104 │ ...   <div *ngIf="previewData?.[32mrecords[37m?.[0]?.resolutions?.[key]" ...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin a[39m[22m[1m[33mngular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:104:262:
+[37m      104 │ ...sans" [title]="previewData?.[32mrecords[37m?.[0]?.resolutions?.[key] |...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:105:34:
+[37m      105 │ ...              {{ previewData?.[32mrecords[37m?.[0]?.resolutions?.[key] }}
+          ╵                                  [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:182:80:
+[37m      182 │ ...Localizados [{{ previewData?.[32mtable[37m }}]: {{ previewData?.count ...
+          ╵                                 [32m~~~~~[0m
+  Warning occurs in the templ[39m[22m[1m[33mate of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:182:107:
+[37m      182 │ ...izados [{{ previewData?.table }}]: {{ previewData?.[32mcount[37m }}</div>
+          ╵                                                       [32m~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:183:73:
+[37m      183 │ ...00">> Coincidencia por: {{ previewData?.[32mpkColumn[37m }} / WHERE</div>
+          ╵                                            [32m~~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0[39m[22m[1m[33mm
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:185:136:
+[37m      185 │ ...w-x-auto">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.data) }}</pre>
+          ╵                                         [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:192:35:
+[37m      192 │ ...   <div *ngIf="previewData?.[32mrecords[37m?.[0]?.resolutions && objec...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/exte[39m[22m[1m[33mnded-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:192:88:
+[37m      192 │ ... && objectKeys(previewData?.[32mrecords[37m?.[0]?.resolutions).length ...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:194:141:
+[37m      194 │ ...o">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.resolutions) }}</pre>
+          ╵                                  [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:209:143:
+[37m      209 │ ... text-xs">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.data) }}</pre>
+          ╵                               [39m[22m[1m[33m          [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2305: Module '"./test-oscar/test-oscar.component"' has no exported member 'TestOscarComponent'.[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/app.routes.ts:5:9:
+[37m      5 │ import { [32mTestOscarComponent[37m } from './test-oscar/test-oscar.compone...
+        ╵          [32m~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS6192: All imports in import declaration are unused.[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/test-oscar/test-oscar.component.ts:0:0:
+[37m      0 │ [32m[37m
+        ╵ [32m^[0m
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS6133: 'CommonModule' is declared but its value is never read.[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/test-oscar/test-oscar.component.ts:2:0:
+[37m      2 │ [32mimport { CommonModule } from '@angular/common';[37m
+        ╵ [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS6133: 'HttpClient' is declared but its value is never read.[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/test-oscar/test-oscar.component.ts:3:0:
+[37m      3 │ [32mimport { HttpClient } from '@angular/common/http';[37m
+        ╵ [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS6133: 'GovernanceService' is declared but its value is never read.[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/test-oscar/test-oscar.component.ts:4:0:
+[37m      4 │ [32mimport { GovernanceService } from '../governance/governance.service';[37m
+        ╵ [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS6133: 'FormsModule' is declared but its value is never read.[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/test-osca[39m[22m[1m[31mr/test-oscar.component.ts:5:0:
+[37m      5 │ [32mimport { FormsModule } from '@angular/forms';[37m
+        ╵ [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS6133: 'Router' is declared but its value is never read.[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/test-oscar/test-oscar.component.ts:6:0:
+[37m      6 │ [32mimport { Router } from '@angular/router';[37m
+        ╵ [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS6192: All imports in import declaration are unused.[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/test-oscar/test-oscar.component.ts:7:0:
+[37m      7 │ [32mimport { interval, Subscription } from 'rxjs';[37m
+        ╵ [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS1160: Unterminated template literal.[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/test-oscar/test-oscar.component.ts:192:0:
+[37m      192 │ [32m[37m
+          ╵ [32m^[0m
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:84:32:
+[37m      84 │                 {{ previewData?.[32mtable[37m }}
+         ╵                                 [32m~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:104:41:
+[37m      104 │ ...   <div *ngIf="previewData?.[32mrecords[37m?.[0]?.resolutions?.[key]" ...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin a[39m[22m[1m[33mngular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:104:262:
+[37m      104 │ ...sans" [title]="previewData?.[32mrecords[37m?.[0]?.resolutions?.[key] |...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:105:34:
+[37m      105 │ ...              {{ previewData?.[32mrecords[37m?.[0]?.resolutions?.[key] }}
+          ╵                                  [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:182:80:
+[37m      182 │ ...Localizados [{{ previewData?.[32mtable[37m }}]: {{ previewData?.count ...
+          ╵                                 [32m~~~~~[0m
+  Warning occurs in the templ[39m[22m[1m[33mate of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:182:107:
+[37m      182 │ ...izados [{{ previewData?.table }}]: {{ previewData?.[32mcount[37m }}</div>
+          ╵                                                       [32m~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:183:73:
+[37m      183 │ ...00">> Coincidencia por: {{ previewData?.[32mpkColumn[37m }} / WHERE</div>
+          ╵                                            [32m~~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0[39m[22m[1m[33mm
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:185:136:
+[37m      185 │ ...w-x-auto">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.data) }}</pre>
+          ╵                                         [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:192:35:
+[37m      192 │ ...   <div *ngIf="previewData?.[32mrecords[37m?.[0]?.resolutions && objec...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/exte[39m[22m[1m[33mnded-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:192:88:
+[37m      192 │ ... && objectKeys(previewData?.[32mrecords[37m?.[0]?.resolutions).length ...
+          ╵                                [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:194:141:
+[37m      194 │ ...o">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.resolutions) }}</pre>
+          ╵                                  [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: NG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator. Find more at https://v21.angular.dev/extended-diagnostics/NG8107[0m [1m[35m[plugin angular-compiler][0m
+    apps/quetzaltic-ui/src/app/operations/operations.component.html:209:143:
+[37m      209 │ ... text-xs">{{ formatJson(previewData?.[32mrecords[37m?.[0]?.data) }}</pre>
+          ╵                               [39m[22m[1m[33m          [32m~~~~~~~[0m
+  Warning occurs in the template of component OperationsComponent.
+    apps/quetzaltic-ui/src/app/operations/operations.component.ts:12:17:
+[37m      12 │     templateUrl: [32m'./operations.component.html'[37m,
+         ╵                  [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
