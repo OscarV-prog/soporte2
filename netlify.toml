@@ -2,11 +2,6 @@
   command = "npx nx build quetzaltic-ui --prod"
   publish = "dist/apps/quetzaltic-ui/browser"
 
-[[plugins]]
-  package = "@netlify/angular-runtime"
-  [plugins.inputs]
-    packagePath = "apps/quetzaltic-ui/project.json"
-
 [[redirects]]
   from = "/api/*"
   to = "https://soporte2.onrender.com/api/:splat"
