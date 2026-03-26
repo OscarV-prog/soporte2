@@ -253,7 +253,7 @@
 <!-- Confirmation Modal for Execution -->
 <div *ngIf="showExecutionConfirm"
     class="fixed inset-0 bg-black/70 z-[60] flex items-center justify-center p-4 backdrop-blur-sm">
-    <div class="bg-qz-card border border-qz-light rounded-2xl p-8 max-w-lg w-full shadow-2xl relative overflow-hidden">
+    <div class="bg-qz-card border border-qz-light rounded-2xl p-8 max-w-4xl w-full shadow-2xl relative overflow-hidden">
         <!-- Glow effect -->
         <div class="absolute -top-10 -right-10 w-32 h-32 bg-qz-emerald/10 blur-3xl rounded-full"></div>
         
@@ -270,28 +270,95 @@
                 </div>
             </div>
 
-            <div class="space-y-4 mb-8">
-                <div class="bg-qz-darkest/50 border border-qz-light/50 rounded-xl p-5 space-y-3">
-                    <div class="flex justify-between items-center text-sm">
-                        <span class="text-qz-muted">Registros Afectados</span>
+            <div class="space-y-6 mb-8">
+                <!-- Resumen Rápido -->
+                <div class="flex gap-4">
+                    <div class="flex-1 bg-qz-darkest/50 border border-qz-light/50 rounded-xl p-3 flex flex-col">
+                        <span class="text-[10px] text-qz-muted uppercase font-bold mb-1">Registros</span>
                         <span class="text-white font-mono font-bold">{{ previewData?.count || 0 }} filas</span>
                     </div>
-                    <div class="flex justify-between items-center text-sm">
-                        <span class="text-qz-muted">Ticket / ID</span>
+                    <div class="flex-1 bg-qz-darkest/50 border border-qz-light/50 rounded-xl p-3 flex flex-col">
+                        <span class="text-[10px] text-qz-muted uppercase font-bold mb-1">Ticket / ID</span>
                         <span class="text-qz-emerald font-mono font-bold">{{ ticketId }}</span>
-                    </div>
-                    <div class="flex justify-between items-center text-sm pt-2 border-t border-qz-light/30">
-                        <span class="text-qz-muted">Campos Auditables</span>
-                        <span class="text-white">{{ changedCount }} modificados</span>
                     </div>
                 </div>
 
-                <div class="bg-orange-500/10 border border-orange-500/30 rounded-lg p-3 flex gap-3">
-                    <svg class="w-5 h-5 text-orange-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Comparativa Antes/Después -->
+                <div class="space-y-4">
+                    <!-- ANTES -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between px-1">
+                            <span class="text-[10px] text-qz-muted uppercase font-black letter-spacing-widest">Estado Actual (Base de Datos)</span>
+                            <span class="text-[10px] text-qz-muted font-mono italic">Muestra: Registro 1</span>
+                        </div>
+                        <div id="scroll-before" (scroll)="onScroll($event, 'scroll-after')"
+                            class="overflow-x-auto bg-qz-darkest border border-qz-light/30 rounded-lg shadow-inner custom-scrollbar">
+                            <table class="w-full text-left border-collapse min-w-[1200px]">
+                                <thead>
+                                    <tr class="bg-qz-light/10">
+                                        <th *ngFor="let key of objectKeys(previewData?.records?.[0]?.data)" 
+                                            class="px-3 py-2 text-[10px] font-bold text-qz-muted border-r border-qz-light/20 last:border-0 whitespace-nowrap uppercase tracking-tighter">
+                                            {{ key }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td *ngFor="let key of objectKeys(previewData?.records?.[0]?.data)" 
+                                            class="px-3 py-2.5 text-xs font-mono text-white/70 border-r border-qz-light/20 last:border-0 whitespace-nowrap">
+                                            {{ previewData?.records?.[0]?.data?.[key] ?? 'NULL' }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- DESPUÉS -->
+                    <div class="space-y-1.5">
+                        <div class="flex items-center justify-between px-1">
+                            <span class="text-[10px] text-qz-emerald uppercase font-black letter-spacing-widest">Estado Propuesto (Mutación)</span>
+                            <span class="text-[10px] text-qz-emerald font-bold">{{ changedCount }} campos a modificar</span>
+                        </div>
+                        <div id="scroll-after" (scroll)="onScroll($event, 'scroll-before')"
+                            class="overflow-x-auto bg-qz-darkest border border-qz-emerald/30 rounded-lg shadow-[0_0_20px_rgba(25,198,131,0.05)] custom-scrollbar">
+                            <table class="w-full text-left border-collapse min-w-[1200px]">
+                                <thead>
+                                    <tr class="bg-qz-emerald/10">
+                                        <th *ngFor="let key of objectKeys(recordAfter)" 
+                                            class="px-3 py-2 text-[10px] font-bold text-qz-emerald border-r border-qz-emerald/20 last:border-0 whitespace-nowrap uppercase tracking-tighter">
+                                            {{ key }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-qz-emerald/5">
+                                        <td *ngFor="let key of objectKeys(recordAfter)" 
+                                            class="px-3 py-2.5 text-xs font-mono border-r border-qz-emerald/20 last:border-0 whitespace-nowrap"
+                                            [class.text-qz-emerald]="isFieldChanged(key)"
+                                            [class.font-bold]="isFieldChanged(key)"
+                                            [class.bg-qz-emerald/20]="isFieldChanged(key)">
+                                            <div class="flex items-center gap-2">
+                                                {{ recordAfter?.[key] ?? 'NULL' }}
+                                                <svg *ngIf="isFieldChanged(key)" class="w-3 h-3 text-qz-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                                </svg>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-orange-500/10 border border-orange-500/30 rounded-xl p-4 flex gap-4">
+                    <svg class="w-6 h-6 text-orange-500 flex-shrink-0 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                     </svg>
                     <p class="text-[11px] text-orange-200/80 leading-relaxed font-medium">
-                        Esta operación generará un evento de auditoría. Podrás revertir los cambios desde la bitácora si surge algún inconveniente.
+                        <span class="text-orange-500 font-black block mb-1">ATENCIÓN — ESTA ACCIÓN ES AUDITADA</span>
+                        Se generará un ID de correlación único. Puedes revertir los cambios desde la bitácora principal o el registro de terminal adyacente.
                     </p>
                 </div>
             </div>

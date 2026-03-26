@@ -36,6 +36,9 @@ export class OperationsComponent implements OnInit, OnDestroy {
     lastResponse: OperationResponse | null = null;
     lastError: any = null;
 
+    // Comparativa scroll sync
+    syncingScroll = false;
+
     constructor(
         private operationsService: OperationsService,
         private govService: GovernanceService,
@@ -256,6 +259,39 @@ export class OperationsComponent implements OnInit, OnDestroy {
         this.previewData = null;
         this.previewError = null;
         this.editableRecord = {};
+    }
+
+    get recordAfter(): Record<string, any> {
+        if (!this.previewData?.records?.[0]?.data) return {};
+        const after = { ...this.previewData.records[0].data };
+        for (const key of Object.keys(this.editableRecord)) {
+            const val = this.editableRecord[key];
+            const originalVal = after[key];
+            const originalType = typeof originalVal;
+
+            if (val === '') {
+                after[key] = null;
+            } else if (originalType === 'number') {
+                after[key] = Number(val);
+            } else if (originalType === 'boolean') {
+                after[key] = val.toLowerCase() === 'true';
+            } else {
+                after[key] = val;
+            }
+        }
+        return after;
+    }
+
+    onScroll(event: any, otherId: string) {
+        if (this.syncingScroll) return;
+        this.syncingScroll = true;
+        const source = event.target as HTMLElement;
+        const other = document.getElementById(otherId);
+        if (other) {
+            other.scrollLeft = source.scrollLeft;
+        }
+        // Small timeout to prevent feedback loops
+        setTimeout(() => this.syncingScroll = false, 10);
     }
 
     isFieldChanged(key: string): boolean {
