@@ -37,3 +37,10 @@ Application bundle generation complete. [14.369 seconds] - 2026-03-26T19:28:09.9
 Application bundle generation complete. [4.267 seconds] - 2026-03-26T19:31:25.454Z
 [39m
 [37mPage reload sent to client(s).[39m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m [2m | [22m[36m336.09 kB[37m[2m | [22m
+Application bundle generation complete. [17.782 seconds] - 2026-03-26T19:47:53.491Z
+[39m
+[37mPage reload sent to client(s).[39m
