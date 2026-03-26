@@ -1,7 +1,7 @@
 [[redirects]]
   from = "/api/*"
   # IMPORTANTE: Reemplaza esto con la URL pública de tu API (ej. https://api.quetzal.com)
-  to = "http://localhost:3333/api/:splat"
+  to = "https://soporte2.onrender.com/api/:splat"
   status = 200
   force = true
 
