@@ -1,6 +1,14 @@
+[build]
+  command = "npx nx build quetzaltic-ui --prod"
+  publish = "dist/apps/quetzaltic-ui/browser"
+
+[[plugins]]
+  package = "@netlify/angular-runtime"
+  [plugins.inputs]
+    packagePath = "apps/quetzaltic-ui/project.json"
+
 [[redirects]]
   from = "/api/*"
-  # IMPORTANTE: Reemplaza esto con la URL pública de tu API (ej. https://api.quetzal.com)
   to = "https://soporte2.onrender.com/api/:splat"
   status = 200
   force = true
